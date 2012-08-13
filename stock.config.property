@@ -1,0 +1,9 @@
+outPutPath=/home/ubuntu/dev/git/scratch/bloomberg/stockdatatemp
+outQueue=tcp://*:30120
+bloombergNewsOutputPath=bloomberg/data-collector/bloombergNews
+stockIndexList=conf/stockIndices.txt
+currencyList=conf/currencies.txt
+companyList=conf/members
+topwordPath=conf/keywords/top500.txt
+SqliteDB=d:/Sqlite/embers.db
+SqliteDriver=org.sqlite.JDBC

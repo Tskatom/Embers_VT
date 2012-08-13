@@ -1,0 +1,7 @@
+outPutPath=/home/ubuntu/dev/git/scratch/bloomberg/currencydatatemp
+outQueue=tcp://*:30130
+bloombergNewsOutputPath=bloomberg/data-collector/bloombergNews
+stockIndexList=conf/stockIndices.txt
+currencyList=conf/currencies.txt
+companyList=conf/members
+topwordPath=conf/keywords/top500.txt

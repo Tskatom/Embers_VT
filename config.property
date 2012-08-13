@@ -1,0 +1,15 @@
+outPutPath=d:/embers/data-collector
+bloombergNewsOutputPath=d:/embers/data-collector/bloombergNews
+stockIndexList=d:/embers/conf/stockIndices.txt
+currencyList=d:/embers/conf/currencies.txt
+companyList=d:/embers/conf/members
+topwordPath=d:/embers/conf/keywords/top500.txt
+companyMemberDir=D:/embers/Stock Index/Members/csv
+gsrDir=D:/embers/GSR/
+newsPath=D:/embers/Bloomberg/archiveNews/filterBloombergArray.txt
+stockIndexArrary=MERVAL,IBOV,CHILE65,COLCAP,CRSMBCT,MEXBOL,BVPSBVPS,IGBVL,IBVC
+DBUrl=jdbc:mysql://localhost:3306/
+DBName=embers
+userName=root
+passwd=123456
+driver=com.mysql.jdbc.Driver
