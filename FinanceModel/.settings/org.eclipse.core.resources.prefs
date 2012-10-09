@@ -1,0 +1,6 @@
+eclipse.preferences.version=1
+encoding//DataCollecting/BloombergNewsScrape.py=utf-8
+encoding//DataPreprocess/RawNewsProcess.py=utf8
+encoding//DataPreprocess/RawStockProcess.py=utf8
+encoding//Model/WarningCreate.py=utf8
+encoding//Training/CreatingVocabulary.py=utf-8
