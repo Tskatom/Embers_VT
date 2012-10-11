@@ -26,7 +26,7 @@ def initiate():
     config = ConfigParser.ConfigParser()
     with open('../Config/config.cfg','r') as cfgFile:
         config.readfp(cfgFile)
-    newsAlreadDownloadFilePath = config.get("info", "newsAlreadyDownload") 
+    newsAlreadDownloadFilePath = config.get("model", "newsAlreadyDownload") 
     newsAlreadyDownload = json.load(open(newsAlreadDownloadFilePath))
     
     get_db_connection()
@@ -203,7 +203,7 @@ def insert_news(article):
         stockIndex = article["stock_index"]
         source = article["source"]
         updateTime = article["update_time"]
-        url = article["url"]
+        url = article["newsUrl"]
         cur.execute(sql,(embersId,title,author,postTime,postDate,content,stockIndex,source,updateTime,url))
         
     except lite.Error, e:
@@ -221,7 +221,7 @@ def insert_news_mission(article):
         missionName = "Bag of Words"
         missionStatus = "0"
         cur.execute(sql,(embersId,missionName,missionStatus))
-        con.commit()
+        
     except lite.Error, e:
         print "Error: %s" % e.args[0]
     finally:
@@ -246,12 +246,12 @@ def import_to_database():
                     i = 0
                 
 def execute():
-    initiate()
     get_all_companies()
     get_stock_news()
     import_to_database()
     end()
 
+initiate()
 #get_db_connection()
 if __name__ == "__main__":
     execute()

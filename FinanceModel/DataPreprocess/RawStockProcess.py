@@ -40,7 +40,7 @@ def check_if_existed(rawIndexData):
     cur.execute(sql,(stockIndex,updateTime))
     count = cur.fetchone()[0]
     if count == 0:
-       ifExisted = False
+        ifExisted = False
     return ifExisted
 
  
@@ -130,7 +130,11 @@ def get_trend_type(rawIndexData):
     "Load the trend type range file"
     rangeFilePath = common.get_configuration("model", "TREND_RANGE_FILE")
     tFile = open(rangeFilePath)
-    tJson = json.load(tFile)
+    trendsJson = json.load(tFile)
+    
+    "Get the indicated stock range"
+    stockIndex = rawIndexData["stockIndex"]
+    tJson = trendsJson[stockIndex]
     print tJson
     
     "Computing change percent"

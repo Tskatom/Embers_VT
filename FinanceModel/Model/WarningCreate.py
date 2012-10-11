@@ -3,7 +3,7 @@ import sys
 import json
 from Util import calculator
 import time
-import datetime
+from datetime import datetime,timedelta
 import hashlib
 from Util import common
 import EnrichDataProcess as ed
@@ -68,20 +68,20 @@ def warningCheck(surObj):
         pClusster = trendType
             
     
-        sql = "select sub_sequence,last_price from t_daily_stockindices where stock_index=? and date<? order by date desc limit 1"
+        sql = "select sub_sequence,last_price from t_daily_stockindex where stock_index=? and date<? order by date desc limit 1"
         cur.execute(sql,(stockIndex,date))
         row = cur.fetchone()
         subSequence = row[0]
         currentVal = row[1]
         
-        querySql = "select one_day_change from t_daily_stockindices where stock_index=? and sub_sequence>=? and sub_sequence<=?"
+        querySql = "select one_day_change from t_daily_stockindex where stock_index=? and sub_sequence>=? and sub_sequence<=?"
         cur.execute(querySql,(stockIndex,subSequence-29,subSequence))
         rows = cur.fetchall()
         moving30 = []
         for row in rows:
             moving30.append(row[0])
         
-        querySql = "select one_day_change from t_daily_stockindices where stock_index=? and sub_sequence>=? and sub_sequence<=?"
+        querySql = "select one_day_change from t_daily_stockindex where stock_index=? and sub_sequence>=? and sub_sequence<=?"
         cur.execute(querySql,(stockIndex,subSequence-89,subSequence))
         rows = cur.fetchall()
         moving90 = []
@@ -181,12 +181,28 @@ def execute(date):
     return warningList   
 
 if __name__ == "__main__":
-    if len(sys.argv) == 2:
+    if len(sys.argv)==3:
+        startDay = sys.argv[1]
+        endDay = sys.argv[2]
+        startD = datetime.strptime(startDay,"%Y-%m-%d")
+        endD = datetime.strptime(endDay,"%Y-%m-%d")
+        resultFile = common.get_configuration("model", "TESTING_RESULT_FILE")
+        warningResult = open(resultFile,"w")
+        while startD <= endD:
+            predictiveDay = datetime.strftime(startD,"%Y-%m-%d")
+            warningList = execute(predictiveDay)
+            if warningList is not None:
+                for warning in warningList:
+                    warningResult.write(json.dumps(warning))
+                    warningResult.write("\n")
+            startD = startD + timedelta(days=1)
+        warningResult.close()
+    elif len(sys.argv) == 2:
         "The imput date format should be 'yyyy-mm-dd'"
         predictiveDay = sys.argv[1]
-        
-    else:
+        warningList = execute(predictiveDay)
+    elif len(sys.argv) == 1:
         predictiveDay = time.strftime('%Y-%m-%d',time.localtime(time.time()+24*60*60))
-    warningList = execute(predictiveDay)
-    print warningList
+        warningList = execute(predictiveDay)
+        print warningList
     

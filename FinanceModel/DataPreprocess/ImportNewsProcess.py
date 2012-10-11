@@ -3,12 +3,12 @@ from Util import common
 import json
 from datetime import datetime
 import hashlib
-from DataCollecting import bloombergNewsScrape as bns
+from DataCollecting import BloombergNewsScrape as bns
 
 # import history raw data into database        
 def import_news_to_database():
     try:
-        historyNews = open(common.get_configuration( "info", 'histotryNewsPath'))
+        historyNews = open(common.get_configuration( "model", 'GROUP_STOCK_NEWS'))
         historyNewsJson = json.load(historyNews)
         
         for stockIndex in historyNewsJson:
@@ -24,6 +24,7 @@ def import_news_to_database():
                 news["stock_index"] = stockIndex
                 news["source"] = "Bloomberg News"
                 news["update_time"] = article["queryTime"]
+                news["newsUrl"] = article["newsUrl"]
                 embersId = hashlib.sha1(article["content"]).hexdigest()
                 news["embers_id"] = embersId
                 ifExisted = bns.check_article_existed(news)
@@ -37,4 +38,5 @@ def import_news_to_database():
     finally:
             pass
 
-import_news_to_database()
+if __name__ == "__main__":
+    import_news_to_database()

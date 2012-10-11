@@ -39,4 +39,5 @@ def execute():
     except lite.Error, e:
         print "Error: %s" % e.args[0]
 
-execute()
+if __name__ == "__main__":
+    execute()

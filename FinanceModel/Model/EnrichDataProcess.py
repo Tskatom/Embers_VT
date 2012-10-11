@@ -156,7 +156,6 @@ class Enriched_Data():
             embersId = hashlib.sha1(json.dumps(jsonStr)).hexdigest()
             surrogateData["embersId"] = embersId
             
-            print surrogateData
             self.insert_surrogatedata(surrogateData)
             return surrogateData
         except Exception as e:
@@ -194,15 +193,16 @@ class Enriched_Data():
             termContributionJson = json.load( termContributionFile )
             terms,newsDerived = self.get_stock_news_data( predictiveDate , stockIndex )
             termContributionProbability = 0
-            for termClusterType in termContributionJson[stockIndex].keys():
-                if termClusterType == str( clusterType ):    
-                    stermlist = termContributionJson[stockIndex][termClusterType]
-                    #print stermlist                            
-                    for word, count in terms.iteritems():                    
-                        if word in stermlist:                        
-                            #print word
-                            termContributionProbability =  count * math.log( float( termContributionJson[stockIndex][termClusterType][word] ) )
-                            del stermlist[word]
+            if stockIndex in termContributionJson:
+                for termClusterType in termContributionJson[stockIndex].keys():
+                    if termClusterType == str( clusterType ):    
+                        stermlist = termContributionJson[stockIndex][termClusterType]
+                        #print stermlist                            
+                        for word, count in terms.iteritems():                    
+                            if word in stermlist:                        
+                                #print word
+                                termContributionProbability =  count * math.log( float( termContributionJson[stockIndex][termClusterType][word] ) )
+                                del stermlist[word]
             
             return termContributionProbability,newsDerived
         except IOError:

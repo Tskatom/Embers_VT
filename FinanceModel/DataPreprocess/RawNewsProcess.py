@@ -60,14 +60,15 @@ def get_uncompleted_mission():
                     words = [w.lower() for w in tokens if w not in [",",".",")","]","(","[","*",";","...",":","&",'"'] and not w.isdigit()]
                     words = [w for w in words if w.encode("utf8") not in nltk.corpus.stopwords.words('english')]
                     stemmedWords = [stemmer.stem(w) for w in words]
-                    print len(words) 
                     fdist=nltk.FreqDist(stemmedWords)
                     jsonStr = json.dumps(fdist)
                     embersId = hashlib.sha1(jsonStr).hexdigest()
                     updateTime = datetime.strftime(datetime.now(),"%Y-%m-%d %H:%M:%S")
                     cur.execute(insertSql,(embersId,derivedFrom,title,author,postTime,postDate,jsonStr,stockIndex,source,rawUpdateTime,updateTime))
                     cur.execute(updateSql,(updateTime,row2[0])) 
-                    con.commit()
+                    i = i + 1
+                    if i%100 == 0:
+                        con.commit()
                 except lite.ProgrammingError as e:
                     print e               
                 except:
