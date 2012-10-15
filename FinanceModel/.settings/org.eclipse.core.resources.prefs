@@ -4,3 +4,4 @@ encoding//DataPreprocess/RawNewsProcess.py=utf8
 encoding//DataPreprocess/RawStockProcess.py=utf8
 encoding//Model/WarningCreate.py=utf8
 encoding//Training/CreatingVocabulary.py=utf-8
+encoding//Training/__init__.py=utf-8

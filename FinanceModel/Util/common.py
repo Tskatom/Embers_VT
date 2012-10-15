@@ -10,8 +10,7 @@ def get_configuration( section_name, configuration ):
     return config
 
 def getLocationByStockIndex(stockIndex):
-    dbPath = get_configuration("info","DB_FILE_PATH")
-    con = lite.connect("d:/sqlite/embers.db")
+    con = getDBConnection()
     cur = con.cursor()
     sql = "select country from s_stock_country where stock_index=?"
     cur.execute(sql,(stockIndex,))
@@ -21,6 +20,6 @@ def getLocationByStockIndex(stockIndex):
 
 def getDBConnection():
     dbPath = get_configuration("info","DB_FILE_PATH")
-    con = lite.connect("d:/sqlite/embers.db")
+    con = lite.connect(dbPath)
     con.text_factory = str
     return con

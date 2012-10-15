@@ -4,7 +4,6 @@ Created on Oct 3, 2012
 @author: Vic
 '''
 import json
-import ConfigParser
 import sqlite3 as lite
 from Util import common
 import hashlib
