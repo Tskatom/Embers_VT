@@ -8,8 +8,10 @@ from datetime import datetime
 from Training import ClusteringTraingSet as ct
 from Training import CreatingTrendsContribution as ctc
 from Training import CreatingVocabulary as cv
+from Training import OutputTestStockIndexData
 from Training import CreatingTermContribution as ctermc
 from DataPreprocess import ImportNewsProcess as inp,ImportHistorialStock as ihs
+from DataPreprocess import RawNewsProcess
 """
 For the Test Phase, we need to do the following steps:
 1. Cluster the time serial of stock index value
@@ -133,6 +135,18 @@ def execute(startDate,endDate):
     print "Computing the Term Contribution Start Time: ",datetime.strftime(datetime.now(),"%Y-%m-%d %H:%M:%S")
     ctermc.compute_term_contribution()
     print "Computing the Term Contribution End Time: ",datetime.strftime(datetime.now(),"%Y-%m-%d %H:%M:%S")
+    
+    "RawNewsProcess Start"
+    print "RawNewsProcess Start Time: ",datetime.strftime(datetime.now(),"%Y-%m-%d %H:%M:%S")
+    RawNewsProcess.execute()
+    print "RawNewsProcess End Time: ",datetime.strftime(datetime.now(),"%Y-%m-%d %H:%M:%S")
+    
+    "Import Enriched Data Start"
+    print "Import Enriched Data Start Time: ",datetime.strftime(datetime.now(),"%Y-%m-%d %H:%M:%S")
+    OutputTestStockIndexData.export_test_stock_data(endDate)
+    print "Import Enriched Data End Time: ",datetime.strftime(datetime.now(),"%Y-%m-%d %H:%M:%S")
+    
+    
 
 if __name__ == "__main__":
     if len(sys.argv) != 3:

@@ -1,6 +1,7 @@
 import json
 import nltk
 from Util import common
+from datetime import datetime
 
 def create_vocabulary():
     "Read the Negative Finance Dictionary"
@@ -67,12 +68,9 @@ def create_vocabulary():
                 else:
                     wordFreq[word] = fdist[word]
                         
-                        
-    print wordFreq
     
     #sorted_obj2 = wordFreq.iteritems()
     sorted_obj2 = sorted(wordFreq.items(), key=lambda x: x[1],reverse=True)
-    print sorted_obj2[0][1]
     
     "Write the vocabulary list to File"
     vocabularyFile = common.get_configuration("model", "VOCABULARY_FILE")
@@ -87,3 +85,8 @@ def create_vocabulary():
             i =  i + 1
     
     output.close()        
+
+if __name__ == "__main__":
+    print "Creating the Vocabulary Start Time: ",datetime.strftime(datetime.now(),"%Y-%m-%d %H:%M:%S")
+    create_vocabulary()
+    print "Creating the Vocabulary Start Time: ",datetime.strftime(datetime.now(),"%Y-%m-%d %H:%M:%S")

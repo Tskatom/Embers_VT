@@ -57,6 +57,8 @@ def group_news_by_cluster():
             clusterNews.append(cNews)
         finalStockClusterNews[index] = clusterNews
            
+    with open("D:/groupByCluster.json","w") as ot:
+        ot.write(json.dumps(finalStockClusterNews))
     return finalStockClusterNews
 
 def compute_term_contribution():
@@ -71,11 +73,15 @@ def compute_term_contribution():
     finalWordContribution = {}
     "Iteratively to access each Stock Index"
     trainingFile = group_news_by_cluster()
+    
+    print "Finish Group news by cluster"
+    
     for index in trainingFile:
         stockNews = trainingFile[index]
         wordContribution = {}
         for cluster in stockNews:
             #computing the words count in each cluster
+            print "Start Cluster ", cluster["cluster"], "For Stock ",index, "at ",datetime.strftime(datetime.now(),"%Y-%m-%d %H:%M:%S")
             articles = cluster["articles"]
             #initiate the wordFreq
             wordFreq = {}
@@ -101,6 +107,7 @@ def compute_term_contribution():
             
             # add the contributions to each cluster
             wordContribution[cluster["cluster"]] = contributions
+            print "Finish Cluster ", cluster["cluster"], "For Stock ",index, "at ",datetime.strftime(datetime.now(),"%Y-%m-%d %H:%M:%S")
     
         finalWordContribution[index] = wordContribution    
     print "EndTime: ",datetime.strftime(datetime.now(),"%Y-%m-%d %H:%M:%S")
@@ -113,6 +120,6 @@ def compute_term_contribution():
 
 if __name__=="__main__":
     print "group_news_by_cluster Start Time : ",datetime.strftime(datetime.now(),"%Y-%m-%d %H:%M:%S")
-    group_news_by_cluster()
+    compute_term_contribution()
     print "group_news_by_cluster End Time : ",datetime.strftime(datetime.now(),"%Y-%m-%d %H:%M:%S")
     

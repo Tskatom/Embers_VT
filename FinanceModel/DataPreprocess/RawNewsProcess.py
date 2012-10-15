@@ -85,5 +85,6 @@ def execute():
     get_db_connection()
     get_uncompleted_mission()
     close_db_connection()
-
-execute()
+    
+if __name__ == "__mian__":
+    execute()
