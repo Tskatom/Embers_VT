@@ -201,6 +201,7 @@ if __name__ == "__main__":
         "The imput date format should be 'yyyy-mm-dd'"
         predictiveDay = sys.argv[1]
         warningList = execute(predictiveDay)
+        print warningList
     elif len(sys.argv) == 1:
         predictiveDay = time.strftime('%Y-%m-%d',time.localtime(time.time()+24*60*60))
         warningList = execute(predictiveDay)

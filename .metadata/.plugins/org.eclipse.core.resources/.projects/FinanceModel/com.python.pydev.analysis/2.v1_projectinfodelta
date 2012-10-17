@@ -1,6 +1,5 @@
-INSTUPTraining.OutputTestStockIndexData
-C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\Training\OutputTestStockIndexData.py
-INFOS:&&2|1|2|0&&2|3|2|0
-export_test_stock_data=1
-Training.OutputTestStockIndexData=2
-get_trend_type=3
+INSTUPTest.ParameterTest
+C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\Test\ParameterTest.py
+INFOS:&&3|1|2|0
+con=1
+Test.ParameterTest=2

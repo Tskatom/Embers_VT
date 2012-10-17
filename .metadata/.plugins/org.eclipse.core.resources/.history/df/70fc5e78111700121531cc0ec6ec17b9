@@ -1,0 +1,7 @@
+#-*-coding:utf8-*-
+from etool import args,logs,queue,message
+
+def test():
+    port = 30115
+    with queue.open(port,'w',capture=True) as outq:
+        

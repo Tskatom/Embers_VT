@@ -1,6 +1,5 @@
-INSTUPTest.change
-C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\Test\change.py
-INFOS:&&3|1|2|0&&3|3|2|0
-file=1
-jsonObj=3
-Test.change=2
+INSTUPDataPreprocess.ImportAlreadyDownloadNews
+C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\DataPreprocess\ImportAlreadyDownloadNews.py
+INFOS:&&2|1|2|0
+execute=1
+DataPreprocess.ImportAlreadyDownloadNews=2

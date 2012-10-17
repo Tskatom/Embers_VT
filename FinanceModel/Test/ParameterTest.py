@@ -1,18 +1,9 @@
-import sys
-from datetime import datetime,timedelta
+from Util import common
 
-for arg in sys.argv:
-    print arg
-
-print sys.argv[1]
-
-startDay = "2012-01-01"
-endDay = "2012-08-24"
-
-sd = datetime.strptime(startDay,"%Y-%m-%d")
-ed = datetime.strptime(endDay,"%Y-%m-%d")
-
-while sd <= ed:
-    predictiveDay = datetime.strftime(sd,"%Y-%m-%d")
-    print predictiveDay
-    sd = sd + timedelta(days=1)
+con = common.getDBConnection()
+cur = con.cursor()
+sql = "select country from s_stock_country where stock_index=?"
+cur.execute(sql,("MERVAL",))
+result = cur.fetchone()
+country = result[0]
+print country

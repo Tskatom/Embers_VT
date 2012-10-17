@@ -124,10 +124,10 @@ def insert_enriched_data():
     
 def get_trend_type(rawIndexData):
     """
-    Computing current day's trend type, compareing change percent to the trend range,
-    Choose the nearnes trend as current day's type    
+    Computing current day's trend changeType, compareing change percent to the trend range,
+    Choose the nearnes trend as current day's changeType    
     """
-    "Load the trend type range file"
+    "Load the trend changeType range file"
     rangeFilePath = common.get_configuration("model", "TREND_RANGE_FILE")
     tFile = open(rangeFilePath)
     trendsJson = json.load(tFile)
@@ -144,11 +144,11 @@ def get_trend_type(rawIndexData):
     
     distance = 10000
     trendType = None
-    for type in tJson:
-        tmpDistance = min(abs(changePercent-tJson[type][0]),abs(changePercent-tJson[type][1]))
+    for changeType in tJson:
+        tmpDistance = min(abs(changePercent-tJson[changeType][0]),abs(changePercent-tJson[changeType][1]))
         if tmpDistance < distance:
             distance = tmpDistance
-            trendType = type
+            trendType = changeType
     return trendType
     
 def execute(rawData):

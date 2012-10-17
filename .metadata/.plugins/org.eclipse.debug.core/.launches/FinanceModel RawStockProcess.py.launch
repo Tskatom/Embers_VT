@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.python.pydev.debug.regularLaunchConfigurationType">
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
+<listEntry value="/FinanceModel/DataPreprocess/RawStockProcess.py"/>
+</listAttribute>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
+<listEntry value="1"/>
+</listAttribute>
+<stringAttribute key="org.eclipse.ui.externaltools.ATTR_LOCATION" value="${workspace_loc:FinanceModel/DataPreprocess/RawStockProcess.py}"/>
+<stringAttribute key="org.eclipse.ui.externaltools.ATTR_OTHER_WORKING_DIRECTORY" value="${workspace_loc:FinanceModel/DataPreprocess}"/>
+<stringAttribute key="org.eclipse.ui.externaltools.ATTR_TOOL_ARGUMENTS" value="&quot;&quot;&quot;{&quot;previousCloseValue&quot;:&quot;2381.22&quot;,&quot;stockIndex&quot;:&quot;MERVAL&quot;,&quot;updateTime&quot;:&quot;05/11/2012 16:01:01&quot;,&quot;feed&quot;:&quot;Bloomberg - Stock Index&quot;,&quot;queryTime&quot;:&quot;08/12/2012 00:59:02&quot;,&quot;currentValue&quot;:&quot;2410.85&quot;,&quot;embersId&quot;:&quot;6364b631340cc9b0a32816ee3943ae2cee6baa2a&quot;}&quot;&quot;&quot;"/>
+<stringAttribute key="org.eclipse.ui.externaltools.ATTR_WORKING_DIRECTORY" value="${workspace_loc:FinanceModel/DataPreprocess}"/>
+<stringAttribute key="org.python.pydev.debug.ATTR_INTERPRETER" value="__default"/>
+<stringAttribute key="org.python.pydev.debug.ATTR_PROJECT" value="FinanceModel"/>
+<intAttribute key="org.python.pydev.debug.ATTR_RESOURCE_TYPE" value="1"/>
+</launchConfiguration>

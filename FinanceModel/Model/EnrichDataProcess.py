@@ -129,7 +129,7 @@ class Enriched_Data():
                 derivedFrom.append(item)
             for item in newsDerived:
                 derivedFrom.append(item)
-            model = "Finance Stock Model"
+            model = "Bayesian – Time serial Model"
             location = common.getLocationByStockIndex(stockIndex)
             population = stockIndex
             confidence = sorted_ratio[0][1]
