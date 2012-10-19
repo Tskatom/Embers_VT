@@ -7,6 +7,7 @@ from datetime import datetime,timedelta
 import hashlib
 from Util import common
 import EnrichDataProcess as ed
+from etool import queue
 
 outputResult = {}
 
@@ -175,6 +176,13 @@ def execute(date):
         warning = warningCheck(item)
         if warning is not None:
             warningList.append(warning) 
+    
+    #push warning to ZMQ
+    port = common.get_configuration("inof", "ZMP_PORT")
+    with queue.open(port, 'w', capture=True) as outq:
+        for warning in warningList:
+            outq.write(json.dumps(warning, encoding='utf8'))    
+                
     return warningList   
 
 if __name__ == "__main__":

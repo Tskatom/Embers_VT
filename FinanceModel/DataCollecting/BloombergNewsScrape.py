@@ -168,6 +168,7 @@ def import_news_to_file():
     dayFile = dailyNewsOutPath + "/" + "Bloomberg-News-" + currentDay
     newsStr = "{}"
     print "StockNews:", stockNews
+    
     if stockNews is not None:
         newsStr = json.dumps(stockNews)
     

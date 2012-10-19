@@ -8,6 +8,7 @@ import traceback
 from Util import common
 import time
 import hashlib
+from etool import queue
 # For test, import the dqueue data structure
 
 class Enriched_Data():
@@ -157,6 +158,12 @@ class Enriched_Data():
             surrogateData["embersId"] = embersId
             
             self.insert_surrogatedata(surrogateData)
+            
+            #push surrodate data into ZMQ
+            port = common.get_configuration("inof", "ZMP_PORT")
+            with queue.open(port, 'w', capture=True) as outq:
+                outq.write(json.dumps(surrogateData, encoding='utf8'))
+            
             return surrogateData
         except Exception as e:
             print "Error: %s" % e.args

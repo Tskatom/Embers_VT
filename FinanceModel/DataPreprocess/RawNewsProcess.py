@@ -7,6 +7,7 @@ import exceptions
 import hashlib
 from datetime import datetime
 from Util import common
+from etool import queue
 
 con = None
 cur = None
@@ -89,24 +90,27 @@ def check_article_existed(article):
 def import_to_database(rawNewsFilePath):
     global con
     stockNews = json.load(open(rawNewsFilePath,"r"))
-    
-    for stock in stockNews:
-        i = 0
-        for article in stockNews[stock]:
-            article["stock_index"] = stock
-            "Check if the article has being collected: if so,just skip, otherwise insert into database"
-            "commit to database for each 10 records"
-            ifExisted = check_article_existed(article)
-            if ifExisted:
-                continue
-            else:
-                insert_news(article)
-                insert_news_mission(article)
-                i = i +1
-                if i >= 100:
-                    con.commit()
-                    i = 0
-    con.commit()
+    #write message to ZMQ
+    port = common.get_configuration("inof", "ZMP_PORT")
+    with queue.open(port, 'w', capture=True) as outq:
+        for stock in stockNews:
+            i = 0
+            for article in stockNews[stock]:
+                article["stock_index"] = stock
+                "Check if the article has being collected: if so,just skip, otherwise insert into database"
+                "commit to database for each 10 records"
+                ifExisted = check_article_existed(article)
+                if ifExisted:
+                    continue
+                else:
+                    insert_news(article)
+                    outq.write(json.dumps(article, encoding='utf8'))
+                    insert_news_mission(article)
+                    i = i +1
+                    if i >= 100:
+                        con.commit()
+                        i = 0
+        con.commit()
 
 def get_uncompleted_mission():
     global con
@@ -117,43 +121,61 @@ def get_uncompleted_mission():
         rows = cur.fetchall()
         i = 0
         
-        for row in rows:
-            sql2 = "select embers_id,title,author,post_time,post_date,stock_index,content,source,update_time from t_daily_news where embers_id=?"
-            cur2 = con.cursor()
-            cur2.execute(sql2,(row[0],))
-            rows2 = cur2.fetchall()
-            for row2 in rows2:
-                insertSql = "insert into t_daily_enrichednews (embers_id,derived_from,title,author,post_time,post_date,content,stock_index,source,raw_update_time,update_time) values (?,?,?,?,?,?,?,?,?,?,?)"
-                updateSql = "update t_news_process_mission set mission_status='1' and finish_time=? where embers_id=?"
-                derivedFrom = "["+row2[0]+"]"
-                title = row2[1]
-                author = row2[2]
-                postTime = row2[3]
-                postDate = row2[4]
-                stockIndex = row2[5]
-                content = row2[6]
-                source = row2[7]
-                rawUpdateTime = row2[8]
-                try:
-                    tokens = nltk.word_tokenize(content)
-                    stemmer = nltk.stem.snowball.SnowballStemmer('english')
-                    words = [w.lower() for w in tokens if w not in [",",".",")","]","(","[","*",";","...",":","&",'"'] and not w.isdigit()]
-                    words = [w for w in words if w.encode("utf8") not in nltk.corpus.stopwords.words('english')]
-                    stemmedWords = [stemmer.stem(w) for w in words]
-                    fdist=nltk.FreqDist(stemmedWords)
-                    jsonStr = json.dumps(fdist)
-                    embersId = hashlib.sha1(jsonStr).hexdigest()
-                    updateTime = datetime.strftime(datetime.now(),"%Y-%m-%d %H:%M:%S")
-                    cur.execute(insertSql,(embersId,derivedFrom,title,author,postTime,postDate,jsonStr,stockIndex,source,rawUpdateTime,updateTime))
-                    cur.execute(updateSql,(updateTime,row2[0])) 
-                    i = i + 1
-                    if i%100 == 0:
-                        con.commit()
-                except lite.ProgrammingError as e:
-                    print e               
-                except:
-                    print "Error: ", sys.exc_info()[0]
-                    continue
+        port = common.get_configuration("inof", "ZMQ_PORT")
+        with queue.open(port, 'w', capture=True) as outq:
+            for row in rows:
+                sql2 = "select embers_id,title,author,post_time,post_date,stock_index,content,source,update_time from t_daily_news where embers_id=?"
+                cur2 = con.cursor()
+                cur2.execute(sql2,(row[0],))
+                rows2 = cur2.fetchall()
+                for row2 in rows2:
+                    insertSql = "insert into t_daily_enrichednews (embers_id,derived_from,title,author,post_time,post_date,content,stock_index,source,raw_update_time,update_time) values (?,?,?,?,?,?,?,?,?,?,?)"
+                    updateSql = "update t_news_process_mission set mission_status='1' and finish_time=? where embers_id=?"
+                    derivedFrom = "["+row2[0]+"]"
+                    title = row2[1]
+                    author = row2[2]
+                    postTime = row2[3]
+                    postDate = row2[4]
+                    stockIndex = row2[5]
+                    content = row2[6]
+                    source = row2[7]
+                    rawUpdateTime = row2[8]
+                    try:
+                        tokens = nltk.word_tokenize(content)
+                        stemmer = nltk.stem.snowball.SnowballStemmer('english')
+                        words = [w.lower() for w in tokens if w not in [",",".",")","]","(","[","*",";","...",":","&",'"'] and not w.isdigit()]
+                        words = [w for w in words if w.encode("utf8") not in nltk.corpus.stopwords.words('english')]
+                        stemmedWords = [stemmer.stem(w) for w in words]
+                        fdist=nltk.FreqDist(stemmedWords)
+                        jsonStr = json.dumps(fdist)
+                        embersId = hashlib.sha1(jsonStr).hexdigest()
+                        updateTime = datetime.strftime(datetime.now(),"%Y-%m-%d %H:%M:%S")
+                        
+                        enrichedData = {}
+                        enrichedData["emberdId"] = embersId
+                        enrichedData["derivedFrom"] = derivedFrom
+                        enrichedData["title"] = title
+                        enrichedData["author"] = author
+                        enrichedData["postTime"] = postTime
+                        enrichedData["postDate"] =  postDate
+                        enrichedData["content"] = jsonStr
+                        enrichedData["stockIndex"] = stockIndex
+                        enrichedData["source"] = source
+                        enrichedData["updateTime"] = updateTime
+                        enrichedData["rawUpdateTime"] = rawUpdateTime
+                        
+                        outq.write(json.dumps(enrichedData, encoding='utf8'))
+                        
+                        cur.execute(insertSql,(embersId,derivedFrom,title,author,postTime,postDate,jsonStr,stockIndex,source,rawUpdateTime,updateTime))
+                        cur.execute(updateSql,(updateTime,row2[0])) 
+                        i = i + 1
+                        if i%100 == 0:
+                            con.commit()
+                    except lite.ProgrammingError as e:
+                        print e               
+                    except:
+                        print "Error: ", sys.exc_info()[0]
+                        continue
     except exceptions.IndexError as e:
         print e            
     except lite.OperationalError as e:
