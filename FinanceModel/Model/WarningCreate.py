@@ -7,9 +7,6 @@ from datetime import datetime,timedelta
 import hashlib
 from Util import common
 import EnrichDataProcess as ed
-from logging import WARNING
-from warnings import WarningMessage
-from statsmodels.base.wrapper import populate_wrapper
 
 outputResult = {}
 

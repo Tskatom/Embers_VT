@@ -13,4 +13,11 @@ def test():
     print "Success"
     pathName = os.path.dirname(sys.argv[0])
     print pathName
-test()
+
+def testFile():
+    filePath = "./stock_2012-10-01.txt"
+    with open(filePath,'r') as readFile:
+        lines = readFile.readlines()
+        for line in lines:
+            print line.replace("\n","").replace("\r","")
+testFile()

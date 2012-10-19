@@ -1,7 +1,6 @@
 #-*- coding:utf8 -*-
 import nltk
 import json
-import numpy
 import sqlite3 as lite
 import sys
 import exceptions
@@ -27,6 +26,87 @@ def close_db_connection():
     con.commit()
     if con:
         con.close()  
+
+def insert_news(article):
+    try:
+        global con
+        sql = "insert into t_daily_news(embers_id,title,author,post_time,post_date,content,stock_index,source,update_time,url) values (?,?,?,?,?,?,?,?,?,?)"
+        embersId = article["embers_id"]
+        title = article["title"]
+        author = article["author"]
+        postTime = article["post_time"]
+        postDate = article["post_date"]
+        content = article["content"]
+        stockIndex = article["stock_index"]
+        source = article["source"]
+        updateTime = article["update_time"]
+        url = article["url"]
+        cur.execute(sql,(embersId,title,author,postTime,postDate,content,stockIndex,source,updateTime,url))
+        
+    except lite.Error, e:
+        print "Error: %s" % e.args[0]
+    finally:
+        pass
+
+def insert_news_mission(article):
+    try:
+        global con
+        global cur
+        sql = "insert into t_news_process_mission(embers_id,mission_name,mission_status,insert_time) values (?,?,?,datetime('now','localtime'))"
+        
+        embersId = article["embers_id"]
+        missionName = "Bag of Words"
+        missionStatus = "0"
+        cur.execute(sql,(embersId,missionName,missionStatus))
+        
+    except lite.Error, e:
+        print "Error: %s" % e.args[0]
+    finally:
+        pass
+    
+def check_article_existed(article):
+    try:
+        global con
+        global cur
+        flag = True
+        title = article["title"]
+        postDay = datetime.strftime(article["post_date"],"%Y-%m-%d")
+        sql = "select count(*) count from t_daily_news where post_date=? and title=?"
+        cur.execute(sql,(postDay,title,))
+        count = cur.fetchone()[0]
+        count = int(count)
+        if count == 0:
+            flag = False
+        else:
+            flag = True
+    except lite.ProgrammingError as e:
+        print e
+    except:
+        print "Error: %s" %sys.exc_info()[0]
+    finally:
+        return flag    
+    
+def import_to_database(rawNewsFilePath):
+    global con
+    stockNews = json.load(open(rawNewsFilePath,"r"))
+    
+    for stock in stockNews:
+        i = 0
+        for article in stockNews[stock]:
+            article["stock_index"] = stock
+            "Check if the article has being collected: if so,just skip, otherwise insert into database"
+            "commit to database for each 10 records"
+            ifExisted = check_article_existed(article)
+            if ifExisted:
+                continue
+            else:
+                insert_news(article)
+                insert_news_mission(article)
+                i = i +1
+                if i >= 100:
+                    con.commit()
+                    i = 0
+    con.commit()
 
 def get_uncompleted_mission():
     global con
@@ -81,10 +161,16 @@ def get_uncompleted_mission():
     except:
         print "Error: ", sys.exc_info()[0]
 
-def execute():
+def execute(rawNewsFilePath):
     get_db_connection()
+    import_to_database(rawNewsFilePath)
     get_uncompleted_mission()
     close_db_connection()
     
 if __name__ == "__mian__":
-    execute()
+    if len(sys.argv)!= 2:
+        print "Please Enter the RawNewsFilePath as parameter: "
+        exit(0)
+    
+    rawNewsFilePath = sys.argv[1]
+    execute(rawNewsFilePath)

@@ -1,5 +1,5 @@
-INSTUPTest.ParameterTest
-C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\Test\ParameterTest.py
-INFOS:&&3|1|2|0
-con=1
-Test.ParameterTest=2
+INSTUPModel.Prediction
+C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\Model\Prediction.py
+INFOS:&&2|1|2|0
+execute=1
+Model.Prediction=2

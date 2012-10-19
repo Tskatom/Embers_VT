@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 from __future__ import with_statement
-import ConfigParser
 import os
 import urllib2
 from BeautifulSoup import BeautifulSoup
@@ -11,6 +10,8 @@ import sqlite3 as lite
 import sys
 import hashlib
 import json
+from Util import common
+import time
 
 companyList = {}
 stockNews = {}
@@ -23,10 +24,7 @@ def initiate():
     global config
     global newsAlreadyDownload
     
-    config = ConfigParser.ConfigParser()
-    with open('../Config/config.cfg','r') as cfgFile:
-        config.readfp(cfgFile)
-    newsAlreadDownloadFilePath = config.get("model", "newsAlreadyDownload") 
+    newsAlreadDownloadFilePath = common.get_configuration("model", "NEWS_ALREADY_DOWNLOADED") 
     newsAlreadyDownload = json.load(open(newsAlreadDownloadFilePath))
     
     get_db_connection()
@@ -35,10 +33,7 @@ def end():
     global config
     global newsAlreadyDownload
     
-    config = ConfigParser.ConfigParser()
-    with open('../Config/config.cfg','r') as cfgFile:
-        config.readfp(cfgFile)
-    newsAlreadDownloadFilePath = config.get("info", "newsAlreadyDownload") 
+    newsAlreadDownloadFilePath = common.get_configuration("model", "NEWS_ALREADY_DOWNLOADED") 
     newsAlreadyDownloadStr = json.dumps(newsAlreadyDownload)
     with open(newsAlreadDownloadFilePath,"w") as output:
         output.write(newsAlreadyDownloadStr)
@@ -49,7 +44,7 @@ def get_db_connection():
     global cur
     global con
     try:
-        con = lite.connect("d:/sqlite/embers.db")
+        con = common.getDBConnection()
         con.text_factory = str
         cur = con.cursor()
     except lite.Error, e:
@@ -64,7 +59,7 @@ def close_db_connection():
 def get_all_companies():
     "Read Company List Directory from config file"
     global config
-    companyListDir = config.get('info','companyListDir')
+    companyListDir = common.get_configuration('info','COMPANY_LIST')
     dirList = os.listdir(companyListDir)
     "Iteratively read the stock member files and store them in a List "
     for fName in dirList:
@@ -85,8 +80,7 @@ def get_stock_news():
         for company in companyList[stockIndex]:
             "construct the url for each company"
             companyUrl = "http://www.bloomberg.com/quote/"+company+"/news#news_tab_company_news";
-            print companyUrl
-            soup = BeautifulSoup(urllib2.urlopen(companyUrl))
+            soup = BeautifulSoup(urllib2.urlopen(companyUrl,timeout=60))
             "Get the News Urls of specifical Company"
             urlElements = soup.findAll(id="news_tab_company_news_panel")
             for urlElement in urlElements:
@@ -103,7 +97,6 @@ def get_stock_news():
                         stockNews[stockIndex].append(article)
             
 def get_news_by_url(url):
-    print "Come to get_news_by_url"
     article = {}
     try:
         soup = BeautifulSoup(urllib2.urlopen(url))
@@ -113,15 +106,16 @@ def get_news_by_url(url):
         for ele in titleElements:
             title = ele.getText().encode('utf-8')
         article["title"] = title 
-        print title
         
         "Get the posttime of News,Timezone ET"
         postTime = ""
         postTimeElements = soup.findAll(attrs={'class':"datestamp"})
         for ele in postTimeElements:
             timeStamp = float(ele["epoch"])
+        #postTime = datetime.strftime("%Y-%m-%d %H:%M:%S",datetime.fromtimestamp(timeStamp/1000))
         postTime = datetime.fromtimestamp(timeStamp/1000)
-        article["post_time"] = postTime
+        postTimeStr = datetime.strftime(postTime,"%Y-%m-%d %H:%M:%S")
+        article["post_time"] = postTimeStr
         
         "Initiate the post date"
         postDay = postTime.date()
@@ -168,90 +162,27 @@ def check_article_already_downloaded(title):
         newsAlreadyDownload.append(title)
         return False
     
-def check_article_existed(article):
-    try:
-        global con
-        global cur
-        flag = True
-        title = article["title"]
-        postDay = datetime.strftime(article["post_date"],"%Y-%m-%d")
-        sql = "select count(*) count from t_daily_news where post_date=? and title=?"
-        cur.execute(sql,(postDay,title,))
-        count = cur.fetchone()[0]
-        count = int(count)
-        if count == 0:
-            flag = False
-        else:
-            flag = True
-    except lite.ProgrammingError as e:
-        print e
-    except:
-        print "Error: %s" %sys.exc_info()[0]
-    finally:
-        return flag
-
-def insert_news(article):
-    try:
-        global con
-        sql = "insert into t_daily_news(embers_id,title,author,post_time,post_date,content,stock_index,source,update_time,url) values (?,?,?,?,?,?,?,?,?,?)"
-        embersId = article["embers_id"]
-        title = article["title"]
-        author = article["author"]
-        postTime = article["post_time"]
-        postDate = article["post_date"]
-        content = article["content"]
-        stockIndex = article["stock_index"]
-        source = article["source"]
-        updateTime = article["update_time"]
-        url = article["newsUrl"]
-        cur.execute(sql,(embersId,title,author,postTime,postDate,content,stockIndex,source,updateTime,url))
-        
-    except lite.Error, e:
-        print "Error: %s" % e.args[0]
-    finally:
-        pass
-
-def insert_news_mission(article):
-    try:
-        global con
-        global cur
-        sql = "insert into t_news_process_mission(embers_id,mission_name,mission_status,insert_time) values (?,?,?,datetime('now','localtime'))"
-        
-        embersId = article["embers_id"]
-        missionName = "Bag of Words"
-        missionStatus = "0"
-        cur.execute(sql,(embersId,missionName,missionStatus))
-        
-    except lite.Error, e:
-        print "Error: %s" % e.args[0]
-    finally:
-        pass
+def import_news_to_file():
+    dailyNewsOutPath = common.get_configuration("info", "DAILY_NEWS_DIR")
+    currentDay = time.strftime('%Y-%m-%d',time.localtime())
+    dayFile = dailyNewsOutPath + "/" + "Bloomberg-News-" + currentDay
+    newsStr = "{}"
+    print "StockNews:", stockNews
+    if stockNews is not None:
+        newsStr = json.dumps(stockNews)
     
-def import_to_database():
-    global con
-    for stock in stockNews:
-        i = 0
-        for article in stockNews[stock]:
-            article["stock_index"] = stock
-            "Check if the article has being collected: if so,just skip, otherwise insert into database"
-            "commit to database for each 10 records"
-            ifExisted = check_article_existed(article)
-            if ifExisted:
-                continue
-            else:
-                insert_news(article)
-                i = i +1
-                if i >= 100:
-                    con.commit()
-                    i = 0
-                
+    with open(dayFile,"w") as ouput:
+        ouput.write(newsStr)    
+        
 def execute():
     get_all_companies()
     get_stock_news()
-    import_to_database()
+    import_news_to_file()
     end()
 
 initiate()
 #get_db_connection()
 if __name__ == "__main__":
+    print "Start Time: ",datetime.strftime(datetime.now(),"%Y-%m-%d %H:%M:%S")
     execute()
+    print "End Time: ",datetime.strftime(datetime.now(),"%Y-%m-%d %H:%M:%S")

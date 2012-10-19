@@ -6,8 +6,8 @@ import hashlib
 from Util import calculator
 from Util import common
 
-#rawData = {"previousCloseValue":"2381.22","stockIndex":"MERVAL","updateTime":"05/11/2012 16:01:01","feed":"Bloomberg - Stock Index","queryTime":"08/12/2012 00:59:02","currentValue":"2410.85","embersId":"6364b631340cc9b0a32816ee3943ae2cee6baa2a"}
-enrichedData = {}
+#rawData = {'feed': 'Bloomberg - Stock Index', 'updateTime': '09/28/2012 16:01:02', 'name': 'MERVAL', 'currentValue': '2451.73', 'queryTime': '10/01/2012 03:00:03', 'previousCloseValue': '2494.18', 'date': '2012-10-01T03:00:03', 'type': 'stock', 'embersId': '971752f23223c344e8732f32922e3f8e75ebd3ff'}
+#EnrichedData = 
 
 con = None
 cur = None
@@ -33,11 +33,11 @@ def check_if_existed(rawIndexData):
     global cur
     ifExisted = True
     sql = "select count(*) from t_daily_stockindex where stock_index = ? and date = ?"
-    stockIndex =  rawIndexData["stockIndex"]  
+    stockIndex =  rawIndexData["name"]  
     tmpUT =  rawIndexData["updateTime"].split(" ")[0]
     updateTime = tmpUT.split("/")[2] + "-" +  tmpUT.split("/")[0] + "-" + tmpUT.split("/")[1] 
     print updateTime
-    cur.execute(sql,(stockIndex,updateTime))
+    cur.main(sql,(stockIndex,updateTime))
     count = cur.fetchone()[0]
     if count == 0:
         ifExisted = False
@@ -47,7 +47,7 @@ def check_if_existed(rawIndexData):
 def get_subsequence(stockIndex,updateDate):
     global cur
     sql = "select max(sub_sequence) from t_daily_stockindex where stock_index = ? and date = ?"
-    cur.execute(sql,(stockIndex,updateDate))
+    cur.main(sql,(stockIndex,updateDate))
     count = cur.fetchone()[0]
     if count == None:
         count = 0
@@ -57,8 +57,8 @@ def getZscore(curDate,stockIndex,curDiff,duration):
     global con
     global cur
     scores = []
-    sql = "select one_day_difference from t_daily_stockindex where date<? and stock_index = ? order by date desc limit ?"
-    cur.execute(sql,(curDate,stockIndex,duration))
+    sql = "select one_day_change from t_daily_stockindex where date<? and stock_index = ? order by date desc limit ?"
+    cur.main(sql,(curDate,stockIndex,duration))
     rows = cur.fetchall()
     for row in rows:
         scores.append(row[0])
@@ -70,11 +70,10 @@ def import_data(rawIndexData):
     global cur
     "Check if current data already in database, if not exist then insert otherwise skip"
     ifExisted = check_if_existed(rawIndexData)
-    print ifExisted
     if not ifExisted:
         sql = "insert into t_daily_stockindex (embers_id,sub_sequence,stock_index,date,last_price,one_day_change,zscore30,zscore90) values (?,?,?,?,?,?,?,?) "
         embersId = rawIndexData["embersId"]
-        stockIndex = rawIndexData["stockIndex"]
+        stockIndex = rawIndexData["name"]
         tmpUT =  rawIndexData["updateTime"].split(" ")[0]
         updateTime = tmpUT.split("/")[2] + "-" +  tmpUT.split("/")[0] + "-" + tmpUT.split("/")[1]
         lastPrice = float(rawIndexData["currentValue"])
@@ -82,14 +81,17 @@ def import_data(rawIndexData):
         oneDayChange = lastPrice - preLastPrice
         subSequence = get_subsequence(stockIndex,updateTime) + 1
         
-        "calculate zscore 30"
+        "calculate zscore 30 and zscore 90"
+        print stockIndex,oneDayChange
         zscore30 = getZscore(updateTime,stockIndex,oneDayChange,30)
         zscore90 = getZscore(updateTime,stockIndex,oneDayChange,90)
         
-        cur.execute(sql,(embersId,subSequence,stockIndex,updateTime,lastPrice,oneDayChange,zscore30,zscore90))
+        cur.main(sql,(embersId,subSequence,stockIndex,updateTime,lastPrice,oneDayChange,zscore30,zscore90))
         con.commit()
         
         "Initiate the enriched Data"
+        enrichedData = {}
+        
         trendType = get_trend_type(rawIndexData)
         derivedFrom = "[" + embersId + "]"
         enrichedData["derivedFrom"] = derivedFrom
@@ -104,9 +106,9 @@ def import_data(rawIndexData):
         enrichedData["embersId"] = enrichedDataEmID
         
         print enrichedData
-        insert_enriched_data()
+        insert_enriched_data(enrichedData)
         
-def insert_enriched_data():
+def insert_enriched_data(enrichedData):
     global con
     global cur
     sql = "insert into t_daily_enrichedindex (embers_id,derived_from,sub_sequence,stock_index,date,last_price,one_day_change,change_percent,trend_type) values (?,?,?,?,?,?,?,?,?)"
@@ -119,7 +121,7 @@ def insert_enriched_data():
     oneDayChange = enrichedData["oneDayChange"] 
     changePercent = enrichedData["changePercent"]
     trendType = enrichedData["trendType"]
-    cur.execute(sql,(enrichedDataEmID,derivedFrom,subSequence,stockIndex,updateTime,lastPrice,oneDayChange,changePercent,trendType))
+    cur.main(sql,(enrichedDataEmID,derivedFrom,subSequence,stockIndex,updateTime,lastPrice,oneDayChange,changePercent,trendType))
     con.commit()
     
 def get_trend_type(rawIndexData):
@@ -133,7 +135,7 @@ def get_trend_type(rawIndexData):
     trendsJson = json.load(tFile)
     
     "Get the indicated stock range"
-    stockIndex = rawIndexData["stockIndex"]
+    stockIndex = rawIndexData["name"]
     tJson = trendsJson[stockIndex]
     print tJson
     
@@ -151,15 +153,22 @@ def get_trend_type(rawIndexData):
             trendType = changeType
     return trendType
     
-def execute(rawData):
+def execute(rawDataPath):
     get_db_connection()
-    import_data(rawData)
-
+    rawDataList = []
+    with open(rawDataPath,'r') as rawDataFile:
+        lines = rawDataFile.readlines()
+        for line in lines:
+            rawData = json.loads(line.replace("\n","").replace("\r",""))
+            rawDataList.append(rawData)
+            print rawData
+    for rawData in rawDataList:
+        import_data(rawData)
+    close_db_connection()
+    
 if __name__ == "__main__":
     if len(sys.argv) != 2:
-        print len(sys.argv) ,"Please Input Raw stock index value as following format: \n", '{"previousCloseValue":"2381.22","stockIndex":"MERVAL","updateTime":"05/11/2012 16:01:01","feed":"Bloomberg - Stock Index","queryTime":"08/12/2012 00:59:02","currentValue":"2410.85","embersId":"6364b631340cc9b0a32816ee3943ae2cee6baa2a"}'
+        print len(sys.argv) ,"Please Enter the Path of the rawData\n", ''
         exit(0)
-    rawDataStr = sys.argv[1]
-    print rawDataStr
-    rawData = json.loads(rawDataStr)
-    execute(rawData)
+    rawDataPath = sys.argv[1]
+    execute(rawDataPath)
