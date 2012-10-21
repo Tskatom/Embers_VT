@@ -37,7 +37,7 @@ def check_if_existed(rawIndexData):
     tmpUT =  rawIndexData["updateTime"].split(" ")[0]
     updateTime = tmpUT.split("/")[2] + "-" +  tmpUT.split("/")[0] + "-" + tmpUT.split("/")[1] 
     print updateTime
-    cur.main(sql,(stockIndex,updateTime))
+    cur.execute(sql,(stockIndex,updateTime))
     count = cur.fetchone()[0]
     if count == 0:
         ifExisted = False
@@ -47,7 +47,7 @@ def check_if_existed(rawIndexData):
 def get_subsequence(stockIndex,updateDate):
     global cur
     sql = "select max(sub_sequence) from t_daily_stockindex where stock_index = ? and date = ?"
-    cur.main(sql,(stockIndex,updateDate))
+    cur.execute(sql,(stockIndex,updateDate))
     count = cur.fetchone()[0]
     if count == None:
         count = 0
@@ -58,7 +58,7 @@ def getZscore(curDate,stockIndex,curDiff,duration):
     global cur
     scores = []
     sql = "select one_day_change from t_daily_stockindex where date<? and stock_index = ? order by date desc limit ?"
-    cur.main(sql,(curDate,stockIndex,duration))
+    cur.execute(sql,(curDate,stockIndex,duration))
     rows = cur.fetchall()
     for row in rows:
         scores.append(row[0])
@@ -86,7 +86,7 @@ def import_data(rawIndexData):
         zscore30 = getZscore(updateTime,stockIndex,oneDayChange,30)
         zscore90 = getZscore(updateTime,stockIndex,oneDayChange,90)
         
-        cur.main(sql,(embersId,subSequence,stockIndex,updateTime,lastPrice,oneDayChange,zscore30,zscore90))
+        cur.execute(sql,(embersId,subSequence,stockIndex,updateTime,lastPrice,oneDayChange,zscore30,zscore90))
         con.commit()
         
         "Initiate the enriched Data"
@@ -121,7 +121,7 @@ def insert_enriched_data(enrichedData):
     oneDayChange = enrichedData["oneDayChange"] 
     changePercent = enrichedData["changePercent"]
     trendType = enrichedData["trendType"]
-    cur.main(sql,(enrichedDataEmID,derivedFrom,subSequence,stockIndex,updateTime,lastPrice,oneDayChange,changePercent,trendType))
+    cur.execute(sql,(enrichedDataEmID,derivedFrom,subSequence,stockIndex,updateTime,lastPrice,oneDayChange,changePercent,trendType))
     con.commit()
     
 def get_trend_type(rawIndexData):

@@ -1,1 +1,5 @@
-DELSTRTest.ZMQTest
+INSTUPDataPreprocess.ImportNewsProcess
+C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\DataPreprocess\ImportNewsProcess.py
+INFOS:&&2|1|2|0
+DataPreprocess.ImportNewsProcess=2
+import_news_to_database=1

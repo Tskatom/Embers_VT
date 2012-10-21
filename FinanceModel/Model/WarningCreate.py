@@ -178,7 +178,7 @@ def execute(date):
             warningList.append(warning) 
     
     #push warning to ZMQ
-    port = common.get_configuration("inof", "ZMP_PORT")
+    port = common.get_configuration("info", "ZMQ_PORT")
     with queue.open(port, 'w', capture=True) as outq:
         for warning in warningList:
             outq.write(json.dumps(warning, encoding='utf8'))    

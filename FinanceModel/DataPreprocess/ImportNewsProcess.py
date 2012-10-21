@@ -3,7 +3,7 @@ from Util import common
 import json
 from datetime import datetime
 import hashlib
-from DataCollecting import BloombergNewsScrape as bns
+from DataPreprocess import RawNewsProcess as bns
 
 # import history raw data into database        
 def import_news_to_database():

@@ -45,7 +45,7 @@ def insert_news(article):
         cur.execute(sql,(embersId,title,author,postTime,postDate,content,stockIndex,source,updateTime,url))
         
     except lite.Error, e:
-        print "Error: %s" % e.args[0]
+        print "Error insert_news: %s" % e.args[0]
     finally:
         pass
 
@@ -61,7 +61,7 @@ def insert_news_mission(article):
         cur.execute(sql,(embersId,missionName,missionStatus))
         
     except lite.Error, e:
-        print "Error: %s" % e.args[0]
+        print "Error Insert news Mission: %s" % e.args[0]
     finally:
         pass
     
@@ -71,7 +71,7 @@ def check_article_existed(article):
         global cur
         flag = True
         title = article["title"]
-        postDay = datetime.strftime(article["post_date"],"%Y-%m-%d")
+        postDay = article["post_date"]
         sql = "select count(*) count from t_daily_news where post_date=? and title=?"
         cur.execute(sql,(postDay,title,))
         count = cur.fetchone()[0]
@@ -83,7 +83,7 @@ def check_article_existed(article):
     except lite.ProgrammingError as e:
         print e
     except:
-        print "Error: %s" %sys.exc_info()[0]
+        print "Error+++++: %s" %sys.exc_info()[0]
     finally:
         return flag    
     
@@ -91,7 +91,7 @@ def import_to_database(rawNewsFilePath):
     global con
     stockNews = json.load(open(rawNewsFilePath,"r"))
     #write message to ZMQ
-    port = common.get_configuration("inof", "ZMP_PORT")
+    port = common.get_configuration("info", "ZMQ_PORT")
     with queue.open(port, 'w', capture=True) as outq:
         for stock in stockNews:
             i = 0
@@ -121,7 +121,7 @@ def get_uncompleted_mission():
         rows = cur.fetchall()
         i = 0
         
-        port = common.get_configuration("inof", "ZMQ_PORT")
+        port = common.get_configuration("info", "ZMQ_PORT")
         with queue.open(port, 'w', capture=True) as outq:
             for row in rows:
                 sql2 = "select embers_id,title,author,post_time,post_date,stock_index,content,source,update_time from t_daily_news where embers_id=?"
@@ -174,14 +174,14 @@ def get_uncompleted_mission():
                     except lite.ProgrammingError as e:
                         print e               
                     except:
-                        print "Error: ", sys.exc_info()[0]
+                        print "Error---------: ", sys.exc_info()[0]
                         continue
     except exceptions.IndexError as e:
         print e            
     except lite.OperationalError as e:
         print e
     except:
-        print "Error: ", sys.exc_info()[0]
+        print "Error****: ", sys.exc_info()[0]
 
 def execute(rawNewsFilePath):
     get_db_connection()
