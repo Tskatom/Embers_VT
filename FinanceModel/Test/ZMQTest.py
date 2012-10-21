@@ -1,5 +1,5 @@
 #-*-coding:utf8-*-
-from etool import queue
+from etool import queue,logs
 import json
 import os
 import sys
@@ -20,4 +20,11 @@ def testFile():
         lines = readFile.readlines()
         for line in lines:
             print line.replace("\n","").replace("\r","")
-testFile()
+
+def testLog():
+    __processor__ = 'feed_content_pub'
+    log = logs.getLogger(__processor__)
+    log.info("Good Idea")
+                
+testLog()
+    

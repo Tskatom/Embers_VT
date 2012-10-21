@@ -1,9 +1,0 @@
-INSTUPModel.WarningCreate
-C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\Model\WarningCreate.py
-INFOS:&&3|1|2|0&&2|3|2|0&&2|4|2|0&&2|5|2|0&&2|6|2|0
-dailySigmaTrends=3
-execute=6
-insert_warningmessage=5
-outputResult=1
-warningCheck=4
-Model.WarningCreate=2

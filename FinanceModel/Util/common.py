@@ -2,9 +2,9 @@
 import ConfigParser
 import sqlite3 as lite
 
-def get_configuration( section_name, configuration ):
+def get_configuration( section_name, configuration, cfgFilename= '../Config/config.cfg'):
     config = ConfigParser.ConfigParser()
-    with open( '../Config/config.cfg', 'r' ) as cfgFile:
+    with open( cfgFilename, 'r' ) as cfgFile:
         config.readfp( cfgFile )
     config = config.get( section_name, configuration )
     return config

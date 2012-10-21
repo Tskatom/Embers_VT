@@ -119,7 +119,7 @@ def get_news_by_url(url):
         
         "Initiate the post date"
         postDay = postTime.date()
-        article["post_date"] = postDay;
+        article["post_date"] = datetime.strftime(postDay,"%Y-%m-%d");
         
         "Get the author information "
         author = ""
@@ -167,7 +167,6 @@ def import_news_to_file():
     currentDay = time.strftime('%Y-%m-%d',time.localtime())
     dayFile = dailyNewsOutPath + "/" + "Bloomberg-News-" + currentDay
     newsStr = "{}"
-    print "StockNews:", stockNews
     
     if stockNews is not None:
         newsStr = json.dumps(stockNews)
