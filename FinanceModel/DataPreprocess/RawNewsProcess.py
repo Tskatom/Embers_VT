@@ -85,6 +85,26 @@ def check_article_existed(article):
     except:
         print "Error+++++: %s" %sys.exc_info()[0]
     finally:
+        return flag  
+    
+def check_enrichedata_existed(embersId):
+    try:
+        global con
+        global cur
+        flag = True
+        sql = "select count(*) count from t_daily_enrichednews where embers_id=?"
+        cur.execute(sql,(embersId,))
+        count = cur.fetchone()[0]
+        count = int(count)
+        if count == 0:
+            flag = False
+        else:
+            flag = True
+    except lite.ProgrammingError as e:
+        print e
+    except:
+        print "Error: %s" %sys.exc_info()[0]
+    finally:
         return flag    
     
 def import_to_database(rawNewsFilePath):
@@ -130,7 +150,7 @@ def get_uncompleted_mission():
                 rows2 = cur2.fetchall()
                 for row2 in rows2:
                     insertSql = "insert into t_daily_enrichednews (embers_id,derived_from,title,author,post_time,post_date,content,stock_index,source,raw_update_time,update_time) values (?,?,?,?,?,?,?,?,?,?,?)"
-                    updateSql = "update t_news_process_mission set mission_status='1' and finish_time=? where embers_id=?"
+                    updateSql = "update t_news_process_mission set mission_status=? where embers_id=?"
                     derivedFrom = "["+row2[0]+"]"
                     title = row2[1]
                     author = row2[2]
@@ -164,17 +184,19 @@ def get_uncompleted_mission():
                         enrichedData["updateTime"] = updateTime
                         enrichedData["rawUpdateTime"] = rawUpdateTime
                         
-                        outq.write(json.dumps(enrichedData, encoding='utf8'))
-                        
-                        cur.execute(insertSql,(embersId,derivedFrom,title,author,postTime,postDate,jsonStr,stockIndex,source,rawUpdateTime,updateTime))
-                        cur.execute(updateSql,(updateTime,row2[0])) 
+                        cur3 = con.cursor()
+                        if not check_enrichedata_existed(embersId):
+                            cur3.execute(insertSql,(embersId,derivedFrom,title,author,postTime,postDate,jsonStr,stockIndex,source,rawUpdateTime,updateTime))
+                            outq.write(json.dumps(enrichedData, encoding='utf8'))
+                            
+                        cur3.execute(updateSql,("1",row2[0],)) 
                         i = i + 1
                         if i%100 == 0:
                             con.commit()
                     except lite.ProgrammingError as e:
-                        print e               
+                        print "Error:",e               
                     except:
-                        print "Error---------: ", sys.exc_info()[0]
+                        print "Error:", sys.exc_info()
                         continue
     except exceptions.IndexError as e:
         print e            

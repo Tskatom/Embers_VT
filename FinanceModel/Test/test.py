@@ -6,31 +6,13 @@ from Util import calculator
 import sqlite3 as lite
 
 
-news = open('D:/filterBloombergArray.json')
-jsonNews = json.load(news,encoding='ISO-8859-1')
-
-print calculator.calZscore([1,1,1,1,1],1)
-
-clusterDis = json.load(open("d:/embers/financemodel/clusterDistribution.json"))
-print clusterDis
-
-result = open("d:/embers/financemodel/TestPredict.txt")
-lines = result.readlines()
-for line in lines:
-#    print line
-    tokens = [token.replace("\t","") for token in line.strip().split("\t")]
-    date = tokens[1]
-    pClusster = tokens[4]
-    print date,pClusster
-
 
 con = None
 try:
     con = lite.connect("d:/sqlite/embers.db")
     cur = con.cursor()
-    cur.execute('select sqlite_version()')
-    data = cur.fetchone()
-    print "Sqlite Version: %s" % data
+    cur.execute("update t_news_process_mission set mission_status=? where embers_id=?",("1","0fa41b5f0e8a43bdf083643d2506a6fc3e03a1a3",))
+    con.commit()
     
 except lite.Error, e:
     print "Error %s:" % e.args[0]

@@ -7,10 +7,8 @@ import RawStockProcess
 def execute(predictionDate,rawStockFilePath,rawNewsFilePath):
     #process raw Stock Process data
     RawStockProcess.execute(rawStockFilePath)
-    print "one"
     #process raw news data
     RawNewsProcess.execute(rawNewsFilePath)
-    print "Two"
     #Warning Create
     WarningCreate.execute(predictionDate)
     

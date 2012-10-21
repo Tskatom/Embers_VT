@@ -36,7 +36,6 @@ def check_if_existed(rawIndexData):
     stockIndex =  rawIndexData["name"]  
     tmpUT =  rawIndexData["updateTime"].split(" ")[0]
     updateTime = tmpUT.split("/")[2] + "-" +  tmpUT.split("/")[0] + "-" + tmpUT.split("/")[1] 
-    print updateTime
     cur.execute(sql,(stockIndex,updateTime))
     count = cur.fetchone()[0]
     if count == 0:
@@ -161,7 +160,6 @@ def execute(rawDataPath):
         for line in lines:
             rawData = json.loads(line.replace("\n","").replace("\r",""))
             rawDataList.append(rawData)
-            print rawData
     for rawData in rawDataList:
         import_data(rawData)
     close_db_connection()

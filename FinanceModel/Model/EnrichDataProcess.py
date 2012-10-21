@@ -18,7 +18,7 @@ class Enriched_Data():
         "Check if the day weekend"
         weekDay = datetime.strptime(predictiveDate,"%Y-%m-%d").weekday()
         if weekDay == 5 or weekDay == 6:
-            print "%s For %s is Weekend, Just Skip!" %(predictiveDate,stockIndex)
+#            print "%s For %s is Weekend, Just Skip!" %(predictiveDate,stockIndex)
             return False
         
         "Check if the day is holiday"
@@ -31,7 +31,7 @@ class Enriched_Data():
         if count == 0:
             return True
         else:
-            print "%s For %s is Holiday, Just Skip!" %(predictiveDate,stockIndex)
+#            print "%s For %s is Holiday, Just Skip!" %(predictiveDate,stockIndex)
             return False
     
     #insert surrogate data to database
