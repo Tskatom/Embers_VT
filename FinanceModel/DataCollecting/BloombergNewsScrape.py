@@ -6,60 +6,51 @@ import urllib2
 from BeautifulSoup import BeautifulSoup
 from datetime import datetime
 from boilerpipe.extract import Extractor
-import sqlite3 as lite
 import sys
 import hashlib
 import json
 from Util import common
 import time
+import argparse
+from etool import queue,logs
 
 companyList = {}
 stockNews = {}
-con = None
-cur = None
-config = None
 newsAlreadyDownload = None
+newsAlreadDownloadFilePath = ""
+companyListDir = ""
+dailyNewsOutPath = ""
+port = ""
+__processor__ = 'BloombergNewsScrape'
+log = logs.getLogger(__processor__)
 
 def initiate():
-    global config
     global newsAlreadyDownload
+    global companyListDir
+    global dailyNewsOutPath
+    global port
     
-    newsAlreadDownloadFilePath = common.get_configuration("model", "NEWS_ALREADY_DOWNLOADED") 
+    args = parse_args()
+    configFile = args.conf
+    logs.init()
+    
+    newsAlreadDownloadFilePath = common.get_configuration("model", "NEWS_ALREADY_DOWNLOADED",configFile) 
+    companyListDir = common.get_configuration('info','COMPANY_LIST',configFile)
+    dailyNewsOutPath = common.get_configuration("info", "DAILY_NEWS_DIR",configFile)
+    port = common.get_configuration("info", "ZMQ_PORT",configFile)
+    
     newsAlreadyDownload = json.load(open(newsAlreadDownloadFilePath))
     
-    get_db_connection()
-    
 def end():
-    global config
     global newsAlreadyDownload
-    
-    newsAlreadDownloadFilePath = common.get_configuration("model", "NEWS_ALREADY_DOWNLOADED") 
     newsAlreadyDownloadStr = json.dumps(newsAlreadyDownload)
     with open(newsAlreadDownloadFilePath,"w") as output:
         output.write(newsAlreadyDownloadStr)
-    
-    close_db_connection() 
         
-def get_db_connection():
-    global cur
-    global con
-    try:
-        con = common.getDBConnection()
-        con.text_factory = str
-        cur = con.cursor()
-    except lite.Error, e:
-        print "Error: %s" % e.args[0]
-
-def close_db_connection():
-    global con
-    con.commit()
-    if con:
-        con.close()    
 
 def get_all_companies():
+    global companyList
     "Read Company List Directory from config file"
-    global config
-    companyListDir = common.get_configuration('info','COMPANY_LIST')
     dirList = os.listdir(companyListDir)
     "Iteratively read the stock member files and store them in a List "
     for fName in dirList:
@@ -74,12 +65,14 @@ def get_all_companies():
     return companyList
 
 def get_stock_news():
+    global stockNews
     "Scrape the news from Bloomberg"
     for stockIndex in companyList:
         stockNews[stockIndex] = []
         for company in companyList[stockIndex]:
             "construct the url for each company"
-            companyUrl = "http://www.bloomberg.com/quote/"+company+"/news#news_tab_company_news";
+            company = company.replace("\r","").replace("\n","").strip()
+            companyUrl = "http://www.bloomberg.com/quote/"+company+"/news#news_tab_company_news"
             soup = BeautifulSoup(urllib2.urlopen(companyUrl,timeout=60))
             "Get the News Urls of specifical Company"
             urlElements = soup.findAll(id="news_tab_company_news_panel")
@@ -115,11 +108,11 @@ def get_news_by_url(url):
         #postTime = datetime.strftime("%Y-%m-%d %H:%M:%S",datetime.fromtimestamp(timeStamp/1000))
         postTime = datetime.fromtimestamp(timeStamp/1000)
         postTimeStr = datetime.strftime(postTime,"%Y-%m-%d %H:%M:%S")
-        article["post_time"] = postTimeStr
+        article["postTime"] = postTimeStr
         
         "Initiate the post date"
         postDay = postTime.date()
-        article["post_date"] = datetime.strftime(postDay,"%Y-%m-%d");
+        article["postDate"] = datetime.strftime(postDay,"%Y-%m-%d");
         
         "Get the author information "
         author = ""
@@ -139,16 +132,16 @@ def get_news_by_url(url):
         
         "Initiate the update_time"
         updateTime = datetime.strftime(datetime.now(),"%Y-%m-%d %H:%M:%S")
-        article["update_time"] = updateTime
+        article["updateTime"] = updateTime
         
         "Initiate the embers_id"
         embersId = hashlib.sha1(content).hexdigest()
-        article["embers_id"] =  embersId
+        article["embersId"] =  embersId
 
         "settup URL"
         article["url"] =  url
     except:
-        print "Error: %s" %sys.exc_info()[0]
+        log.info("Error: %s",(sys.exc_info()[0],))
         article = {}
     finally:
         return article
@@ -162,8 +155,8 @@ def check_article_already_downloaded(title):
         newsAlreadyDownload.append(title)
         return False
     
-def import_news_to_file():
-    dailyNewsOutPath = common.get_configuration("info", "DAILY_NEWS_DIR")
+def export_news_to_file():
+    global dailyNewsOutPath
     currentDay = time.strftime('%Y-%m-%d',time.localtime())
     dayFile = dailyNewsOutPath + "/" + "Bloomberg-News-" + currentDay
     newsStr = "{}"
@@ -172,17 +165,42 @@ def import_news_to_file():
         newsStr = json.dumps(stockNews)
     
     with open(dayFile,"w") as ouput:
-        ouput.write(newsStr)    
+        ouput.write(newsStr) 
+
+def push_news_to_ZMQ():
+    global port 
+    
+    with queue.open(port, 'w', capture=True) as outq:
+        for stock in stockNews:
+            for article in stockNews[stock]:
+                outq.write(json.dumps(article, encoding='utf8'))  
+
+def parse_args():
+    ap = argparse.ArgumentParser("Scrape the content from Bloomberg News and push them to to ZMQ!")
+    ap.add_argument('-c','--conf',metavar="CONFIG",type=str,default='../Config/config.cfg',nargs='?',help='the config file path')
+    return ap.parse_args() 
         
-def execute():
+def main():
+    # Initiate the global parameters
+    initiate()
+    
+    # Get the company List
     get_all_companies()
+    
+    # Get the news related to stock market
     get_stock_news()
-    import_news_to_file()
+    
+    # Export news collected to File
+    export_news_to_file()
+    
+    # Push the news to ZMQ
+    push_news_to_ZMQ()
+    
+    # Write the title of Already download news to File
     end()
 
-initiate()
 #get_db_connection()
 if __name__ == "__main__":
-    print "Start Time: ",datetime.strftime(datetime.now(),"%Y-%m-%d %H:%M:%S")
-    execute()
-    print "End Time: ",datetime.strftime(datetime.now(),"%Y-%m-%d %H:%M:%S")
+    log.info("Start Time: %s",(datetime.strftime(datetime.now(),"%Y-%m-%d %H:%M:%S"),))
+    main()
+    log.info("End Time: %s",(datetime.strftime(datetime.now(),"%Y-%m-%d %H:%M:%S"),))

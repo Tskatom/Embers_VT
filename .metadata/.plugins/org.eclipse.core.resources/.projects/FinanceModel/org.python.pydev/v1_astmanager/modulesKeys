@@ -22,6 +22,7 @@ RawNewsProcess|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\DataPreproce
 RawStockProcess|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\DataPreprocess\RawStockProcess.py
 Test.CreatingDict|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\Test\CreatingDict.py
 Test.ParameterTest|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\Test\ParameterTest.py
+Test.TestParser|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\Test\TestParser.py
 Test.TestReg|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\Test\TestReg.py
 Test.ZMQTest|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\Test\ZMQTest.py
 Test.change|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\Test\change.py

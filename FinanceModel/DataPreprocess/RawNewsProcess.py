@@ -32,15 +32,15 @@ def insert_news(article):
     try:
         global con
         sql = "insert into t_daily_news(embers_id,title,author,post_time,post_date,content,stock_index,source,update_time,url) values (?,?,?,?,?,?,?,?,?,?)"
-        embersId = article["embers_id"]
+        embersId = article["emberdId"]
         title = article["title"]
         author = article["author"]
-        postTime = article["post_time"]
-        postDate = article["post_date"]
+        postTime = article["postTime"]
+        postDate = article["postDate"]
         content = article["content"]
-        stockIndex = article["stock_index"]
+        stockIndex = article["stockIndex"]
         source = article["source"]
-        updateTime = article["update_time"]
+        updateTime = article["updateTime"]
         url = article["url"]
         cur.execute(sql,(embersId,title,author,postTime,postDate,content,stockIndex,source,updateTime,url))
         
@@ -110,27 +110,23 @@ def check_enrichedata_existed(embersId):
 def import_to_database(rawNewsFilePath):
     global con
     stockNews = json.load(open(rawNewsFilePath,"r"))
-    #write message to ZMQ
-    port = common.get_configuration("info", "ZMQ_PORT")
-    with queue.open(port, 'w', capture=True) as outq:
-        for stock in stockNews:
-            i = 0
-            for article in stockNews[stock]:
-                article["stock_index"] = stock
-                "Check if the article has being collected: if so,just skip, otherwise insert into database"
-                "commit to database for each 10 records"
-                ifExisted = check_article_existed(article)
-                if ifExisted:
-                    continue
-                else:
-                    insert_news(article)
-                    outq.write(json.dumps(article, encoding='utf8'))
-                    insert_news_mission(article)
-                    i = i +1
-                    if i >= 100:
-                        con.commit()
-                        i = 0
-        con.commit()
+    for stock in stockNews:
+        i = 0
+        for article in stockNews[stock]:
+            article["stock_index"] = stock
+            "Check if the article has being collected: if so,just skip, otherwise insert into database"
+            "commit to database for each 10 records"
+            ifExisted = check_article_existed(article)
+            if ifExisted:
+                continue
+            else:
+                insert_news(article)
+                insert_news_mission(article)
+                i = i +1
+                if i >= 100:
+                    con.commit()
+                    i = 0
+    con.commit()
 
 def get_uncompleted_mission():
     global con

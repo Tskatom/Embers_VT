@@ -1,0 +1,8 @@
+2012-10-22 15:00:12,076 - BloombergNewsScrape - INFO - 8824 - get_news_by_url - Error: (<class 'urllib2.URLError'>,)
+2012-10-22 15:11:25,911 - BloombergNewsScrape - INFO - 3808 - get_news_by_url - Error: (<class 'urllib2.URLError'>,)
+2012-10-22 15:14:00,276 - BloombergNewsScrape - INFO - 3808 - get_news_by_url - Error: (<class 'urllib2.URLError'>,)
+2012-10-22 15:14:23,321 - BloombergNewsScrape - INFO - 3808 - get_news_by_url - Error: (<class 'urllib2.URLError'>,)
+2012-10-22 15:15:55,582 - BloombergNewsScrape - INFO - 3808 - get_news_by_url - Error: (<class 'urllib2.URLError'>,)
+2012-10-22 15:18:10,407 - BloombergNewsScrape - INFO - 3808 - get_news_by_url - Error: (<class 'urllib2.URLError'>,)
+2012-10-22 15:18:59,256 - BloombergNewsScrape - INFO - 3808 - get_news_by_url - Error: (<class 'urllib2.URLError'>,)
+2012-10-22 15:31:05,753 - BloombergNewsScrape - INFO - 3808 - get_news_by_url - Error: (<class 'urllib2.URLError'>,)

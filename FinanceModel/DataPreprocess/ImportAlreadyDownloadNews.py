@@ -17,14 +17,16 @@ def execute():
         config = ConfigParser.ConfigParser()
         with open('../Config/config.cfg','r') as cfgFile:
             config.readfp(cfgFile)
-        newsAlreadDownloadFilePath = config.get("info", "newsAlreadyDownload") 
+        newsAlreadDownloadFilePath = config.get("model", "NEWS_ALREADY_DOWNLOADED") 
         newsAlreadyDownload = []
         sql = "select title from t_daily_news"
         cur.execute(sql)
         rows = cur.fetchall()
+        i = 0
         for row in rows:
             newsAlreadyDownload.append(row[0])
-        
+            i = i + 1
+            print i
         with open(newsAlreadDownloadFilePath,"w") as output:
             output.write(json.dumps(newsAlreadyDownload))
     except lite.Error, e:
