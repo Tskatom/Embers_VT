@@ -1,0 +1,22 @@
+import json
+import numpy
+import nltk
+import sys
+from Util import calculator
+import sqlite3 as lite
+
+
+
+con = None
+try:
+    con = lite.connect("d:/sqlite/embers.db")
+    cur = con.cursor()
+    cur.execute("update t_news_process_mission set mission_status=1 where embers_id=?",("42a48d9eb8b04425c9f5fe4679631541eedac38e",))
+    con.commit()
+    
+except lite.Error, e:
+    print "Error %s:" % e.args[0]
+    sys.exit(1)
+finally:
+    if con:
+        con.close()    

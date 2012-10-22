@@ -1,0 +1,16 @@
+INSTUPDataPreprocess.RawNewsProcess
+C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\DataPreprocess\RawNewsProcess.py
+INFOS:&&3|1|2|0&&3|3|2|0&&2|4|2|0&&2|5|2|0&&2|6|2|0&&2|7|2|0&&2|8|2|0&&2|9|2|0&&2|10|2|0&&2|11|2|0&&2|12|2|0&&3|13|2|0
+con=1
+get_uncompleted_mission=11
+execute=12
+get_db_connection=4
+check_article_existed=8
+insert_news=6
+import_to_database=10
+DataPreprocess.RawNewsProcess=2
+insert_news_mission=7
+close_db_connection=5
+cur=3
+check_enrichedata_existed=9
+rawNewsFilePath=13
