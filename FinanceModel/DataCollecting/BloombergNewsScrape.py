@@ -42,11 +42,12 @@ def initiate():
     args = parse_args()
     configFile = args.conf
     logs.init()
+    common.init(configFile)
     
-    newsAlreadDownloadFilePath = common.get_configuration("model", "NEWS_ALREADY_DOWNLOADED",configFile) 
-    companyListDir = common.get_configuration('info','COMPANY_LIST',configFile)
-    dailyNewsOutPath = common.get_configuration("info", "DAILY_NEWS_DIR",configFile)
-    port = common.get_configuration("info", "ZMQ_PORT",configFile)
+    newsAlreadDownloadFilePath = common.get_configuration("model", "NEWS_ALREADY_DOWNLOADED") 
+    companyListDir = common.get_configuration('info','COMPANY_LIST')
+    dailyNewsOutPath = common.get_configuration("info", "DAILY_NEWS_DIR")
+    port = common.get_configuration("info", "ZMQ_PORT")
     
     newsAlreadyDownload = json.load(open(newsAlreadDownloadFilePath))
     

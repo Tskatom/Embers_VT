@@ -5,6 +5,7 @@ import sys
 import hashlib
 from Util import calculator
 from Util import common
+from etool import logs
 
 #rawData = {'feed': 'Bloomberg - Stock Index', 'updateTime': '09/28/2012 16:01:02', 'name': 'MERVAL', 'currentValue': '2451.73', 'queryTime': '10/01/2012 03:00:03', 'previousCloseValue': '2494.18', 'date': '2012-10-01T03:00:03', 'type': 'stock', 'embersId': '971752f23223c344e8732f32922e3f8e75ebd3ff'}
 #EnrichedData = 
@@ -12,6 +13,13 @@ from Util import common
 con = None
 cur = None
 stockRecords = {}
+
+__processor__ = 'RawStockProcess'
+log = logs.getLogger(__processor__)
+
+def init(cfgPath):
+    common.init(cfgPath)
+    logs.init()
 
 def get_db_connection():
     global cur
@@ -21,7 +29,7 @@ def get_db_connection():
         con.text_factory = str
         cur = con.cursor()
     except lite.Error, e:
-        print "Error: %s" % e.args[0]
+        log.info("Error: %s" % e.args[0])
 
 def close_db_connection():
     global con
@@ -81,7 +89,6 @@ def import_data(rawIndexData):
         subSequence = get_subsequence(stockIndex,updateTime) + 1
         
         "calculate zscore 30 and zscore 90"
-        print stockIndex,oneDayChange
         zscore30 = getZscore(updateTime,stockIndex,oneDayChange,30)
         zscore90 = getZscore(updateTime,stockIndex,oneDayChange,90)
         
@@ -104,7 +111,6 @@ def import_data(rawIndexData):
         enrichedDataEmID = hashlib.sha1(json.dumps(enrichedData)).hexdigest()
         enrichedData["embersId"] = enrichedDataEmID
         
-        print enrichedData
         insert_enriched_data(enrichedData)
         
 def insert_enriched_data(enrichedData):
@@ -136,7 +142,6 @@ def get_trend_type(rawIndexData):
     "Get the indicated stock range"
     stockIndex = rawIndexData["name"]
     tJson = trendsJson[stockIndex]
-    print tJson
     
     "Computing change percent"
     lastPrice = float(rawIndexData["currentValue"])
@@ -152,7 +157,8 @@ def get_trend_type(rawIndexData):
             trendType = changeType
     return trendType
     
-def execute(rawDataPath):
+def execute(rawDataPath,cfgPath):
+    init(cfgPath)
     get_db_connection()
     rawDataList = []
     with open(rawDataPath,'r') as rawDataFile:

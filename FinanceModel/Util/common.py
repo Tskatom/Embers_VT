@@ -2,9 +2,20 @@
 import ConfigParser
 import sqlite3 as lite
 
-def get_configuration( section_name, configuration, cfgFilename= '../Config/config.cfg'):
+# If the path of config.cfg is not indicated, then the default path is in ../Config
+cfgFileName = '../Config/config.cfg'
+
+# Before invoke the method in common module, we should init it firstly
+
+def init(cfgPath):
+    global cfgFileName
+    cfgFileName = cfgPath
+    
+def get_configuration( section_name, configuration):
+    global cfgFileName
+    
     config = ConfigParser.ConfigParser()
-    with open( cfgFilename, 'r' ) as cfgFile:
+    with open(cfgFileName, 'r' ) as cfgFile:
         config.readfp( cfgFile )
     configuration = config.get( section_name, configuration )
     return configuration

@@ -7,10 +7,16 @@ from datetime import datetime,timedelta
 import hashlib
 from Util import common
 import EnrichDataProcess as ed
-from etool import queue
+from etool import queue,logs
 
 outputResult = {}
+__processor__ = 'WarningCreate'
+log = logs.getLogger(__processor__)
 
+def init(cfgPath):
+    common.init(cfgPath)
+    logs.init()
+    
 def dailySigmaTrends(stockIndex,cluster,m30,m90,std30,std90,curValue):
     #computing the bottom and upper line for daily sigma event
     s4Bottom = m30 - 4*std30
@@ -131,7 +137,7 @@ def warningCheck(surObj):
             return None
         
     except lite.Error, e:
-        print "Error: %s" % e.args[0]
+        log.exception( "Error: %s" % e.args[0])
     finally:
         if con:
             con.close()   
@@ -163,13 +169,14 @@ def insert_warningmessage(warningMessage):
             cur.execute(insertSql,(embersId,derivedFrom,model,eventType,confidence,confidenceIsProbability,eventDate,population,location))
             con.commit()
     except Exception as e:
-        print "Error: %s" % e.args[0]
+        log.exception( "Error: %s" % e.args[0])
     finally:
         if con:
             con.close()   
                  
-def execute(date):
-    enricheDa = ed.Enriched_Data()
+def execute(date,cfgPath):
+    init(cfgPath)
+    enricheDa = ed.Enriched_Data(cfgPath)
     obj = enricheDa.enrich_all_stock(date)
     warningList = []
     for item in obj:

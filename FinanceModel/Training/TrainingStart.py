@@ -11,7 +11,7 @@ from Training import CreatingVocabulary as cv
 from Training import OutputTestStockIndexData
 from Training import CreatingTermContribution as ctermc
 from DataPreprocess import ImportNewsProcess as inp,ImportHistorialStock as ihs
-from DataPreprocess import RawNewsProcess
+from Model import RawNewsProcess
 """
 For the Test Phase, we need to do the following steps:
 1. Cluster the time serial of stock index value

@@ -26,7 +26,7 @@ def testLog():
     __processor__ = 'TestLog'
     log = logs.getLogger(__processor__)
     logs.init()
-    log.info("Good Idea")
+    log.info("Error: %s" % "I'm Here")
                 
-test()
+testLog()
     

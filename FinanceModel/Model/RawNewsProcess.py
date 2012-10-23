@@ -7,11 +7,18 @@ import exceptions
 import hashlib
 from datetime import datetime
 from Util import common
-from etool import queue
+from etool import queue,logs
 
 con = None
 cur = None
 
+__processor__ = 'RawNewsProcess'
+log = logs.getLogger(__processor__)
+
+def init(cfgPath):
+    common.init(cfgPath)
+    logs.init()
+    
 def get_db_connection():
     global cur
     global con
@@ -20,7 +27,7 @@ def get_db_connection():
         con.text_factory = str
         cur = con.cursor()
     except lite.Error, e:
-        print "Error: %s" % e.args[0]
+        log.info("Error: %s" % e.args[0])
 
 def close_db_connection():
     global con
@@ -45,7 +52,7 @@ def insert_news(article):
         cur.execute(sql,(embersId,title,author,postTime,postDate,content,stockIndex,source,updateTime,url))
         
     except lite.Error, e:
-        print "Error insert_news: %s" % e.args[0]
+        log.info( "Error insert_news: %s" % e.args[0])
     finally:
         pass
 
@@ -61,7 +68,7 @@ def insert_news_mission(article):
         cur.execute(sql,(embersId,missionName,missionStatus))
         
     except lite.Error, e:
-        print "Error Insert news Mission: %s" % e.args[0]
+        log.info( "Error Insert news Mission: %s" % e.args[0])
     finally:
         pass
     
@@ -81,9 +88,9 @@ def check_article_existed(article):
         else:
             flag = True
     except lite.ProgrammingError as e:
-        print e
+        log.info( e)
     except:
-        print "Error+++++: %s" %sys.exc_info()[0]
+        log.info( "Error+++++: %s" %sys.exc_info())
     finally:
         return flag  
     
@@ -101,9 +108,9 @@ def check_enrichedata_existed(embersId):
         else:
             flag = True
     except lite.ProgrammingError as e:
-        print e
+        log.info( e )
     except:
-        print "Error: %s" %sys.exc_info()[0]
+        log.info( "Error: %s" %sys.exc_info()[0])
     finally:
         return flag    
     
@@ -159,9 +166,14 @@ def get_uncompleted_mission():
                     try:
                         tokens = nltk.word_tokenize(content)
                         stemmer = nltk.stem.snowball.SnowballStemmer('english')
-                        words = [w.lower() for w in tokens if w not in [",",".",")","]","(","[","*",";","...",":","&",'"'] and not w.isdigit()]
+                        words = [w.lower().strip() for w in tokens if w not in [",",".",")","]","(","[","*",";","...",":","&",'"',"'","’"] and not w.isdigit()]
                         words = [w for w in words if w.encode("utf8") not in nltk.corpus.stopwords.words('english')]
-                        stemmedWords = [stemmer.stem(w) for w in words]
+#                        stemmedWords = [stemmer.stem(w) for w in words]
+                        stemmedWords = []
+                        currentWord = ""
+                        for w in words:
+                            currentWord = w
+                            stemmedWords.append(stemmer.stem(w))
                         fdist=nltk.FreqDist(stemmedWords)
                         jsonStr = json.dumps(fdist)
                         embersId = hashlib.sha1(jsonStr).hexdigest()
@@ -190,18 +202,19 @@ def get_uncompleted_mission():
                         if i%100 == 0:
                             con.commit()
                     except lite.ProgrammingError as e:
-                        print "Error:",e               
+                        log.info( "Error:",e   )            
                     except:
-                        print "Error:", sys.exc_info()
+                        log.info( "Error-----:[",currentWord ,']++',sys.exc_info())
                         continue
     except exceptions.IndexError as e:
-        print e            
+        log.info( e  )          
     except lite.OperationalError as e:
-        print e
+        log.info( e )
     except:
-        print "Error****: ", sys.exc_info()[0]
+        log.info( "Error****: ", sys.exc_info()[0] )
 
-def execute(rawNewsFilePath):
+def execute(rawNewsFilePath,cfgPath):
+    init(cfgPath)
     get_db_connection()
     import_to_database(rawNewsFilePath)
     get_uncompleted_mission()

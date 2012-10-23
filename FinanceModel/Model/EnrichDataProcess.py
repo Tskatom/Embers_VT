@@ -8,17 +8,22 @@ import traceback
 from Util import common
 import time
 import hashlib
-from etool import queue
+from etool import queue,logs
 # For test, import the dqueue data structure
+__processor__ = 'EnrichedDataProcess'
+log = logs.getLogger(__processor__)
 
 class Enriched_Data():
-    
+    def __init__(self,cfgPath):
+        common.init(cfgPath)
+        logs.init()
+        
     # Check if the predictive day for indicated stock is Holiday or Weekend
     def check_if_tradingday(self,predictiveDate,stockIndex):
         "Check if the day weekend"
         weekDay = datetime.strptime(predictiveDate,"%Y-%m-%d").weekday()
         if weekDay == 5 or weekDay == 6:
-#            print "%s For %s is Weekend, Just Skip!" %(predictiveDate,stockIndex)
+            log.info("%s For %s is Weekend, Just Skip!" %(predictiveDate,stockIndex))
             return False
         
         "Check if the day is holiday"
@@ -31,7 +36,7 @@ class Enriched_Data():
         if count == 0:
             return True
         else:
-#            print "%s For %s is Holiday, Just Skip!" %(predictiveDate,stockIndex)
+            log.info( "%s For %s is Holiday, Just Skip!" %(predictiveDate,stockIndex))
             return False
     
     #insert surrogate data to database
@@ -67,7 +72,7 @@ class Enriched_Data():
                 cur.execute(insertSql,(embersId,derivedFrom,shiftDate,shiftType,confidence,strength,location,date,model,valueSpectrum,confidenceIsPrabability,population))
                 con.commit()
         except Exception as e:
-            print "Error: %s" %e.args[0]
+            log.info( "Error: %s" %e.args[0])
         finally:
             if con:
                 con.close()
@@ -83,8 +88,8 @@ class Enriched_Data():
                     stockProbabilityList.append( stockProbability )
             return  stockProbabilityList  
         except Exception as e:
-            print "Error: %s" % e.args
-            print traceback.format_exc()
+            log.info( "Error: %s" % e.args)
+            log.info( traceback.format_exc())
                 
      
     # generate the predicted date's type and probability
@@ -160,14 +165,14 @@ class Enriched_Data():
             self.insert_surrogatedata(surrogateData)
             
             #push surrodate data into ZMQ
-            port = common.get_configuration("inof", "ZMP_PORT")
+            port = common.get_configuration("info", "ZMQ_PORT")
             with queue.open(port, 'w', capture=True) as outq:
                 outq.write(json.dumps(surrogateData, encoding='utf8'))
             
             return surrogateData
         except Exception as e:
-            print "Error: %s" % e.args
-            print traceback.format_exc()
+            log.info( "Error: %s" % e.args)
+            log.info( traceback.format_exc())
     
     # calculate the stock index contribution for the coming day
     def compute_stock_index_probability( self, predictiveDate, clusterType , stockIndex ):
@@ -190,8 +195,8 @@ class Enriched_Data():
             
             return stockIndexProbability,stockDerived
         except Exception as e:
-            print traceback.format_exc()
-            print "Error in computing stock index probability: %s" % e.args
+            log.info( traceback.format_exc())
+            log.info( "Error in computing stock index probability: %s" % e.args)
     
     # calculate the stock news contribution for the coming day
     def compute_stock_news_probability( self, predictiveDate, clusterType , stockIndex ):
@@ -213,10 +218,10 @@ class Enriched_Data():
             
             return termContributionProbability,newsDerived
         except IOError:
-            print "Can't open the file:stock_raw_data.json."
+            log.info( "Can't open the file:stock_raw_data.json.")
         except Exception as e:
-            print traceback.format_exc()
-            print "Error in computing stock news probability: %s" % e.message    
+            log.info( traceback.format_exc())
+            log.info( "Error in computing stock news probability: %s" % e.message)    
         return None
         
     
@@ -255,8 +260,8 @@ class Enriched_Data():
             
             return termList,newsDerived
         except sqlite.Error, e:
-            print traceback.format_exc()
-            print "Error: %s" % e.args[0]
+            log.info( traceback.format_exc())
+            log.info( "Error: %s" % e.args[0])
         finally:
             if con:
                 con.close()
@@ -281,8 +286,8 @@ class Enriched_Data():
             return trendTypeList,derivedFrom
                 
         except sqlite.Error, e:
-            print traceback.format_exc()
-            print "Error: %s" % e.args[0]
+            log.info( traceback.format_exc())
+            log.info( "Error: %s" % e.args[0])
         finally:
             if con:
                 con.close()
@@ -297,8 +302,8 @@ class Enriched_Data():
                 stockIndexList.append( stockIndex )
             return stockIndexList 
         except Exception as e:
-            print traceback.format_exc()
-            print "Error: %s" % e.args[0]
+            log.info( traceback.format_exc())
+            log.info( "Error: %s" % e.args[0])
     
     # This function will retrieve list of clusters for each stock
     def enumberate_clusters( self , stockIndex ):
@@ -315,8 +320,8 @@ class Enriched_Data():
                 clustersList.append( clusterKey )
             return clustersList 
         except Exception as e:
-            print traceback.format_exc()
-            print "Error: %s" % e.args
+            log.info( traceback.format_exc())
+            log.info( "Error: %s" % e.args)
 
 def test():
     "This method used to test the function"
