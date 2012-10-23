@@ -14,6 +14,14 @@ import time
 import argparse
 from etool import queue,logs
 
+"""
+    The Steps for scraping news from Bloomberg
+    1. read the config file to initiate the company List dir, AlreadyDownloadedNews file, output dir of Collected result and port for ZMQ
+    2. iterate the list of company and get the news list for each company
+    3. load AlreadyDownloadedNews file as json object, For each news to be scraped, check if it is already downloaded by check if its title in the AlreadyDownloadedNews file
+    4. write the currently downloaded news to file
+    5. push the news to ZMQ
+"""
 companyList = {}
 stockNews = {}
 newsAlreadyDownload = None
@@ -29,6 +37,7 @@ def initiate():
     global companyListDir
     global dailyNewsOutPath
     global port
+    global newsAlreadDownloadFilePath
     
     args = parse_args()
     configFile = args.conf
@@ -42,6 +51,7 @@ def initiate():
     newsAlreadyDownload = json.load(open(newsAlreadDownloadFilePath))
     
 def end():
+    global newsAlreadDownloadFilePath
     global newsAlreadyDownload
     newsAlreadyDownloadStr = json.dumps(newsAlreadyDownload)
     with open(newsAlreadDownloadFilePath,"w") as output:

@@ -1,0 +1,6 @@
+#!/bin/sh
+
+# Run at 9:30 each day to capture the current day news from bloomberg
+CONFIG_FILE='../Config/config.cfg'
+python ./BloombergNewsScrape.py -c ${CONFIG_FILE}
+

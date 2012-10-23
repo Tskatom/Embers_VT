@@ -1,0 +1,7 @@
+INSTUPTraining.GroupAritclesByStockIndex
+C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\Training\GroupAritclesByStockIndex.py
+INFOS:&&2|1|2|0&&2|3|2|0&&2|4|2|0
+group_daily_articles=3
+test=4
+Training.GroupAritclesByStockIndex=2
+create_match_rule=1

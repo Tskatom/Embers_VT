@@ -1,0 +1,16 @@
+INSTUPModel.RawStockProcess
+C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\Model\RawStockProcess.py
+INFOS:&&3|1|2|0&&3|3|2|0&&3|4|2|0&&2|5|2|0&&2|6|2|0&&2|7|2|0&&2|8|2|0&&2|9|2|0&&2|10|2|0&&2|11|2|0&&2|12|2|0&&2|13|2|0
+con=1
+execute=13
+import_data=10
+get_db_connection=5
+getZscore=9
+get_subsequence=8
+Model.RawStockProcess=2
+get_trend_type=12
+check_if_existed=7
+close_db_connection=6
+cur=3
+insert_enriched_data=11
+stockRecords=4

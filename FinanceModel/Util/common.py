@@ -6,8 +6,8 @@ def get_configuration( section_name, configuration, cfgFilename= '../Config/conf
     config = ConfigParser.ConfigParser()
     with open( cfgFilename, 'r' ) as cfgFile:
         config.readfp( cfgFile )
-    config = config.get( section_name, configuration )
-    return config
+    configuration = config.get( section_name, configuration )
+    return configuration
 
 def getLocationByStockIndex(stockIndex):
     con = getDBConnection()
