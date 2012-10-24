@@ -1,1 +1,12 @@
-DELSTRDataCollecting.BloombergNewsScrape
+INSTUPTraining.TrainingStart
+C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\Training\TrainingStart.py
+INFOS:&&3|1|2|0&&3|3|2|0&&2|4|2|0&&2|5|2|0&&2|6|2|0&&2|7|2|0&&2|8|2|0&&2|9|2|0
+get_uncompleted_mission=7
+data_clear=4
+execute=8
+parse_args=9
+Training.TrainingStart=2
+log=3
+check_enrichedata_existed=6
+__processor__=1
+divide_archived_news=5

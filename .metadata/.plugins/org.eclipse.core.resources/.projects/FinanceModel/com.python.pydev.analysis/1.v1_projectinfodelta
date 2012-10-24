@@ -1,1 +1,13 @@
-DELSTRDataCollecting.BloombergNewsScrape
+INSTUPDataPreprocess.ImportNewsProcess
+C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\DataPreprocess\ImportNewsProcess.py
+INFOS:&&3|1|2|0&&3|3|2|0&&3|4|2|0&&3|5|2|0&&2|6|2|0&&2|7|2|0&&2|8|2|0&&2|9|2|0&&2|10|2|0
+con=1
+DataPreprocess.ImportNewsProcess=2
+init=6
+cur=3
+import_news_to_database=10
+check_article_existed=8
+insert_news=7
+insert_news_mission=9
+log=5
+__processor__=4

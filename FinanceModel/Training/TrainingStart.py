@@ -3,7 +3,11 @@ from Util import common
 import sys
 import json
 import time
+import argparse
+import nltk
+import hashlib
 from datetime import datetime
+import sqlite3 as lite
 
 from Training import ClusteringTraingSet as ct
 from Training import CreatingTrendsContribution as ctc
@@ -11,7 +15,8 @@ from Training import CreatingVocabulary as cv
 from Training import OutputTestStockIndexData
 from Training import CreatingTermContribution as ctermc
 from DataPreprocess import ImportNewsProcess as inp,ImportHistorialStock as ihs
-from Model import RawNewsProcess
+from etool import logs
+
 """
 For the Test Phase, we need to do the following steps:
 1. Cluster the time serial of stock index value
@@ -22,6 +27,10 @@ For the Test Phase, we need to do the following steps:
 The prerequisite of these 4 steps is import the Archieve News and Historical Stock index values into database Firstly
 And One thing need to do is clear all the Enriched data, surrogatedata and Warning data
 """
+
+__processor__ = "TraingingStart"
+log = logs.getLogger(__processor__)
+logs.init()
 
 #Clear the Testing Phase data in database to retrainng the data
 def data_clear():
@@ -66,13 +75,17 @@ def data_clear():
     if con:
         con.close()
 
-def divide_archived_news(endDate):
-    archivedNewsPath = common.get_configuration("model", "GROUP_STOCK_NEWS")
+def divide_archived_news(traingingStart,trainingEnd,estimationStart,estimationEnd):
+    archivedNewsPath = common.get_configuration("training", "GROUP_STOCK_NEWS")
     archivedNews = json.load(open(archivedNewsPath),encoding='ISO-8859-1')
     trainingPhaseNews = {}
     testPhaseNews = {}
     
-    timeLine = time.strptime(endDate, "%Y-%m-%d")
+    timelineBegin = time.strptime(traingingStart, "%Y-%m-%d")
+    timelineEnd = time.strptime(trainingEnd, "%Y-%m-%d")
+    eTimeLineBegin = time.strptime(estimationStart, "%Y-%m-%d")
+    eTimeLineEnd = time.strptime(estimationEnd, "%Y-%m-%d")
+    
     for stock in archivedNews:
         if stock not in trainingPhaseNews:
             trainingPhaseNews[stock] = {}
@@ -80,26 +93,117 @@ def divide_archived_news(endDate):
             testPhaseNews[stock] = {}
         for articleId in archivedNews[stock]:
             newsDate = time.strptime(articleId[0:8],"%Y%m%d")
-            if newsDate < timeLine:
+            if newsDate <= timelineEnd and newsDate >= timelineBegin:
                 trainingPhaseNews[stock][articleId] = archivedNews[stock][articleId]
-            else:
+            elif newsDate >= eTimeLineBegin and newsDate <= eTimeLineEnd :
                 testPhaseNews[stock][articleId] = archivedNews[stock][articleId]
     
     "Write Training data and Test Data to File"
-    trainingFilePath = common.get_configuration("model", "TRAINING_NEWS_FILE")
+    trainingFilePath = common.get_configuration("training", "TRAINING_NEWS_FILE")
     with open(trainingFilePath,"w") as output:
         output.write(json.dumps(trainingPhaseNews))  
     
-    testingFilePath = common.get_configuration("model", "TESTING_NEWS_FILE")
+    testingFilePath = common.get_configuration("training", "TESTING_NEWS_FILE")
     with open(testingFilePath,"w") as output:
         output.write(json.dumps(testPhaseNews))           
+
+def check_enrichedata_existed(embersId):
+    try:
+        con = common.getDBConnection()
+        cur = con.cursor()
+        flag = True
+        sql = "select count(*) count from t_daily_enrichednews where embers_id=?"
+        cur.execute(sql,(embersId,))
+        count = cur.fetchone()[0]
+        count = int(count)
+        if count == 0:
+            flag = False
+        else:
+            flag = True
+    except lite.ProgrammingError as e:
+        log.info( e )
+    except:
+        log.info( "Error: %s" %sys.exc_info()[0])
+    finally:
+        return flag
+
+def get_uncompleted_mission():
+    con = common.getDBConnection()
+    cur = con.cursor()
+    try:
+        sql = "select embers_id from t_news_process_mission where mission_status = '0'"
+        cur.execute(sql)
+        rows = cur.fetchall()
+        i = 0
+        for row in rows:
+            sql2 = "select embers_id,title,author,post_time,post_date,stock_index,content,source,update_time from t_daily_news where embers_id=?"
+            cur2 = con.cursor()
+            cur2.execute(sql2,(row[0],))
+            rows2 = cur2.fetchall()
+            for row2 in rows2:
+                insertSql = "insert into t_daily_enrichednews (embers_id,derived_from,title,author,post_time,post_date,content,stock_index,source,raw_update_time,update_time) values (?,?,?,?,?,?,?,?,?,?,?)"
+                updateSql = "update t_news_process_mission set mission_status=? where embers_id=?"
+                derivedFrom = "["+row2[0]+"]"
+                title = row2[1]
+                author = row2[2]
+                postTime = row2[3]
+                postDate = row2[4]
+                stockIndex = row2[5]
+                content = row2[6]
+                source = row2[7]
+                rawUpdateTime = row2[8]
+                try:
+                    tokens = nltk.word_tokenize(content)
+                    stemmer = nltk.stem.snowball.SnowballStemmer('english')
+                    words = [w.lower().strip() for w in tokens if w not in [",",".",")","]","(","[","*",";","...",":","&",'"',"'","’"] and not w.isdigit()]
+                    words = [w for w in words if w.encode("utf8") not in nltk.corpus.stopwords.words('english')]
+#                        stemmedWords = [stemmer.stem(w) for w in words]
+                    stemmedWords = []
+                    currentWord = ""
+                    for w in words:
+                        currentWord = w
+                        stemmedWords.append(stemmer.stem(w))
+                    fdist=nltk.FreqDist(stemmedWords)
+                    jsonStr = json.dumps(fdist)
+                    embersId = hashlib.sha1(jsonStr).hexdigest()
+                    updateTime = datetime.strftime(datetime.now(),"%Y-%m-%d %H:%M:%S")
+                    
+                    enrichedData = {}
+                    enrichedData["emberdId"] = embersId
+                    enrichedData["derivedFrom"] = derivedFrom
+                    enrichedData["title"] = title
+                    enrichedData["author"] = author
+                    enrichedData["postTime"] = postTime
+                    enrichedData["postDate"] =  postDate
+                    enrichedData["content"] = jsonStr
+                    enrichedData["stockIndex"] = stockIndex
+                    enrichedData["source"] = source
+                    enrichedData["updateTime"] = updateTime
+                    enrichedData["rawUpdateTime"] = rawUpdateTime
+                    
+                    cur3 = con.cursor()
+                    if not check_enrichedata_existed(embersId):
+                        cur3.execute(insertSql,(embersId,derivedFrom,title,author,postTime,postDate,jsonStr,stockIndex,source,rawUpdateTime,updateTime))
+                        
+                    cur3.execute(updateSql,("1",row2[0],)) 
+                    i = i + 1
+                    if i%100 == 0:
+                        con.commit()
+                except lite.ProgrammingError as e:
+                    log.info( "Error:",e   )            
+                except:
+                    log.info( "Error-----:[",currentWord ,']++',sys.exc_info())
+                    continue
+    except lite.OperationalError as e:
+        log.info( e )
+    except:
+        log.info( "Error****: ", sys.exc_info()[0] )
     
-def execute(startDate,endDate):
+def execute(traingStart,traingEnd,estimationStart,estimationEnd):
     "Clear the database data"
     print "Clear Start Time: ",datetime.strftime(datetime.now(),"%Y-%m-%d %H:%M:%S")
     data_clear()
     print "Clear End Time: ",datetime.strftime(datetime.now(),"%Y-%m-%d %H:%M:%S")
-    
     
     "import archieved news data"
     print "import archieved Start Time: ",datetime.strftime(datetime.now(),"%Y-%m-%d %H:%M:%S")
@@ -113,12 +217,12 @@ def execute(startDate,endDate):
     
     "Divide the Originial News File into Two Parts:Training part and Test Part"
     print "Divide News File Start Time: ",datetime.strftime(datetime.now(),"%Y-%m-%d %H:%M:%S")
-    divide_archived_news(endDate)
+    divide_archived_news(traingStart,traingEnd,estimationStart,estimationEnd)
     print "Divide News File End Time: ",datetime.strftime(datetime.now(),"%Y-%m-%d %H:%M:%S")
     
     "Clustering the time serial Stock index value"
     print "Clustering Start Time: ",datetime.strftime(datetime.now(),"%Y-%m-%d %H:%M:%S")
-    ct.clusterSet(endDate)
+    ct.clusterSet(traingStart,traingEnd)
     print "Clustering End Time: ",datetime.strftime(datetime.now(),"%Y-%m-%d %H:%M:%S")
     
     "Computing the trends contribution and probability"
@@ -138,23 +242,35 @@ def execute(startDate,endDate):
     
     "RawNewsProcess Start"
     print "RawNewsProcess Start Time: ",datetime.strftime(datetime.now(),"%Y-%m-%d %H:%M:%S")
-    RawNewsProcess.execute()
+    get_uncompleted_mission()
     print "RawNewsProcess End Time: ",datetime.strftime(datetime.now(),"%Y-%m-%d %H:%M:%S")
     
     "Import Enriched Data Start"
     print "Import Enriched Data Start Time: ",datetime.strftime(datetime.now(),"%Y-%m-%d %H:%M:%S")
-    OutputTestStockIndexData.export_test_stock_data(endDate)
+    OutputTestStockIndexData.export_test_stock_data(estimationStart,estimationEnd)
     print "Import Enriched Data End Time: ",datetime.strftime(datetime.now(),"%Y-%m-%d %H:%M:%S")
     
+def parse_args():
+    ap = argparse.ArgumentParser("The automatic training and test tools")
+    ap.add_argument('-c','--conf',metavar='CONFIG',type=str,default='../Config/config.cfg',nargs='?',help='The path of config file')
+    ap.add_argument('-ts','--tStart',metavar='TRAING START',type=str,nargs='?',help='The start day of Training set')    
+    ap.add_argument('-td','--tEnd',metavar='TRAING END',type=str,nargs='?',help='The end day of Training set')
+    ap.add_argument('-es','--eStart',metavar='ESTIMATION START',type=str,nargs='?',help='The start day of estimation set')
+    ap.add_argument('-ed','--eEnd',metavar='ESTIMATION End',type=str,nargs='?',help='The end day of estimation set')
     
+    return ap.parse_args()
 
 if __name__ == "__main__":
-    if len(sys.argv) != 3:
-        print len(sys.argv) ,"Please Input Traing Start and End Time value as following format: TrainingStart.py yyyy-mm-dd yyyy-mm-dd \n"
-        exit(0)
-    startDate = sys.argv[1]
-    endDate = sys.argv[2]
-    execute(startDate,endDate)
+    args = parse_args()
+    configFilePath = args.conf
+    trainingStart = args.tStart
+    trainingEnd = args.tEnd
+    estimationStart = args.eStart
+    estimationEnd = args.eEnd
+    
+    common.init(configFilePath)
+    
+    execute(trainingStart,trainingEnd,estimationStart,estimationEnd)
     
     
     

@@ -1,0 +1,14 @@
+
+class cm:
+    
+    p1 = ""
+    
+    def __init__(self,str):
+    
+    def f1():
+        global p1
+        print p1, " In f1"
+        
+    def f2():
+        global p1
+        print p1, " In f2"

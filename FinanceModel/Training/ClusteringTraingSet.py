@@ -9,7 +9,7 @@ from Util import common
 import sys
 
         
-def clusterSet(traningEndDate): 
+def clusterSet(traingingStart,traningEndDate): 
     con = common.getDBConnection()
     cur = con.cursor()
     
@@ -17,8 +17,8 @@ def clusterSet(traningEndDate):
     stockList = ["MERVAL","MEXBOL","CHILE65","BVPSBVPS","COLCAP","CRSMBCT","IBOV","IGBVL"]
     finalOrderCluster = {}
     for stock in stockList:
-        sql = "select embers_id,sub_sequence,date,last_price,one_day_change,round(one_day_change/(last_price-one_day_change),4),stock_index from t_daily_stockindex where stock_index=? and date<=?"
-        cur.execute(sql,(stock,traningEndDate))
+        sql = "select embers_id,sub_sequence,date,last_price,one_day_change,round(one_day_change/(last_price-one_day_change),4),stock_index from t_daily_stockindex where stock_index=? and date<=? and date>=?"
+        cur.execute(sql,(stock,traningEndDate,traingingStart))
         rows = cur.fetchall()
         changes = [row[5] for row in rows]
         fdist = nltk.FreqDist(changes)
@@ -84,7 +84,7 @@ def clusterSet(traningEndDate):
         output.write(dataStr)
     
     "Write the training data into file"
-    trendSetRecordFile = common.get_configuration("model", "TRAINING_TREND_RECORDS")
+    trendSetRecordFile = common.get_configuration("training", "TRAINING_TREND_RECORDS")
     dataStr = json.dumps(finalClusterRecord)
     with open(trendSetRecordFile,"w") as output:
         output.write(dataStr)

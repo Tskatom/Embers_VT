@@ -11,7 +11,7 @@ This script used to calculate the contribution of each term to the individual cl
 
 def group_news_by_cluster():
     "Load the Traing news File"
-    trainingNewsFile = common.get_configuration("model", "TRAINING_NEWS_FILE")
+    trainingNewsFile = common.get_configuration("training", "TRAINING_NEWS_FILE")
     articles = json.load(open(trainingNewsFile))
     finalStockClusterNews = {}
     "Iterately read the news"
@@ -28,7 +28,7 @@ def group_news_by_cluster():
     
         #read the day cluster file to group the date
         clusterDays = {}
-        trendFilePath = common.get_configuration("model", "TRAINING_TREND_RECORDS")
+        trendFilePath = common.get_configuration("training", "TRAINING_TREND_RECORDS")
         trendFile = open(trendFilePath)
         trendJson = json.load(trendFile)
         for trend in trendJson:
@@ -63,7 +63,7 @@ def group_news_by_cluster():
 
 def compute_term_contribution():
     "Read the Vocabulary File"
-    vocabularyFilePath = common.get_configuration("model", "VOCABULARY_FILE")
+    vocabularyFilePath = common.get_configuration("training", "VOCABULARY_FILE")
     vocaLines = open(vocabularyFilePath).readlines()
     vocaList = [w.replace("\n","") for w in vocaLines]
     

@@ -8,7 +8,7 @@ This program is used to computing the trendsContribution
 
 def compute_trend_contribution():
     #read the trend segments file
-    trendFileName = common.get_configuration("model", "TRAINING_TREND_RECORDS")
+    trendFileName = common.get_configuration("training", "TRAINING_TREND_RECORDS")
     trendFile = open(trendFileName)
     jsonTrend = json.load(trendFile)
     

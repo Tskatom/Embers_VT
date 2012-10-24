@@ -3,12 +3,12 @@ from Util import common
 import json
 import hashlib
 
-def export_test_stock_data(startDate):
+def export_test_stock_data(estimationStart,estimationEnd):
     
     con = common.getDBConnection()
     cur = con.cursor()
-    sql = "select embers_id,sub_sequence,stock_index,date,last_price,one_day_change from t_daily_stockindex where date>=?"
-    cur.execute(sql,(startDate,))
+    sql = "select embers_id,sub_sequence,stock_index,date,last_price,one_day_change from t_daily_stockindex where date>=? and date<=?"
+    cur.execute(sql,(estimationStart,estimationEnd,))
     results = cur.fetchall()
     
     for row in results:

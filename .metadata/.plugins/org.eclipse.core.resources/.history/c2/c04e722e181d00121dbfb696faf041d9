@@ -1,0 +1,8 @@
+import m1
+
+def init():
+    m1.p1 = "good"
+
+init()
+m1.f1()
+m1.f2()

@@ -5,7 +5,7 @@ from datetime import datetime
 
 def create_vocabulary():
     "Read the Negative Finance Dictionary"
-    negativeFilePath = common.get_configuration("model", "NEGATIVE_DIC")
+    negativeFilePath = common.get_configuration("training", "NEGATIVE_DIC")
     negativeDoc  = open(negativeFilePath).readlines()
     stemmer = nltk.stem.snowball.SnowballStemmer('english')
     negativeWords = []
@@ -18,7 +18,7 @@ def create_vocabulary():
         negKeywords.append(k)
     
     "Read the Positive Finance Dictionary"
-    positiveFilePath = common.get_configuration("model", "POSITIVE_DIC")
+    positiveFilePath = common.get_configuration("training", "POSITIVE_DIC")
     positiveDoc = open(positiveFilePath).readlines()
     postiveWords = []
     for line in positiveDoc:
@@ -31,7 +31,7 @@ def create_vocabulary():
     
     
     "Read the archived news to count the top words"
-    BBNewsPath = common.get_configuration("model", "TRAINING_NEWS_FILE")
+    BBNewsPath = common.get_configuration("training", "TRAINING_NEWS_FILE")
     news = open(BBNewsPath)
     jsonNews = json.load(news)
     #remove all the duplicated articles
@@ -73,11 +73,11 @@ def create_vocabulary():
     sorted_obj2 = sorted(wordFreq.items(), key=lambda x: x[1],reverse=True)
     
     "Write the vocabulary list to File"
-    vocabularyFile = common.get_configuration("model", "VOCABULARY_FILE")
+    vocabularyFile = common.get_configuration("training", "VOCABULARY_FILE")
     output = open(vocabularyFile,"w")
     i = 1
     for word in sorted_obj2:
-        if i > 150:
+        if i > 200:
             break
         else:
             output.write(word[0])

@@ -1,3 +1,4 @@
+globalVal = "hello"
 
 class cm:
     

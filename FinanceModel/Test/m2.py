@@ -6,4 +6,5 @@ def init():
     obj.f1()
     obj.f1()
 
-init()
+def test2():
+    print m1.globalVal

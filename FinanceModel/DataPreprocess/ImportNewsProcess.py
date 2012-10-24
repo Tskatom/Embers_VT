@@ -3,14 +3,91 @@ from Util import common
 import json
 from datetime import datetime
 import hashlib
-from DataPreprocess import RawNewsProcess as bns
+from etool import logs
+import sys
 
-# import history raw data into database        
+# import history raw data into database    
+con = None
+cur = None
+__processor__ = "ImportArchivedNews"
+log = logs.getLogger(__processor__)
+
+def init():
+    global con
+    global cur
+    
+    con = common.getDBConnection()
+    cur = con.cursor()
+    logs.init()
+
+def insert_news(article):
+    try:
+        global con
+        global cur
+        
+        sql = "insert into t_daily_news(embers_id,title,author,post_time,post_date,content,stock_index,source,update_time,url) values (?,?,?,?,?,?,?,?,?,?)"
+        embersId = article["emberdId"]
+        title = article["title"]
+        author = article["author"]
+        postTime = article["postTime"]
+        postDate = article["postDate"]
+        content = article["content"]
+        stockIndex = article["stockIndex"]
+        source = article["source"]
+        updateTime = article["updateTime"]
+        url = article["url"]
+        cur.execute(sql,(embersId,title,author,postTime,postDate,content,stockIndex,source,updateTime,url))
+        
+    except lite.Error, e:
+        log.info( "Error insert_news: %s" % e.args[0])
+    finally:
+        pass
+
+def check_article_existed(article):
+    try:
+        global con
+        global cur
+        flag = True
+        title = article["title"]
+        postDay = article["post_date"]
+        sql = "select count(*) count from t_daily_news where post_date=? and title=?"
+        cur.execute(sql,(postDay,title,))
+        count = cur.fetchone()[0]
+        count = int(count)
+        if count == 0:
+            flag = False
+        else:
+            flag = True
+    except lite.ProgrammingError as e:
+        log.info( e)
+    except:
+        log.info( "Error+++++: %s" %sys.exc_info())
+    finally:
+        return flag  
+    
+def insert_news_mission(article):
+    try:
+        global con
+        global cur
+        sql = "insert into t_news_process_mission(embers_id,mission_name,mission_status,insert_time) values (?,?,?,datetime('now','localtime'))"
+        
+        embersId = article["embers_id"]
+        missionName = "Bag of Words"
+        missionStatus = "0"
+        cur.execute(sql,(embersId,missionName,missionStatus))
+        
+    except lite.Error, e:
+        log.info( "Error Insert news Mission: %s" % e.args[0])
+    finally:
+        pass
+            
 def import_news_to_database():
     try:
-        historyNews = open(common.get_configuration( "model", 'GROUP_STOCK_NEWS'))
+        global con
+        init()
+        historyNews = open(common.get_configuration( "training", 'GROUP_STOCK_NEWS'))
         historyNewsJson = json.load(historyNews)
-        
+        i = 0
         for stockIndex in historyNewsJson:
             for article in historyNewsJson[stockIndex].values():
                 news = {}
@@ -18,21 +95,24 @@ def import_news_to_database():
                 news["author"] = article["author"]
                 postTime = article["postTime"].split(".")[0]
                 postTime = datetime.strptime(postTime,"%Y-%m-%d %H:%M:%S")
-                news["post_time"] = postTime
-                news["post_date"] = postTime.date()
+                news["postTime"] = postTime
+                news["postDate"] = postTime.date()
                 news["content"] = article["content"]
-                news["stock_index"] = stockIndex
+                news["stockIndex"] = stockIndex
                 news["source"] = "Bloomberg News"
-                news["update_time"] = article["queryTime"]
-                news["newsUrl"] = article["newsUrl"]
+                news["updateTime"] = article["queryTime"]
+                news["url"] = article["newsUrl"]
                 embersId = hashlib.sha1(article["content"]).hexdigest()
-                news["embers_id"] = embersId
-                ifExisted = bns.check_article_existed(news)
+                news["embersId"] = embersId
+                ifExisted = check_article_existed(news)
                 if not ifExisted:
-                    bns.insert_news(news)
+                    insert_news(news)
                     "Insert into Mission process"
-                    bns.insert_news_mission(news)
-        bns.close_db_connection()
+                    insert_news_mission(news)
+                i = i + 1
+                if i % 1000 == 0:
+                    con.commit()
+        con.commit()
     except lite.Error, e:
         print "Error: %s" % e.args[0]
     finally:
