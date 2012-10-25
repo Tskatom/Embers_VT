@@ -138,6 +138,7 @@ def get_trend_type(rawIndexData):
     rangeFilePath = common.get_configuration("model", "TREND_RANGE_FILE")
     tFile = open(rangeFilePath)
     trendsJson = json.load(tFile)
+    tFile.close()
     
     "Get the indicated stock range"
     stockIndex = rawIndexData["name"]
@@ -155,6 +156,23 @@ def get_trend_type(rawIndexData):
         if tmpDistance < distance:
             distance = tmpDistance
             trendType = changeType
+            
+    #According the current change percent to adjust the range of trend type
+    bottom = tJson[trendType][0]
+    top = tJson[trendType][1]
+    
+    if changePercent > top:
+        top = changePercent
+    
+    if changePercent < bottom:
+        bottom = changePercent
+    
+    trendsJson[stockIndex][trendType][0] = bottom
+    trendsJson[stockIndex][trendType][1] = top
+    
+    with open(rangeFilePath,"w") as rangeFile:
+        rangeFile.write(json.dumps(trendsJson))
+        
     return trendType
     
 def execute(rawDataPath,cfgPath):

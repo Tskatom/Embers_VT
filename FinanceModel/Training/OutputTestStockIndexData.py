@@ -51,16 +51,34 @@ def get_trend_type(stockIndex,changePercent):
     rangeFilePath = common.get_configuration("model", "TREND_RANGE_FILE")
     tFile = open(rangeFilePath)
     trendsJson = json.load(tFile)
+    tFile.close()
     tJson = trendsJson[stockIndex]
     
     distance = 10000
     trendType = None
-    for type in tJson:
-        tmpDistance = min(abs(changePercent-tJson[type][0]),abs(changePercent-tJson[type][1]))
+    for changeType in tJson:
+        tmpDistance = min(abs(changePercent-tJson[changeType][0]),abs(changePercent-tJson[changeType][1]))
         if tmpDistance < distance:
             distance = tmpDistance
-            trendType = type
-    return trendType  
+            trendType = changeType
+            
+    #According the current change percent to adjust the range of trend type
+    bottom = tJson[trendType][0]
+    top = tJson[trendType][1]
+    
+    if changePercent > top:
+        top = changePercent
+    
+    if changePercent < bottom:
+        bottom = changePercent
+    
+    trendsJson[stockIndex][trendType][0] = bottom
+    trendsJson[stockIndex][trendType][1] = top
+    
+    with open(rangeFilePath,"w") as rangeFile:
+        rangeFile.write(json.dumps(trendsJson))
+        
+    return trendType 
 
 if __name__=="__main__":
-    export_test_stock_data("2012-01-01") 
+    export_test_stock_data("2012-01-01","2012-09-30") 
