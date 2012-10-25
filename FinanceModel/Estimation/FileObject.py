@@ -55,6 +55,11 @@ class ImportExcelData:
             cur = con.cursor()
             dataList = self.read_data_from_excel()
             
+            #clear the old data firstly
+            clearSql = "delete from t_data_source"
+            cur.execute(clearSql)
+            con.commit()
+            
             sqlString = "insert into t_data_source(title,post_date,content,stock_index,source,update_time,country,eventCode,population,url) values(?,?,?,?,?,datetime('now','localtime'),?,?,?,?)"
             
             for item in dataList:
@@ -123,7 +128,7 @@ def Test():
             warning["post_date"] = tmpWarning["eventDate"]
             predictionResults.append(warning)
     
-#    excelData.insert_prediction_into_database(predictionResults)
+    excelData.insert_prediction_into_database(predictionResults)
     
     #excelData.read_data_from_excel()
 #    excelData.insert_database()
