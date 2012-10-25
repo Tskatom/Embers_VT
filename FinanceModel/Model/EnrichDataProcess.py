@@ -242,7 +242,7 @@ class Enriched_Data():
             articleRecords = cur.fetchall()
             
             "Initiate the words List"
-            vocabularyFile = open(common.get_configuration( "model", 'VOCABULARY_FILE'))
+            vocabularyFile = open(common.get_configuration( "training", 'VOCABULARY_FILE'))
             wordLines = vocabularyFile.readlines()
             termList = {}
             for line in wordLines:

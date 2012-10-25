@@ -193,16 +193,18 @@ def execute(date,cfgPath):
     return warningList   
 
 if __name__ == "__main__":
-    if len(sys.argv)==3:
+    if len(sys.argv)==4:
         startDay = sys.argv[1]
         endDay = sys.argv[2]
+        cfgPath = sys.argv[3]
+        
         startD = datetime.strptime(startDay,"%Y-%m-%d")
         endD = datetime.strptime(endDay,"%Y-%m-%d")
-        resultFile = common.get_configuration("model", "TESTING_RESULT_FILE")
+        resultFile = common.get_configuration("training", "TESTING_RESULT_FILE")
         warningResult = open(resultFile,"w")
         while startD <= endD:
             predictiveDay = datetime.strftime(startD,"%Y-%m-%d")
-            warningList = execute(predictiveDay)
+            warningList = execute(predictiveDay,cfgPath)
             if warningList is not None:
                 for warning in warningList:
                     warningResult.write(json.dumps(warning))

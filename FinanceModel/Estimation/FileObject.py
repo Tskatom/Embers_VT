@@ -1,12 +1,17 @@
 import xlrd
 import sqlite3 as lite
 from datetime import datetime
+from Util import common
+import json
+
+cfgPath = "../Config/config.cfg"
+common.init(cfgPath)
 
 # read excel data and insert database
 class ImportExcelData:
     def read_data_from_excel( self ):
         
-        excelData = xlrd.open_workbook( "D:\Embers\Doc\GSR August 2012 V2.xls" )
+        excelData = xlrd.open_workbook( "D:/Embers/GSR August 2012 V2.xls" )
         
         sheetData = excelData.sheet_by_index( 0 )
         
@@ -46,7 +51,7 @@ class ImportExcelData:
     def insert_database( self ):
         try:
             
-            con = lite.connect( "D:/Embers/Sqlite/embers.db" )
+            con = common.getDBConnection()
             cur = con.cursor()
             dataList = self.read_data_from_excel()
             
@@ -72,7 +77,7 @@ class ImportExcelData:
     
     # insert prediction result into database
     def insert_prediction_into_database( self, predictionResults ):
-        con = lite.connect( "C:/Embers/Sqlite/embers.db" )
+        con = common.getDBConnection()
         cur = con.cursor()
         
         for predictionResult in predictionResults:
@@ -89,7 +94,7 @@ class ImportExcelData:
     # Get stock_index value based on the country name from db
     def conver_to_stock_index( self, country ):
         
-        con = lite.connect( "D:/Embers/Sqlite/embers.db" )
+        con = common.getDBConnection()
         cur = con.cursor()
         
         sqlString = "select stock_index from s_stock_country where country = ?"
@@ -103,9 +108,22 @@ class ImportExcelData:
 def Test():
     excelData = ImportExcelData()
     
-    predictionResults = [{'embers_id':'1','eventCode':'0000','stock_index':'BVPSBVPS','post_date':'2011-02-16'},{'embers_id':'2','eventCode':'0411','stock_index':'BVPSBVPS','post_date':'2011-07-13'},{'embers_id':'3','eventCode':'0412','stock_index':'BVPSBVPS','post_date':'2011-08-02'},{'embers_id':'4','eventCode':'0411','stock_index':'CHILE65','post_date':'2011-04-04'},{'embers_id':'5','eventCode':'0000','stock_index':'CHILE65','post_date':'2011-08-09'}]
+    excelData.insert_database()
     
-    excelData.insert_prediction_into_database(predictionResults)
+    predictionResults = []
+    with open("D:/embers/FinanceModel/Evaluation/Warning_List.json","r") as warningFile:
+        for line in warningFile.readlines():
+            line = line.replace("\n","").replace("\r","")
+            print line
+            tmpWarning = json.loads(line)
+            warning = {}
+            warning["embers_id"] = tmpWarning["embersId"]
+            warning["eventCode"] = tmpWarning["eventType"]
+            warning["stock_index"] = tmpWarning["population"]
+            warning["post_date"] = tmpWarning["eventDate"]
+            predictionResults.append(warning)
+    
+#    excelData.insert_prediction_into_database(predictionResults)
     
     #excelData.read_data_from_excel()
 #    excelData.insert_database()

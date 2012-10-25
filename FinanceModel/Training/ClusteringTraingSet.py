@@ -14,7 +14,7 @@ def clusterSet(traingingStart,traningEndDate):
     cur = con.cursor()
     
     finalClusterRecord = []
-    stockList = ["MERVAL","MEXBOL","CHILE65","BVPSBVPS","COLCAP","CRSMBCT","IBOV","IGBVL"]
+    stockList = ["MERVAL","MEXBOL","CHILE65","BVPSBVPS","COLCAP","CRSMBCT","IBOV","IGBVL","IBVC"]
     finalOrderCluster = {}
     for stock in stockList:
         sql = "select embers_id,sub_sequence,date,last_price,one_day_change,round(one_day_change/(last_price-one_day_change),4),stock_index from t_daily_stockindex where stock_index=? and date<=? and date>=?"

@@ -1,11 +1,14 @@
 import sqlite3 as lite
 import types
+from Util import common
 
+cfgPath = "../Config/config.cfg"
+common.init(cfgPath)
 # Evaluate the performace of the prediction result
 class Evaluation:
     global con
 #    con = lite.connect( "C:/Embers/Sqlite/embers.db" )
-    con = lite.connect( "D:/Embers/Sqlite/embers.db" )
+    con = common.getDBConnection()
     
     # get the total number of  raw data for events 0411
     def raw_data( self , eventCode ):
@@ -249,7 +252,7 @@ class Evaluation:
         eventCode0411List.append( eventCode )
         return eventCode0411List
     
-    def evaluate_correction_rate_0412( self , eventCode ):
+    def evaluate_correction_rate_0411( self , eventCode ):
         cur = con.cursor()
         
         sqlString = "select count(*), ds.stock_index from t_data_source ds, t_prediction_result pr where ds.eventCode=? and ds.eventCode=pr.eventCode and ds.post_date=pr.post_date and ds.stock_index=pr.stock_index group by ds.stock_index"
