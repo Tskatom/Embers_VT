@@ -1,5 +1,4 @@
 #-*- coding:utf8-*-
-import sqlite3 as lite
 from cluster import KMeansClustering
 from datetime import datetime
 import nltk

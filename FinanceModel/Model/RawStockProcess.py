@@ -188,6 +188,7 @@ def execute(rawDataPath,cfgPath):
         import_data(rawData)
     close_db_connection()
     
+    
 if __name__ == "__main__":
     if len(sys.argv) != 2:
         print len(sys.argv) ,"Please Enter the Path of the rawData\n", ''

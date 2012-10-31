@@ -5,7 +5,7 @@ from datetime import datetime
 import hashlib
 from etool import logs
 import sys
-
+import argparse
 # import history raw data into database    
 con = None
 cur = None
@@ -26,7 +26,7 @@ def insert_news(article):
         global cur
         
         sql = "insert into t_daily_news(embers_id,title,author,post_time,post_date,content,stock_index,source,update_time,url) values (?,?,?,?,?,?,?,?,?,?)"
-        embersId = article["emberdId"]
+        embersId = article["embersId"]
         title = article["title"]
         author = article["author"]
         postTime = article["postTime"]
@@ -49,7 +49,7 @@ def check_article_existed(article):
         global cur
         flag = True
         title = article["title"]
-        postDay = article["post_date"]
+        postDay = article["postDate"]
         sql = "select count(*) count from t_daily_news where post_date=? and title=?"
         cur.execute(sql,(postDay,title,))
         count = cur.fetchone()[0]
@@ -71,7 +71,7 @@ def insert_news_mission(article):
         global cur
         sql = "insert into t_news_process_mission(embers_id,mission_name,mission_status,insert_time) values (?,?,?,datetime('now','localtime'))"
         
-        embersId = article["embers_id"]
+        embersId = article["embersId"]
         missionName = "Bag of Words"
         missionStatus = "0"
         cur.execute(sql,(embersId,missionName,missionStatus))
@@ -116,7 +116,15 @@ def import_news_to_database():
     except lite.Error, e:
         print "Error: %s" % e.args[0]
     finally:
-            pass
+        con.close()
+
+def parse_args():
+    ap = argparse.ArgumentParser("Import the archived news")
+    ap.add_argument('-c','--conf',metavar='CONFIG',type=str,default='../Config/config.cfg',nargs='?',help='The path of config file')        
+    return ap.parse_args()
 
 if __name__ == "__main__":
+    args = parse_args()
+    conf = args.conf
+    common.init(conf)
     import_news_to_database()

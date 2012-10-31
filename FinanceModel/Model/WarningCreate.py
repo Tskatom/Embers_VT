@@ -35,7 +35,8 @@ def dailySigmaTrends(stockIndex,cluster,m30,m90,std30,std90,curValue):
     One point needed to be changed later: currently we just merge the two type of 
     extreme into one trend type 7, and we need to divide type 7 into type 7 and 11
     """
-    clusterDis = json.load(open("d:/embers/financemodel/output/trendRange.json"))
+    trendRangePath = common.get_configuration("model", "TREND_RANGE_FILE")
+    clusterDis = json.load(open(trendRangePath))
     #get the span of the input trend type
     cBottom = 0.0
     cUpper = 0.0

@@ -12,3 +12,5 @@
 2012-10-22 16:48:47,990 - BloombergNewsScrape - INFO - 3440 - get_news_by_url - Error: (<class 'urllib2.URLError'>,)
 2012-10-22 16:54:25,046 - BloombergNewsScrape - INFO - 3440 - <module> - End Time: ('2012-10-22 16:54:25',)
 2012-10-23 09:35:40,332 - BloombergNewsScrape - INFO - 6204 - <module> - End Time: ('2012-10-23 09:35:40',)
+2012-10-25 20:51:52,502 - BloombergNewsScrape - INFO - 892 - <module> - End Time: ('2012-10-25 20:51:52',)
+2012-10-29 11:18:24,759 - BloombergNewsScrape - INFO - 3472 - <module> - End Time: ('2012-10-29 11:18:24',)

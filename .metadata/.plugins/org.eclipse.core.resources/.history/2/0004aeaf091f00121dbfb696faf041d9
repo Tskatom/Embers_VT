@@ -1,0 +1,23 @@
+from Util import common
+import os
+
+def init(cfgPath):
+    common.init(cfgPath)
+    
+def import_historical_stock():
+    #get the historical stock dir
+    stockFileDir = common.get_configuration("training", "HISTORICAL_STOCK")
+    fileNames = os.listdir(stockFileDir)
+    for filename in fileNames:
+        fpath = stockFileDir + "/" + filename
+        stock = filename.split(".")[0]
+        print fpath,stock
+        with open(fpath,"r") as stockFile:
+            lines = stockFile.readlines()[2:]
+            for line in lines:
+                pass
+        
+if __name__ == "__main__":
+    init("../Config/config.cfg")
+    import_historical_stock()
+            

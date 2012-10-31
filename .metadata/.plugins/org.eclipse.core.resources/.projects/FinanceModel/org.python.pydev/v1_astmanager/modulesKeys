@@ -3,6 +3,7 @@ DataCollecting.BloombergNewsScrape|C:\Users\wei\Documents\GitHub\Embers_VT\Finan
 DataCollecting.__init__|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\DataCollecting\__init__.py
 DataPreprocess.ImportAlreadyDownloadNews|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\DataPreprocess\ImportAlreadyDownloadNews.py
 DataPreprocess.ImportHistorialStock|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\DataPreprocess\ImportHistorialStock.py
+DataPreprocess.ImportHistoricalStock2DB|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\DataPreprocess\ImportHistoricalStock2DB.py
 DataPreprocess.ImportNewsProcess|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\DataPreprocess\ImportNewsProcess.py
 DataPreprocess.__init__|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\DataPreprocess\__init__.py
 Estimation.Evaluation|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\Estimation\Evaluation.py
@@ -18,12 +19,14 @@ Model.RawNewsProcess|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\Model\
 Model.RawStockProcess|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\Model\RawStockProcess.py
 Model.WarningCreate|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\Model\WarningCreate.py
 Model.__init__|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\Model\__init__.py
+Test.AutoRegression|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\Test\AutoRegression.py
 Test.CreatingDict|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\Test\CreatingDict.py
 Test.ParameterTest|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\Test\ParameterTest.py
 Test.TClass|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\Test\TClass.py
 Test.TestParser|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\Test\TestParser.py
 Test.TestReg|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\Test\TestReg.py
 Test.ZMQTest|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\Test\ZMQTest.py
+Test.bloomberg|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\Test\bloomberg.py
 Test.change|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\Test\change.py
 Test.createTermJson|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\Test\createTermJson.py
 Test.kmeanTest|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\Test\kmeanTest.py

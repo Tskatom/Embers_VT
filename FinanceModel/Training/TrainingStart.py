@@ -194,6 +194,7 @@ def get_uncompleted_mission():
                 except:
                     log.info( "Error-----:[",currentWord ,']++',sys.exc_info())
                     continue
+        con.commit()        
     except lite.OperationalError as e:
         log.info( e )
     except:
