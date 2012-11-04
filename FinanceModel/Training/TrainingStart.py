@@ -14,7 +14,7 @@ from Training import CreatingTrendsContribution as ctc
 from Training import CreatingVocabulary as cv
 from Training import OutputTestStockIndexData
 from Training import CreatingTermContribution as ctermc
-from DataPreprocess import ImportNewsProcess as inp,ImportHistorialStock as ihs
+from DataPreprocess import ImportNewsProcess as inp,import_historical_stock_v2 as ihs
 from etool import logs
 
 """
@@ -38,7 +38,7 @@ def data_clear():
     cur = con.cursor()
     
     "clear the stock index raw data"
-    clearSql = "delete from t_daily_stockindex"
+    clearSql = "delete from t_bloomberg_prices"
     cur.execute(clearSql)
     con.commit()
     
@@ -48,7 +48,7 @@ def data_clear():
     con.commit()
     
     "clear the stock index enriched data"
-    clearSql = "delete from t_daily_enrichedIndex"
+    clearSql = "delete from t_enriched_bloomberg_prices"
     cur.execute(clearSql)
     con.commit()
     
@@ -213,7 +213,7 @@ def execute(traingStart,traingEnd,estimationStart,estimationEnd):
     
     "import the historical stock index"
     print "import stock Index Start Time: ",datetime.strftime(datetime.now(),"%Y-%m-%d %H:%M:%S")
-    ihs.execute()
+    ihs.import_history()
     print "import stock Index End Time: ",datetime.strftime(datetime.now(),"%Y-%m-%d %H:%M:%S")
     
     "Divide the Originial News File into Two Parts:Training part and Test Part"
@@ -246,10 +246,10 @@ def execute(traingStart,traingEnd,estimationStart,estimationEnd):
     get_uncompleted_mission()
     print "RawNewsProcess End Time: ",datetime.strftime(datetime.now(),"%Y-%m-%d %H:%M:%S")
     
-    "Import Enriched Data Start"
-    print "Import Enriched Data Start Time: ",datetime.strftime(datetime.now(),"%Y-%m-%d %H:%M:%S")
-    OutputTestStockIndexData.export_test_stock_data(estimationStart,estimationEnd)
-    print "Import Enriched Data End Time: ",datetime.strftime(datetime.now(),"%Y-%m-%d %H:%M:%S")
+#    "Import Enriched Data Start"
+#    print "Import Enriched Data Start Time: ",datetime.strftime(datetime.now(),"%Y-%m-%d %H:%M:%S")
+#    OutputTestStockIndexData.export_test_stock_data(estimationStart,estimationEnd)
+#    print "Import Enriched Data End Time: ",datetime.strftime(datetime.now(),"%Y-%m-%d %H:%M:%S")
     
 def parse_args():
     ap = argparse.ArgumentParser("The automatic training and test tools")

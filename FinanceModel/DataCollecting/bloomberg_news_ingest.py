@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 from __future__ import with_statement
-import os
 import urllib2
 from BeautifulSoup import BeautifulSoup
 from datetime import datetime
@@ -9,10 +8,9 @@ from boilerpipe.extract import Extractor
 import sys
 import hashlib
 import json
-from Util import common
-import time
 import argparse
 from etool import queue,logs
+import boto
 
 """
     The Steps for scraping news from Bloomberg
@@ -29,7 +27,9 @@ newsAlreadDownloadFilePath = ""
 companyListDir = ""
 dailyNewsOutPath = ""
 port = ""
-__processor__ = 'BloombergNewsScrape'
+keyId = ""
+secret = ""
+__processor__ = 'bloomberg_news_ingest'
 log = logs.getLogger(__processor__)
 
 def initiate():
@@ -38,43 +38,22 @@ def initiate():
     global dailyNewsOutPath
     global port
     global newsAlreadDownloadFilePath
+    global companyList
+    global keyId
+    global secret
     
     args = parse_args()
-    configFile = args.conf
     logs.init()
-    common.init(configFile)
     
-    newsAlreadDownloadFilePath = common.get_configuration("model", "NEWS_ALREADY_DOWNLOADED") 
-    companyListDir = common.get_configuration('info','COMPANY_LIST')
-    dailyNewsOutPath = common.get_configuration("info", "DAILY_NEWS_DIR")
-    port = common.get_configuration("info", "ZMQ_PORT")
+    newsAlreadDownloadFilePath = args.f_downloaded 
+    companyListDir = args.f_company_list
+    port = args.port
+    keyId = args.key_id
+    secret = args.secret
     
     newsAlreadyDownload = json.load(open(newsAlreadDownloadFilePath))
+    companyList = json.load(open(companyListDir))
     
-def end():
-    global newsAlreadDownloadFilePath
-    global newsAlreadyDownload
-    newsAlreadyDownloadStr = json.dumps(newsAlreadyDownload)
-    with open(newsAlreadDownloadFilePath,"w") as output:
-        output.write(newsAlreadyDownloadStr)
-        
-
-def get_all_companies():
-    global companyList
-    "Read Company List Directory from config file"
-    dirList = os.listdir(companyListDir)
-    "Iteratively read the stock member files and store them in a List "
-    for fName in dirList:
-        stockIndex = fName[4:len(fName)-4]
-        companyList[stockIndex] = []
-        filePath = companyListDir + "/" + fName
-        with open(filePath,'r') as comFile:
-            lines = comFile.readlines()
-            for line in lines:
-                tickerName = line.replace("\n","").split(" ")[0] + ":" + line.replace("\n","").split(" ")[1]
-                companyList[stockIndex].append(tickerName)
-    return companyList
-
 def get_stock_news():
     global stockNews
     "Scrape the news from Bloomberg"
@@ -97,7 +76,7 @@ def get_stock_news():
                         continue
                     else:
                         article = get_news_by_url(newsUrl)
-                        article["stock_index"] = stockIndex
+                        article["stockIndex"] = stockIndex
                         stockNews[stockIndex].append(article)
             
 def get_news_by_url(url):
@@ -118,7 +97,7 @@ def get_news_by_url(url):
             timeStamp = float(ele["epoch"])
         #postTime = datetime.strftime("%Y-%m-%d %H:%M:%S",datetime.fromtimestamp(timeStamp/1000))
         postTime = datetime.fromtimestamp(timeStamp/1000)
-        postTimeStr = datetime.strftime(postTime,"%Y-%m-%d %H:%M:%S")
+        postTimeStr = postTime.isoformat()
         article["postTime"] = postTimeStr
         
         "Initiate the post date"
@@ -142,15 +121,20 @@ def get_news_by_url(url):
         article["source"] = source
         
         "Initiate the update_time"
-        updateTime = datetime.strftime(datetime.now(),"%Y-%m-%d %H:%M:%S")
+        updateTime = datetime.now().isoformat()
         article["updateTime"] = updateTime
         
-        "Initiate the embers_id"
-        embersId = hashlib.sha1(content).hexdigest()
-        article["embersId"] =  embersId
-
+        "Initiate the update_date"
+        updateDate = datetime.strftime(datetime.now(),"%Y-%m-%d")
+        article["updateDate"] = updateDate
+        
         "settup URL"
         article["url"] =  url
+        
+        "Initiate the embers_id"
+        embersId = hashlib.sha1(json.dumps(article)).hexdigest()
+        article["embersId"] =  embersId
+        
     except:
         log.info("Error: %s",(sys.exc_info()[0],))
         article = {}
@@ -166,43 +150,52 @@ def check_article_already_downloaded(title):
         newsAlreadyDownload.append(title)
         return False
     
-def export_news_to_file():
-    global dailyNewsOutPath
-    currentDay = time.strftime('%Y-%m-%d',time.localtime())
-    dayFile = dailyNewsOutPath + "/" + "Bloomberg-News-" + currentDay
-    newsStr = "{}"
-    
-    if stockNews is not None:
-        newsStr = json.dumps(stockNews)
-    
-    with open(dayFile,"w") as ouput:
-        ouput.write(newsStr) 
+def export_news_to_simpledb():
+    global keyId
+    global secret
+    print "keyId: ",keyId
+    print "secret: ",secret
+    conn = boto.connect_sdb(keyId,secret)
+    conn.create_domain("bloomberg_news") # you can create repeatedly
+    domain = conn.get_domain("bloomberg_news")
+    for stock in stockNews:
+        for article in stockNews[stock]:
+            print article["embersId"],article
+            domain.put_attributes(article["embersId"], article)
+        
 
 def push_news_to_ZMQ():
     global port 
-    
     with queue.open(port, 'w', capture=True) as outq:
         for stock in stockNews:
             for article in stockNews[stock]:
-                outq.write(json.dumps(article, encoding='utf8'))  
+                outq.write(article)  
 
 def parse_args():
     ap = argparse.ArgumentParser("Scrape the content from Bloomberg News and push them to to ZMQ!")
-    ap.add_argument('-c','--conf',metavar="CONFIG",type=str,default='../Config/config.cfg',nargs='?',help='the config file path')
+    ap.add_argument('-c',dest="f_company_list",metavar="COMPANY_LIST",default="./companyList.json",type=str,nargs='?',help='the company list file')
+    ap.add_argument('-d',dest="f_downloaded",metavar="ALREADY DOWNLOADED NEWS",default="./BloombergNewsDownloaded.json", type=str,nargs='?',help="The already downloaded news")
+    ap.add_argument('-z',dest="port",metavar="ZMQ PORT",default="tcp://*:30115",type=str,nargs="?",help="The zmq port")
+    ap.add_argument('-k',dest="key_id",metavar="KeyId for AWS",type=str,help="The key id for aws")
+    ap.add_argument('-s',dest="secret",metavar="secret key for AWS",type=str,help="The secret key for aws")
     return ap.parse_args() 
-        
+
+def end():
+    global newsAlreadDownloadFilePath
+    global newsAlreadyDownload
+    newsAlreadyDownloadStr = json.dumps(newsAlreadyDownload)
+    with open(newsAlreadDownloadFilePath,"w") as output:
+        output.write(newsAlreadyDownloadStr)   
+             
 def main():
     # Initiate the global parameters
     initiate()
     
-    # Get the company List
-    get_all_companies()
-    
     # Get the news related to stock market
     get_stock_news()
     
-    # Export news collected to File
-    export_news_to_file()
+    # store the news to simpleDB
+    export_news_to_simpledb()
     
     # Push the news to ZMQ
     push_news_to_ZMQ()
@@ -215,3 +208,4 @@ if __name__ == "__main__":
     log.info("Start Time: %s",(datetime.strftime(datetime.now(),"%Y-%m-%d %H:%M:%S"),))
     main()
     log.info("End Time: %s",(datetime.strftime(datetime.now(),"%Y-%m-%d %H:%M:%S"),))
+    

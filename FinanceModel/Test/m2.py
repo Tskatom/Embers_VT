@@ -1,4 +1,5 @@
 import m1
+from DataPreprocess import import_historical_stock_v2
 
 def init():
     

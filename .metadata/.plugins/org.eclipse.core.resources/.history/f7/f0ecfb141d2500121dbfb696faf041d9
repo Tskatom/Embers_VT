@@ -1,0 +1,342 @@
+import argparse
+from datetime import datetime,timedelta,time
+from etool import queue,logs
+import json
+import math
+import operator
+import hashlib
+
+__processor__ = 'bayesian_model'
+log = logs.getLogger(__processor__)
+log.init()
+
+"""
+Applying bayesian model to predict the stock flucturation.
+Parameters for bayesian model:
+    ap.add_argument('-c',dest="model_cfg",metavar="MODEL CFG",default="./data/bayesian_model.cfg",type=str,nargs='?',help='the config file')
+    ap.add_argument('-tf',dest="trend_file",metavar="TREND RANGE FILE",default="./data/trendRange.json", type=str,nargs='?',help="The trend range file")
+    ap.add_argument('-z',dest="port",metavar="ZMQ PORT",default="tcp://*:30115",type=str,nargs="?",help="The zmq port")
+    ap.add_argument('-db',dest="db_file",metavar="Database",type=str,help='The sqlite database file')
+Data flow:
+    1> retrieve 3 past day's news from sqlite database table: t_daily_enrichednews
+    2> retrieve 3 past day's trend type from sqlite database table: t_enriched_bloomberg_prices
+    3> predict the stock trend type of the day to be predicted (This is surrogate data, which is sent to ZMQ and stored in sqlite table: t_surrogatedata)
+    4> according to the stock predicted trend type, check if it will cause a sigma event (If this is a warning, it will be sent to ZMQ and be stored in table: t_warningmessage )
+    
+"""
+CONFIG = {}
+VOCABULARY_FILE = ""
+PORT = ""
+
+def parse_args():
+    ap = argparse.ArgumentParser("Apply the bayesian model to predict stock warning")
+    ap.add_argument('-c',dest="model_cfg",metavar="MODEL CFG",default="./data/bayesian_model.cfg",type=str,nargs='?',help='the config file')
+    ap.add_argument('-v',dest="voca_file",metavar="Vocabulary File",default="./data/vocabulary.txt",type=str,nargs='?',help='the Vocabulary file')
+    ap.add_argument('-tf',dest="trend_file",metavar="TREND RANGE FILE",default="./data/trendRange.json", type=str,nargs='?',help="The trend range file")
+    ap.add_argument('-z',dest="port",metavar="ZMQ PORT",default="tcp://*:30115",type=str,nargs="?",help="The zmq port")
+    ap.add_argument('-db',dest="db_file",metavar="Database",type=str,help='The sqlite database file')
+    return ap.parse_args() 
+
+
+def check_if_tradingday(conn,predictiveDate,stockIndex):
+    "Check if the day weekend"
+    weekDay = datetime.strptime(predictiveDate,"%Y-%m-%d").weekday()
+    if weekDay == 5 or weekDay == 6:
+        log.info("%s For %s is Weekend, Just Skip!" %(predictiveDate,stockIndex))
+        return False
+    
+    "Check if the day is holiday"
+    cur = conn.cursor()
+    sql = "select count(*) from s_holiday a,s_stock_country b where a.country = b.country\
+    and b.stock_index=? and a.date = ?"
+    cur.execute(sql,(stockIndex,predictiveDate))
+    count = cur.fetchone()[0]
+    if count == 0:
+        return True
+    else:
+        log.info( "%s For %s is Holiday, Just Skip!" %(predictiveDate,stockIndex))
+        return False
+
+# calculate the stock index contribution for the coming day
+def compute_stock_index_probability(conn,predict_date, cluster_type , stock_index, duration=3 ):
+    try:
+        "Get the clusters List"
+        cluster_probability = CONFIG["clusterProbability"]
+        cluster_json = {}
+        cluster_contribution_json = {}
+        cluster_json = cluster_probability[stock_index]
+        "Get the contribution of each cluster"
+        cluster_contribution_json = CONFIG["clusterContribution"]
+        
+        #get the past n days trend type 
+        cluster_types_history = []
+        stock_derived = []
+        cur = conn.cursor()
+        table_name = "t_enriched_bloomberg_price"
+        sql = "select trend_type,embers_id from {} where post_date < '{}' and name = '{}' order by date desc limit {}".format(table_name,predict_date,stock_index,duration)
+        cur.execute(sql)
+        results = cur.fetchall()
+        for result in results:
+            cluster_types_history.append(result[0])
+            stock_derived.append(result[1])
+         
+        #computing probability   
+        stock_probability = 0
+        for key in cluster_contribution_json[stock_index].keys():
+            if key == str(cluster_type):
+                "Search from the Cluster contribution Matrix to get the contribution probability"
+                stock_probability = stock_probability + math.log( float( cluster_contribution_json[stock_index][key][int( cluster_types_history[0] ) - 1][2] ) ) + math.log( float( cluster_contribution_json[stock_index][key][int( cluster_types_history[1] ) - 1][1] ) ) + math.log( float( cluster_contribution_json[stock_index][key][int( cluster_types_history[2] ) - 1][0] ) ) + math.log( float( cluster_json[str( cluster_type )] ) )
+        
+        return stock_probability,stock_derived
+    except Exception as e:
+        log.info( "Error in computing stock index probability: %s" % e.args)
+
+# calculate the stock news contribution for the coming day
+def compute_stock_news_probability(conn,predict_date, cluster_type , stock_index,duraiton=3 ):
+    try:
+        term_contribution_json = CONFIG["termContribution"]
+        #get the past n day's news
+        "Get past 3 day's news before Predictive Day "
+        predict_date = datetime.strptime(predict_date, "%Y-%m-%d" )
+        start_day = ( predict_date - timedelta( days = 3 ) ).strftime( "%Y-%m-%d" )
+        end_day = ( predict_date - timedelta( days = 1 ) ).strftime( "%Y-%m-%d" )
+        table_name = "t_daily_enrichednews"
+        sqlquery = "select content,embers_id from {} where post_date>='{}' and post_date<='{}' and stock_index='{}'".format(table_name,start_day,end_day,stock_index)
+        cur = conn.cursor()
+        cur.execute(sqlquery)
+        results = cur.fetchall()
+        
+        "Initiate the words List"
+        wordLines = None
+        with open(VOCABULARY_FILE,"r") as f_read:
+            wordLines = f_read.readlines()
+        termList = {}
+        for line in wordLines:
+            line = line.replace("\n","").replace("\r","")
+            termList[line] = 0
+            
+        news_derived = []
+        "Merge all the term in each record"
+        for record in results:
+            jsonRecord = record[0]
+            news_derived.append(record[1])
+            for curWord in jsonRecord:
+                if curWord in termList:
+                    termList[curWord] = termList[curWord] + jsonRecord[curWord]
+        
+        term_probability = 0
+        if stock_index in term_contribution_json:
+            for term_cluster_type in term_contribution_json[stock_index].keys():
+                if term_cluster_type == str(cluster_type):    
+                    stermlist = term_contribution_json[stock_index][term_cluster_type]
+                    #print stermlist                            
+                    for word, count in termList.iteritems():                    
+                        if word in stermlist:                        
+                            #print word
+                            term_probability =  count * math.log( float( term_contribution_json[stock_index][term_cluster_type][word] ) )
+        
+        return term_probability,news_derived
+    except IOError:
+        log.info( "Can't open the file:stock_raw_data.json.")
+    except Exception as e:
+        log.info( "Error in computing stock news probability: %s" % e.message)    
+    return None
+
+def insert_surrogatedata(conn,surrogateData):
+    try:
+        cur = conn.cursor()
+        
+        "If the surrogate data is already in database, do not need to insert"
+        checkSql = "select count(*) from t_surrogatedata where embers_id = ?"
+        embersId = surrogateData["embersId"]
+        cur.execute(checkSql,(embersId,)) 
+        count = cur.fetchone()[0]
+        
+        if count == 0:
+            insertSql = "insert into t_surrogatedata (embers_id,derived_from,shift_date,shift_type,confidence,\
+            strength,location,date,model,value_spectrum,confidence_isprobability,population) values \
+            (?,?,?,?,?,?,?,?,?,?,?,?)"
+            
+            embersId = surrogateData["embersId"]
+            derivedFrom = json.dumps(surrogateData["derivedFrom"])
+            shiftDate = surrogateData["shiftDate"]
+            shiftType = surrogateData["shiftType"]
+            confidence = surrogateData["confidence"]
+            strength = surrogateData["strength"]
+            location = surrogateData["location"]
+            date = surrogateData["date"]
+            model = surrogateData["model"]
+            valueSpectrum = surrogateData["valueSpectrum"]
+            confidenceIsPrabability = surrogateData["confidenceIsProbability"]
+            population = surrogateData["population"]
+            
+            cur.execute(insertSql,(embersId,derivedFrom,shiftDate,shiftType,confidence,strength,location,date,model,valueSpectrum,confidenceIsPrabability,population))
+            conn.commit()
+    except Exception as e:
+        log.info( "Error: %s" %e.args[0])
+    finally:
+        pass
+                
+#predict the stock change type
+def enrich_single_stock( conn,predict_date , stock_index ):
+    try:
+        "Check if the predictive Day is trading day, if so continue, otherwise just return None"
+        if_trading_day = check_if_tradingday(predict_date,stock_index) 
+        if if_trading_day is False:
+            return None
+        
+        predictiveResults = {}
+        finalRatio = {}
+        clusterProbability = {}
+        predictiveProbability = 0
+        stockDerived = []
+        newsDerived = []
+        
+        "Iteratively compute the probabilty of each cluster for the stock "
+        cluster_pro_list = CONFIG["clusterProbability"][stock_index]
+        for cluster_type in cluster_pro_list:
+            "compute the contribution of 3 past day's trend "
+            stockIndexProbability,stockDerived = compute_stock_index_probability(conn,predict_date, cluster_type , stock_index )
+            "compute the contribution of 3 past day's news"
+            newsProbability,newsDerived = compute_stock_news_probability(conn,predict_date, cluster_type , stock_index )
+            "combine two contribution together"
+            predictiveProbability = math.exp( stockIndexProbability + newsProbability ) * float( 1e90 )
+            predictiveResults[cluster_type] = predictiveProbability
+        
+        sumProbability = sum( predictiveResults.itervalues() ) 
+        
+        "Get the maximum probability between the predictive values"
+        for item_key, item_value in predictiveResults.iteritems():
+            finalRatio[item_key] = item_value / sumProbability
+        sorted_ratio = sorted( finalRatio.iteritems(), key = operator.itemgetter( 1 ), reverse = True )
+        clusterProbability[stock_index] = {}
+        clusterProbability[stock_index][predict_date] = sorted_ratio[0]
+        
+        "Construct the Surrogate data"
+        surrogateData = {}
+        date = time.strftime('%Y-%m-%d',time.localtime(time.time()))
+        "Merge News Derived and Stock Derived"
+        derivedFrom = []
+        for item in stockDerived:
+            derivedFrom.append(item)
+        for item in newsDerived:
+            derivedFrom.append(item)
+        "construct surrogate data"    
+        model = 'Bayesian - Time serial Model'
+        location = CONFIG["location"][stock_index]
+        population = stock_index
+        confidence = sorted_ratio[0][1]
+        confidenceIsProbability = True
+        shiftType = "Trend"
+        valueSpectrum = "changePercent"
+        strength = sorted_ratio[0][0]
+        shiftDate = predict_date
+        
+        surrogateData["date"] = date
+        surrogateData["derivedFrom"] = derivedFrom
+        surrogateData["model"] = model
+        surrogateData["location"] = location
+        surrogateData["population"] = population
+        surrogateData["confidence"] = confidence
+        surrogateData["confidenceIsProbability"] = confidenceIsProbability
+        surrogateData["shiftType"] = shiftType
+        surrogateData["valueSpectrum"] = valueSpectrum
+        surrogateData["strength"] = strength
+        surrogateData["shiftDate"] = shiftDate
+        
+        "Generate Embers Id"
+        jsonStr = json.dumps(surrogateData)
+        embersId = hashlib.sha1(json.dumps(jsonStr)).hexdigest()
+        surrogateData["embersId"] = embersId
+        
+        "Insert the surrogatedata to sqlite DB"
+        insert_surrogatedata(conn, surrogateData)
+        
+        #push surrodate data into ZMQ
+        with queue.open(PORT, 'w', capture=True) as outq:
+            outq.write(surrogateData)
+        
+        return surrogateData
+    except Exception as e:
+        log.info( "Error: %s" % e.args)
+
+# Check if 
+def warning_Check(conn,surObj):
+#    surObj = {'embersId': 'f0c030a20e28a12134d9ad0e98fd0861fae7438b', 'confidence': 0.13429584033181682, 'strength': '4', 'derivedFrom': [u'5df18f77723885a12fa6943421c819c90c6a2a02', u'be031c4dcf3eb9bba2d86870683897dfc4ec4051', u'3c6571a4d89b17ed01f1345c80cf2802a8a02b7b'], 'shiftDate': '2011-08-08', 'shiftType': 'Trend', 'location': u'Colombia', 'date': '2012-10-03', 'model': 'Finance Stock Model', 'valueSpectrum': 'changePercent', 'confidenceIsProbability': True, 'population': 'COLCAP'}
+    stock_index = surObj["population"]
+    trend_type = surObj["strength"]
+    date = surObj["shiftDate"]
+    cur = conn.cursor()
+    
+    try:
+        pClusster = trend_type
+        table_name = "t_enriched_bloomberg_prices"  
+        
+        sql = "select lastPrice from {} where name='{}' and post_date < '{}' order by post_date desc limit 1".format(table_name,stock_index,date)
+        cur.execute(sql)
+        result = cur.fetchone()
+        current_val = float(result[0])
+        
+        querySql = "select one_day_change from {} where stock_index={} and post_date <'{}' order by post_date desc limit 30 ".format(table_name,stock_index,date)
+        cur.execute(querySql)
+        rows = cur.fetchall()
+        moving30 = []
+        for row in rows:
+            moving30.append(row[0])
+        
+        querySql = "select one_day_change from {} where stock_index={} and post_date <'{}' order by post_date desc limit 90 ".format(table_name,stock_index,date)
+        cur.execute(querySql,(stockIndex,subSequence-89,subSequence))
+        rows = cur.fetchall()
+        moving90 = []
+        for row in rows:
+            moving90.append(row[0])
+        
+        m30 = sum(moving30)/len(moving30)
+        m90 = sum(moving90)/len(moving90)
+        std30 = calculator.calSD(moving30)
+        std90 = calculator.calSD(moving90)
+        
+        eventType,cButtom,cUpper = dailySigmaTrends(stockIndex,str(pClusster),m30,m90,std30,std90,current_val)
+
+        dailyRecord = {}
+        dailyRecord["date"] = date
+        dailyRecord["cBottom"] = cButtom
+        dailyRecord["cUpper"] = cUpper
+        dailyRecord["currentValue"] = current_val
+        
+        "Construct the warning message"
+        warningMessage ={}
+        date = surObj["date"]
+        derivedFrom = surObj["embersId"]
+        model = surObj["model"]
+        event = eventType
+        confidence = surObj["confidence"]
+        confidenceIsProbability = surObj["confidenceIsProbability"]
+        eventDate= surObj["shiftDate"]
+        population = surObj["population"]
+        location = surObj["location"]
+        
+        warningMessage["date"] = date
+        warningMessage["derivedFrom"] = derivedFrom
+        warningMessage["model"] = model
+        warningMessage["eventType"] = event
+        warningMessage["confidence"] = confidence
+        warningMessage["confidenceIsProbability"] = confidenceIsProbability
+        warningMessage["eventDate"] = eventDate
+        warningMessage["population"] = population
+        warningMessage["location"] = location
+        
+        embersId = hashlib.sha1(json.dumps(warningMessage)).hexdigest()
+        warningMessage["embersId"] = embersId
+        
+        if eventType != "0000":
+            insert_warningmessage(warningMessage)
+            return warningMessage
+        else:
+            return None
+        
+    except lite.Error, e:
+        log.exception( "Error: %s" % e.args[0])
+    finally:
+        if con:
+            con.close()       

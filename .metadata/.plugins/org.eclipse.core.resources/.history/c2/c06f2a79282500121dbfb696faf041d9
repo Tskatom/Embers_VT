@@ -1,0 +1,20 @@
+import sqlite3 as lite
+
+conn = lite.connect('../bayesian_model/data/embers.db')
+cur = conn.cursor()
+sql = "select embers_id,stock_index,date,last_price,one_day_change from t_daily_stockindex order by date asc"
+{"previousCloseValue":"21736.07","updateTime":"09/28/2012 16:10:05","name":"IGBVL","feed":"Bloomberg - Stock Index","date":"2012-10-01T03:00:03","queryTime":"10/01/2012 03:00:03","currentValue":"21674.79","type":"stock","embersId":"adc866f44487f212d44ee27af63936c523ef737c"}
+cur.execute(sql)
+results = cur.fetchall()
+for result in results:
+    
+    embersId = result[0]
+    stockIndex = result[1]
+    date = result[2]
+    lastPrice = result[3]
+    oneDayChange = result[4]
+    print date
+    dayValue = {}
+    dayValue["previousCloseValue"] = round(lastPrice-oneDayChange,4)
+    
+#    dayValue["updateTime"] = updateTime

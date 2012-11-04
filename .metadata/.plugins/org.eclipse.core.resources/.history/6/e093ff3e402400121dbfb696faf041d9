@@ -1,0 +1,82 @@
+import argparse
+import boto
+from datetime import datetime
+from etool import queue,logs
+import json
+import math
+
+__processor__ = 'bayesian_model'
+log = logs.getLogger(__processor__)
+log.init()
+
+"""
+Applying bayesian model to predict the stock flucturation
+"""
+KEYID = ""
+SECRETKEY = ""
+CONFIG = {}
+
+def parse_args():
+    ap = argparse.ArgumentParser("Apply the bayesian model to predict stock warning")
+    ap.add_argument('-c',dest="model_cfg",metavar="MODEL CFG",default="./bayesian_model.cfg",type=str,nargs='?',help='the config file')
+    ap.add_argument('-tf',dest="trend_file",metavar="TREND RANGE FILE",default="./trendRange.json", type=str,nargs='?',help="The trend range file")
+    ap.add_argument('-z',dest="port",metavar="ZMQ PORT",default="tcp://*:30115",type=str,nargs="?",help="The zmq port")
+    ap.add_argument('-k',dest="key_id",metavar="KeyId for AWS",type=str,nargs="+",help="The key id for aws")
+    ap.add_argument('-s',dest="secret",metavar="secret key for AWS",type=str,nargs="+",help="The secret key for aws")
+    return ap.parse_args() 
+
+def get_domain(domain_name):
+    conn = boto.connect_sdb(KEYID,SECRETKEY)
+    conn.create_domain(domain_name)
+    return conn.get_domain(domain_name)
+
+def check_if_tradingday(self,predict_date,stock_index):
+        "Check if the day weekend"
+        week_day = datetime.strptime(predict_date,"%Y-%m-%d").weekday()
+        if week_day == 5 or week_day == 6:
+            log.info("%s For %s is Weekend, Just Skip!" %(predict_date,stock_index))
+            return False
+        
+        "Check if the day is holiday"
+        domain = get_domain("s_holiday")
+        sql = "select count(*) from s_holiday where stock_index='{}' and date = {}".format(stock_index,predict_date)
+        result = domain.select(sql)
+        count = result["Count"]
+        if count == 0:
+            return True
+        else:
+            log.info( "%s For %s is Holiday, Just Skip!" %(stock_index,stock_index))
+            return False
+
+# calculate the stock index contribution for the coming day
+def compute_stock_index_probability( self, predict_date, cluster_type , stock_index, duration=3 ):
+    try:
+        "Get the clusters List"
+        cluster_probability = CONFIG["cluster_probability"]
+        clusterJson = {}
+        clusterContributionJson = {}
+        clusterJson = cluster_probability[stock_index]
+        "Get the contribution of each cluster"
+        clusterContributionJson = CONFIG["clusterContribution"]
+        clusterTypesHistory = []
+        stockDerived = []
+        domain_name = "bloomberg_enrichedindex"
+        domain = get_domain(domain_name)
+        sql = "select trendType,embersId from {} where date < '{}' and stock_index = '{}' order by date desc limit {}".format(domain_name,predict_date,stock_index,duration)
+        results = domain.select(sql)
+        for result in results:
+            clusterTypesHistory.append(result["trendType"])
+            stockDerived.append(result["embersId"])
+            
+        stockIndexProbability = 0
+        for key in clusterContributionJson[stock_index].keys():
+            if key == str(cluster_type):
+                "Search from the Cluster contribution Matrix to get the contribution probability"
+                stockIndexProbability = stockIndexProbability + math.log( float( clusterContributionJson[stockIndex][key][int( clusterTypesHistory[0] ) - 1][2] ) ) + math.log( float( clusterContributionJson[stockIndex][key][int( clusterTypesHistory[1] ) - 1][1] ) ) + math.log( float( clusterContributionJson[stockIndex][key][int( clusterTypesHistory[2] ) - 1][0] ) ) + math.log( float( clusterJson[str( clusterType )] ) )
+        
+        return stockIndexProbability,stockDerived
+    except Exception as e:
+        log.info( traceback.format_exc())
+        log.info( "Error in computing stock index probability: %s" % e.args)
+
+    

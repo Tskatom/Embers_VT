@@ -1,20 +1,10 @@
-import json
-import numpy
-import nltk
-import sys
-from Util import calculator
-import sqlite3 as lite
-
-
-
-str = "I'm good"
-
-def hh():
-    global str
-    str = "Hello"
-
-def gg():
-    print str
-
-hh()
-gg() 
+wordLines = None
+with open("../bayesian_model/data/vocabulary.txt","r") as f_read:
+    wordLines = f_read.readlines()
+termList = {}
+wordList = []
+for line in wordLines:
+    line = line.replace("\n","").replace("\r","")
+    wordList.append(line)
+    termList[line] = 0
+print wordList    

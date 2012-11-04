@@ -1,0 +1,27 @@
+2012-11-02 17:53:02,282 - bayesian_model - INFO - 5764 - check_if_tradingday - 2012-11-02 For IBOV is Holiday, Just Skip!
+2012-11-02 17:53:02,282 - bayesian_model - INFO - 5764 - check_if_tradingday - 2012-11-02 For CHILE65 is Holiday, Just Skip!
+2012-11-02 17:53:04,543 - bayesian_model - INFO - 5764 - check_if_tradingday - 2012-11-02 For CRSMBCT is Holiday, Just Skip!
+2012-11-02 17:53:04,545 - bayesian_model - INFO - 5764 - check_if_tradingday - 2012-11-02 For MEXBOL is Holiday, Just Skip!
+2012-11-02 17:53:09,065 - bayesian_model - INFO - 5764 - check_if_tradingday - 2012-11-02 For IBVC is Holiday, Just Skip!
+2012-11-03 00:32:36,602 - bayesian_model - INFO - 7732 - check_if_tradingday - 2012-11-04 For MERVAL is Weekend, Just Skip!
+2012-11-03 00:32:36,602 - bayesian_model - INFO - 7732 - check_if_tradingday - 2012-11-04 For IBOV is Weekend, Just Skip!
+2012-11-03 00:32:36,602 - bayesian_model - INFO - 7732 - check_if_tradingday - 2012-11-04 For CHILE65 is Weekend, Just Skip!
+2012-11-03 00:32:36,602 - bayesian_model - INFO - 7732 - check_if_tradingday - 2012-11-04 For COLCAP is Weekend, Just Skip!
+2012-11-03 00:32:36,602 - bayesian_model - INFO - 7732 - check_if_tradingday - 2012-11-04 For CRSMBCT is Weekend, Just Skip!
+2012-11-03 00:32:36,602 - bayesian_model - INFO - 7732 - check_if_tradingday - 2012-11-04 For MEXBOL is Weekend, Just Skip!
+2012-11-03 00:32:36,604 - bayesian_model - INFO - 7732 - check_if_tradingday - 2012-11-04 For BVPSBVPS is Weekend, Just Skip!
+2012-11-03 00:32:36,604 - bayesian_model - INFO - 7732 - check_if_tradingday - 2012-11-04 For IGBVL is Weekend, Just Skip!
+2012-11-03 00:32:36,604 - bayesian_model - INFO - 7732 - check_if_tradingday - 2012-11-04 For IBVC is Weekend, Just Skip!
+2012-11-03 00:33:43,658 - bayesian_model - INFO - 3844 - insert_surrogatedata - Error: comments
+2012-11-03 00:34:01,608 - bayesian_model - INFO - 9264 - insert_surrogatedata - Error: comments
+2012-11-03 00:34:44,203 - bayesian_model - INFO - 2332 - insert_surrogatedata - Error: comments
+2012-11-03 00:36:50,700 - bayesian_model - INFO - 6156 - insert_surrogatedata - Error: table t_surrogatedata has no column named operation_time
+2012-11-03 00:38:41,660 - bayesian_model - INFO - 9108 - insert_surrogatedata - Error: table t_surrogatedata has no column named operation_time
+2012-11-03 00:38:44,082 - bayesian_model - INFO - 9108 - insert_surrogatedata - Error: table t_surrogatedata has no column named operation_time
+2012-11-03 00:38:46,539 - bayesian_model - INFO - 9108 - insert_surrogatedata - Error: table t_surrogatedata has no column named operation_time
+2012-11-03 00:38:48,911 - bayesian_model - INFO - 9108 - insert_surrogatedata - Error: table t_surrogatedata has no column named operation_time
+2012-11-03 00:38:51,477 - bayesian_model - INFO - 9108 - insert_surrogatedata - Error: table t_surrogatedata has no column named operation_time
+2012-11-03 00:38:53,766 - bayesian_model - INFO - 9108 - insert_surrogatedata - Error: table t_surrogatedata has no column named operation_time
+2012-11-03 00:38:56,128 - bayesian_model - INFO - 9108 - insert_surrogatedata - Error: table t_surrogatedata has no column named operation_time
+2012-11-03 00:38:58,489 - bayesian_model - INFO - 9108 - insert_surrogatedata - Error: table t_surrogatedata has no column named operation_time
+2012-11-03 00:39:00,823 - bayesian_model - INFO - 9108 - insert_surrogatedata - Error: table t_surrogatedata has no column named operation_time

@@ -1,0 +1,41 @@
+import matplotlib.pyplot as plt
+import numpy as np
+from Util import common
+import os
+
+
+def main():
+    #get stock index values
+    cfgPath = "../Config/config.cfg"
+    common.init(cfgPath)
+    
+    con = common.getDBConnection()
+    cur = con.cursor()
+    sql = "select stock_index,date,zscore30,zscore90 from t_daily_stockindex order by date asc"
+    cur.execute(sql)
+    rows = cur.fetchall()
+    stockBasket = {}
+    for row in rows:
+        stockIndex = row[0]
+        date = row[1]
+        zscore30 = row[2]
+        zscore90 = row[3]
+        if stockIndex not in stockBasket:
+            stockBasket[stockIndex] = []
+        dayValue = {}
+        dayValue["date"] = date
+        dayValue["zscore30"] = zscore30
+        dayValue["zscore90"] = zscore90
+        stockBasket[stockIndex].append(dayValue)
+        stockBasket[stockIndex][date] = [zscore30,zscore90]
+    
+    con.close()
+    
+    print stockBasket 
+    for stockIndex in stockBasket:
+        for tradingDate in stockBasket[stockIndex]:
+            print tradingDate
+              
+        
+if __name__ == "__main__":
+    main()            

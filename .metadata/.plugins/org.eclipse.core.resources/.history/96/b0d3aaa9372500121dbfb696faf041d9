@@ -1,0 +1,25 @@
+2012-11-02 17:52:23,502 - bayesian_model - ERROR - 9552 - warning_Check - Error: no such column: MERVAL
+Traceback (most recent call last):
+  File "C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\bayesian_model\bayesian_model.py", line 344, in warning_Check
+    cur.execute(querySql)
+OperationalError: no such column: MERVAL
+2012-11-02 17:52:23,503 - bayesian_model - INFO - 9552 - check_if_tradingday - 2012-11-02 For IBOV is Holiday, Just Skip!
+2012-11-02 17:52:23,503 - bayesian_model - INFO - 9552 - check_if_tradingday - 2012-11-02 For CHILE65 is Holiday, Just Skip!
+2012-11-02 17:52:25,671 - bayesian_model - ERROR - 9552 - warning_Check - Error: no such column: COLCAP
+Traceback (most recent call last):
+  File "C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\bayesian_model\bayesian_model.py", line 344, in warning_Check
+    cur.execute(querySql)
+OperationalError: no such column: COLCAP
+2012-11-02 17:52:25,671 - bayesian_model - INFO - 9552 - check_if_tradingday - 2012-11-02 For CRSMBCT is Holiday, Just Skip!
+2012-11-02 17:52:25,671 - bayesian_model - INFO - 9552 - check_if_tradingday - 2012-11-02 For MEXBOL is Holiday, Just Skip!
+2012-11-02 17:52:27,828 - bayesian_model - ERROR - 9552 - warning_Check - Error: no such column: BVPSBVPS
+Traceback (most recent call last):
+  File "C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\bayesian_model\bayesian_model.py", line 344, in warning_Check
+    cur.execute(querySql)
+OperationalError: no such column: BVPSBVPS
+2012-11-02 17:52:29,999 - bayesian_model - ERROR - 9552 - warning_Check - Error: no such column: IGBVL
+Traceback (most recent call last):
+  File "C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\bayesian_model\bayesian_model.py", line 344, in warning_Check
+    cur.execute(querySql)
+OperationalError: no such column: IGBVL
+2012-11-02 17:52:29,999 - bayesian_model - INFO - 9552 - check_if_tradingday - 2012-11-02 For IBVC is Holiday, Just Skip!

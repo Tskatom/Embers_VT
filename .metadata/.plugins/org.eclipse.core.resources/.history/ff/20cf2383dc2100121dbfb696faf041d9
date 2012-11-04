@@ -1,0 +1,23 @@
+import matplotlib.pyplot as plt
+import numpy as np
+from Util import common
+import os
+
+
+def main():
+    #get stock index values
+    cfgPath = "../Config/config.cfg"
+    common.init(cfgPath)
+    
+    stockFileDir = common.get_configuration("training", "HISTORICAL_STOCK")
+    fileNames = os.listdir(stockFileDir)
+    for name in fileNames:
+        fName = stockFileDir + "/" + name
+        with open(fName,"r") as stockFile:
+            lines = stockFile.readlines()
+            for line in lines[2:]:
+                line = line.replace("\r","").replace("\n","")
+                print line
+
+if __name__ == "main":
+    main()            

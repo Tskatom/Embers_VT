@@ -1,0 +1,44 @@
+import argparse
+import boto
+
+"""
+Applying bayesian model to predict the stock flucturation
+"""
+KEYID = ""
+SECRETKEY = ""
+
+def parse_args():
+    ap = argparse.ArgumentParser("Apply the bayesian model to predict stock warning")
+    ap.add_argument('-c',dest="model_cfg",metavar="MODEL CFG",default="./bayesian_model.cfg",type=str,nargs='?',help='the config file')
+    ap.add_argument('-tf',dest="trend_file",metavar="TREND RANGE FILE",default="./trendRange.json", type=str,nargs='?',help="The trend range file")
+    ap.add_argument('-z',dest="port",metavar="ZMQ PORT",default="tcp://*:30115",type=str,nargs="?",help="The zmq port")
+    ap.add_argument('-k',dest="key_id",metavar="KeyId for AWS",type=str,nargs="+",help="The key id for aws")
+    ap.add_argument('-s',dest="secret",metavar="secret key for AWS",type=str,nargs="+",help="The secret key for aws")
+    return ap.parse_args() 
+
+def get_domain(domain_name):
+    conn = boto.connect_sdb(KEYID,SECRETKEY)
+    conn.create_domain(domain_name)
+    return conn.get_domain(domain_name)
+
+def check_if_tradingday(self,predictiveDate,stockIndex):
+        "Check if the day weekend"
+        weekDay = datetime.strptime(predictiveDate,"%Y-%m-%d").weekday()
+        if weekDay == 5 or weekDay == 6:
+            log.info("%s For %s is Weekend, Just Skip!" %(predictiveDate,stockIndex))
+            return False
+        
+        "Check if the day is holiday"
+        con = common.getDBConnection()
+        cur = con.cursor()
+        sql = "select count(*) from s_holiday a,s_stock_country b where a.country = b.country\
+        and b.stock_index=? and a.date = ?"
+        cur.execute(sql,(stockIndex,predictiveDate))
+        count = cur.fetchone()[0]
+        if count == 0:
+            return True
+        else:
+            log.info( "%s For %s is Holiday, Just Skip!" %(predictiveDate,stockIndex))
+            return False
+
+    

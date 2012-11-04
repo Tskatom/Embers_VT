@@ -1,0 +1,12 @@
+2012-11-01 16:47:56,651 - boto - ERROR - 5088 - get_status - 400 Bad Request
+2012-11-01 16:47:56,651 - boto - ERROR - 5088 - get_status - <?xml version="1.0"?>
+<Response><Errors><Error><Code>InvalidParameterValue</Code><Message>Value (Deutsche Bank, JPMorgan May Face Top G-20 Capital Charges
+By Jim Brunsden - 2012-11-01T20:19:38Z
+Citigroup Inc. (C) , Deutsche Bank AG (DBK) , HSBC Plc and JPMorgan Chase &amp; Co. may be targeted by the Group of 20 nations for top capital surcharges of 2.5 percentage points, according to an updated list published by global regulators. The German lender was moved up from a lower tier by the Financial Stability Board.
+The list was drawn up as part of plans by the G-20 to force banks that could damage the global economy if they fail to boost their core reserves by 1 to 2.5 percentage points above minimum international levels. Barclays Plc (BARC) and BNP Paribas SA (BNP) may face surcharges of 2 percentage points, according to the list released today by the agency.
+The surcharges are scheduled to be phased in beginning Jan. 1, 2016, the group has said. Bank of America Corp. (BAC) was moved from the tier requiring a 2 percent surcharge to 1.5 percent surcharge.
+The capital surcharges for systemic banks come on top of agreements by the Basel Committee on Banking Supervision to more than triple the core reserves they must hold against possible losses. Banks including HSBC Holdings Plc (HSBA) and BNP Paribas SA have warned regulators the extra capital requirements may force them to cut lending and support for international trade.
+Global regulators in the FSB have insisted that the measures are needed to reduce the risk taxpayers would have to step in and save a failing bank. The extra requirements are calculated against banks’ interconnectedness, size, complexity, global reach, and the ability of other firms to take over their functions if they fail.
+To contact the reporter on this story: Jim Brunsden in Brussels at jbrunsden@bloomberg.net
+To contact the editor responsible for this story: Anthony Aarons at aaarons@bloomberg.net
+) for parameter Value is invalid. Value exceeds maximum length of 1024</Message><BoxUsage>0.0000219907</BoxUsage></Error></Errors><RequestID>ba8a34d2-2bcf-bb93-3bcb-00cc5c04ed1c</RequestID></Response>

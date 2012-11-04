@@ -1,0 +1,16 @@
+import argparse
+
+"""
+Applying bayesian model to predict the stock flucturation
+"""
+def parse_args():
+    ap = argparse.ArgumentParser("Apply the bayesian model to predict stock warning")
+    ap.add_argument('-c',dest="model_cfg",metavar="MODEL CFG",default="./bayesian_model.cfg",type=str,nargs='?',help='the config file')
+    ap.add_argument('-tf',dest="trend_file",metavar="TREND RANGE FILE",default="./trendRange.json", type=str,nargs='?',help="The trend range file")
+    ap.add_argument('-z',dest="port",metavar="ZMQ PORT",default="tcp://*:30115",type=str,nargs="?",help="The zmq port")
+    ap.add_argument('-k',dest="key_id",metavar="KeyId for AWS",type=str,nargs="+",help="The key id for aws")
+    ap.add_argument('-s',dest="secret",metavar="secret key for AWS",type=str,nargs="+",help="The secret key for aws")
+    return ap.parse_args() 
+
+def get_domain(domainName):
+    

@@ -5,14 +5,15 @@ import json
 from datetime import datetime
 import boto
 
+#DOMAIN = 'bloomberg_prices'
 DOMAIN = 'bloomberg_prices'
 
 def get_domain():
     """Get the storage domain (table) for the Bloomberg data."""
     keyId = "AKIAJZ2N4UOI4TP4YBRQ"
-    secretkey = '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'
+    secretkey = "XPMCqMRneS1XIxfvYiHAQI+uzoJCFsK5tcYLuo80"
     conn = boto.connect_sdb(keyId,secretkey)
-#    conn.create_domain(DOMAIN) # you can create repeatedly
+    conn.create_domain(DOMAIN) # you can create repeatedly
     return conn.get_domain(DOMAIN)
 
 def store(message, domain=None):
@@ -84,8 +85,9 @@ def main():
     """Push the messages to simple db"""
  
     d = get_domain()
-    results = query()
-    print type(results)
+    print "hi"
+    results = d.select("select * from bloomberg_prices where name='USDARS' and date < '2012-10-02T03:00:21' order by date desc",max_items=2)
+#    results = d.select("select * from bloomberg_prices limit 2")
     for result in results:
         print result 
 #    for l in sys.stdin:

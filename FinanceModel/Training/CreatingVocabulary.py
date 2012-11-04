@@ -77,7 +77,7 @@ def create_vocabulary():
     output = open(vocabularyFile,"w")
     i = 1
     for word in sorted_obj2:
-        if i > 200:
+        if i > 150:
             break
         else:
             output.write(word[0])

@@ -34,7 +34,7 @@ def group_news_by_cluster():
         for trend in trendJson:
             if index == trend[6]:
                 cluster = trend[7]
-                structDate = time.strptime(trend[2],"%Y-%m-%d")
+                structDate = time.strptime(trend[1],"%Y-%m-%d")
                 dtDay = datetime(structDate[0],structDate[1],structDate[2])
                 for i in range(1,4):
                     day = dtDay - timedelta(days=i)

@@ -1,5 +1,5 @@
 globalVal = "hello"
-
+print __name__,"in M1"
 class cm:
     
     p1 = ""

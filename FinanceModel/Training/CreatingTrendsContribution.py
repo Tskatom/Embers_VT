@@ -37,9 +37,9 @@ def compute_trend_contribution():
         
         #Define the ultimated json object
         clusterMatrix = {}
-        for cluster in range(1,21):
+        for cluster in range(1,13):
             #create matrix for each cluster
-            matrix = [[0 for col in range(3)] for row in range(20)]
+            matrix = [[0 for col in range(3)] for row in range(12)]
             for i in range(0,len(trendsSerial)):
                 if cluster == trendsSerial[i]:
                     t1 = 0
@@ -56,15 +56,15 @@ def compute_trend_contribution():
                         matrix[t3-1][2] = matrix[t3-1][2] + 1
             
             #calculating the contribution matrix
-            contributionMatrix = [[0 for col in range(3)] for row in range(20)]
+            contributionMatrix = [[0 for col in range(3)] for row in range(12)]
             sumCol = [0,0,0]
             for col in range(3):
-                for row in range(20):
+                for row in range(12):
                     sumCol[col] = sumCol[col] + matrix[row][col]
             
             for col in range(3):
-                for row in range(20):
-                    contributionMatrix[row][col] = "%0.4f" %((matrix[row][col] + 1)/(sumCol[col]+20))
+                for row in range(12):
+                    contributionMatrix[row][col] = "%0.4f" %((matrix[row][col] + 1)/(sumCol[col]+12))
             clusterMatrix[cluster] = contributionMatrix
             finalClusterMatrix[item] = clusterMatrix
     
