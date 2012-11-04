@@ -14536,3 +14536,16 @@ org.eclipse.core.runtime.CoreException: Variable references non-existent resourc
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1410)
 !SUBENTRY 1 org.eclipse.core.resources 4 368 2012-11-04 00:17:22.629
 !MESSAGE Variable references non-existent resource : ${workspace_loc:FinanceModel/bayesian_model/sql_bloomberg_news_process.py}
+
+!ENTRY org.eclipse.core.jobs 4 2 2012-11-04 14:48:20.870
+!MESSAGE An internal error occurred during: "Firing pull and push event".
+!STACK 0
+java.lang.IllegalStateException
+	at org.eclipse.core.internal.jobs.InternalJob.setSystem(InternalJob.java:562)
+	at org.eclipse.core.runtime.jobs.Job.setSystem(Job.java:559)
+	at com.aptana.explorer.internal.ui.GitProjectView.refreshUI(GitProjectView.java:577)
+	at com.aptana.explorer.internal.ui.GitProjectView.handleBranchEvent(GitProjectView.java:610)
+	at com.aptana.explorer.internal.ui.GitProjectView.pushed(GitProjectView.java:523)
+	at com.aptana.git.core.model.GitRepository.firePushEvent(GitRepository.java:1700)
+	at com.aptana.git.core.model.GitRepository$4$2.run(GitRepository.java:537)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
