@@ -473,7 +473,6 @@ def main():
         
         if not stock_list:
             stock_list = CONFIG["stocks"]
-            print stock_list
         
         "Process stock each by each"
         for stock in stock_list:
@@ -509,7 +508,6 @@ def main():
         
         if not stock_list:
             stock_list = CONFIG["stocks"]
-            print stock_list
         
         "Process stock each by each"
         for stock in stock_list:

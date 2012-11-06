@@ -10,7 +10,6 @@ import hashlib
 import json
 import argparse
 from etool import queue,logs
-import boto
 
 """
     The Steps for scraping news from Bloomberg
@@ -26,20 +25,16 @@ newsAlreadDownloadFilePath = ""
 companyListDir = ""
 dailyNewsOutPath = ""
 port = ""
-keyId = ""
-secret = ""
 __processor__ = 'bloomberg_news_ingest'
 log = logs.getLogger(__processor__)
 
 def initiate():
     global newsAlreadyDownload
     global companyListDir
-    global dailyNewsOutPath
     global port
     global newsAlreadDownloadFilePath
     global companyList
-    global keyId
-    global secret
+    global dailyNewsOutPath
     
     args = parse_args()
     logs.init()
@@ -47,8 +42,7 @@ def initiate():
     newsAlreadDownloadFilePath = args.f_downloaded 
     companyListDir = args.f_company_list
     port = args.port
-    keyId = args.key_id
-    secret = args.secret
+    dailyNewsOutPath = args.f_out
     
     newsAlreadyDownload = json.load(open(newsAlreadDownloadFilePath))
     companyList = json.load(open(companyListDir))
@@ -149,20 +143,6 @@ def check_article_already_downloaded(title):
         newsAlreadyDownload.append(title)
         return False
     
-def export_news_to_simpledb():
-    global keyId
-    global secret
-    print "keyId: ",keyId
-    print "secret: ",secret
-    conn = boto.connect_sdb(keyId,secret)
-    conn.create_domain("bloomberg_news") # you can create repeatedly
-    domain = conn.get_domain("bloomberg_news")
-    for stock in stockNews:
-        for article in stockNews[stock]:
-            print article["embersId"],article
-            domain.put_attributes(article["embersId"], article)
-        
-
 def push_news_to_ZMQ():
     global port 
     with queue.open(port, 'w', capture=True) as outq:
@@ -170,10 +150,21 @@ def push_news_to_ZMQ():
             for article in stockNews[stock]:
                 outq.write(article)  
 
+def output_to_file():
+    global stockNews,dailyNewsOutPath
+    with open(dailyNewsOutPath,'w') as f_out:
+        for stock in stockNews:
+            for article in stockNews[stock]:
+                f_out.write(json.dumps(article,encoding="utf-8"))
+                f_out.write("\n") 
+        
+    
+
 def parse_args():
     ap = argparse.ArgumentParser("Scrape the content from Bloomberg News and push them to to ZMQ!")
     ap.add_argument('-c',dest="f_company_list",metavar="COMPANY_LIST",default="./data/companyList.json",type=str,nargs='?',help='the company list file')
     ap.add_argument('-d',dest="f_downloaded",metavar="ALREADY DOWNLOADED NEWS",default="./data/BloombergNewsDownloaded.json", type=str,nargs='?',help="The already downloaded news")
+    ap.add_argument('-o',dest="f_out",metavar="OUTPUT", type=str,help="The output file of the news")
     ap.add_argument('-z',dest="port",metavar="ZMQ PORT",default="tcp://*:30115",type=str,nargs="?",help="The zmq port")
     return ap.parse_args() 
 
@@ -191,8 +182,8 @@ def main():
     "Get the news related to stock market"
     get_stock_news()
     
-    "store the news to simpleDB"
-#    export_news_to_simpledb()
+    "store the news to File"
+    output_to_file()
     
     "Push the news to ZMQ"
     push_news_to_ZMQ()
@@ -204,4 +195,5 @@ if __name__ == "__main__":
     log.info("Start Time: %s",(datetime.strftime(datetime.now(),"%Y-%m-%d %H:%M:%S"),))
     main()
     log.info("End Time: %s",(datetime.strftime(datetime.now(),"%Y-%m-%d %H:%M:%S"),))
+
     

@@ -1,5 +1,4 @@
 eclipse.preferences.version=1
-encoding//DataCollecting/bloomberg_news_ingest.py=utf-8
 encoding//DataPreprocess/import_historical_stock_v2.py=utf8
 encoding//Model/WarningCreate.py=utf8
 encoding//Model/bloomberg_news_process.py=utf8

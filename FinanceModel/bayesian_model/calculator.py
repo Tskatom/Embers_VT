@@ -27,4 +27,5 @@ def calSD(scores):
 
 if __name__ == "__main__":
     print calZscore([1,1,1,1,2],0.5)
+
     

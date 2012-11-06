@@ -35,10 +35,9 @@ def insert_news(conn,article):
         url = article["url"]
         cur.execute(sql,(embersId,title,author,postTime,postDate,content,stockIndex,source,updateTime,url))
         conn.commit()
-        print "sucess: ",embersId
         return True
-    except lite.Error, e:
-        log.info( "Error insert_news: %s" % e.args[0])
+    except:
+        log.info("Error: %s",(sys.exc_info()[0],))
         return False
 
 def insert_enriched_news(conn,enriched_news):
@@ -55,12 +54,10 @@ def insert_enriched_news(conn,enriched_news):
         source = enriched_news["source"]
         updateTime = enriched_news["updateTime"]
         embersId = enriched_news["embersId"]
-        print embersId,derivedFrom,title,author,postTime,postDate,content,stockIndex,source,updateTime
         cur.execute(insertSql,(embersId,derivedFrom,title,author,postTime,postDate,content,stockIndex,source,updateTime,))
         conn.commit()
-        print "Enriched sucess: ",embersId
     except lite.Error, e:
-        log.info( "Error insert_news: %s" % e.args[0])
+        log.info("Error: %s",(e.args[0],))
         pass
 
 def process(port,conn,blg_news_file):
@@ -114,7 +111,7 @@ def process_news(news):
         embersId = hashlib.sha1(json.dumps(enrichedData)).hexdigest()
         enrichedData["embersId"] = embersId
     except :
-        log.info( "Error****: ", sys.exc_info()[0])
+        log.info("Error: %s",(sys.exc_info()[0],))
         enrichedData = {}
     finally:
         return enrichedData
@@ -133,7 +130,7 @@ def main():
     bloomberg_news_file = args.bloomberg_news_file
     process(port,conn,bloomberg_news_file)
     conn.close()
-    print "here"
 if __name__ == "__main__":
     main()
+
     
