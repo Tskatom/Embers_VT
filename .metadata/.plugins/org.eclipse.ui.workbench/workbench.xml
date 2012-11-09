@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <workbench progressCount="42" version="2.0">
 <workbenchAdvisor/>
-<window height="940" width="1583" x="163" y="113">
+<window height="964" width="1201" x="66" y="399">
 <fastViewData fastViewLocation="1024"/>
 <perspectiveBar>
 <itemSize x="160"/>
@@ -17,6 +17,9 @@
 <coolItem id="group.nav" itemType="typeGroupMarker"/>
 <coolItem id="org.eclipse.ui.workbench.navigate" itemType="typeToolBarContribution" x="91" y="22"/>
 <coolItem id="group.editor" itemType="typeGroupMarker"/>
+<coolItem id="com.aptana.editor.markdown" itemType="typePlaceholder" x="-1" y="-1"/>
+<coolItem id="com.aptana.editor.json" itemType="typePlaceholder" x="-1" y="-1"/>
+<coolItem id="com.aptana.editor.text" itemType="typePlaceholder" x="-1" y="-1"/>
 <coolItem id="org.eclipse.ui.DefaultTextEditor" itemType="typeToolBarContribution" x="-1" y="-1"/>
 <coolItem id="org.python.pydev.editor.PythonEditor" itemType="typeToolBarContribution" x="-1" y="-1"/>
 <coolItem id="group.help" itemType="typeGroupMarker"/>
@@ -34,155 +37,53 @@
 <part id="3"/>
 <part id="4"/>
 <part id="5"/>
-<part id="6"/>
-<part id="7"/>
-<part id="8"/>
-<part id="9"/>
-<part id="10"/>
-<part id="11"/>
-<part id="12"/>
-<part id="13"/>
-<part id="14"/>
-<part id="15"/>
-<part id="16"/>
-<part id="17"/>
-<part id="18"/>
-<part id="19"/>
-<part id="20"/>
-<part id="21"/>
-<part id="22"/>
-<part id="23"/>
-<part id="24"/>
-<part id="25"/>
 </presentation>
 </folder>
 </info>
 </editorArea>
-<editor id="org.python.pydev.editor.PythonEditor" name="change.py" partName="change" path="C:/Users/wei/Documents/GitHub/Embers_VT/FinanceModel/Test/change.py" title="change" tooltip="FinanceModel/Test/change.py" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/FinanceModel/Test/change.py"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
+<editor id="org.python.pydev.editor.PythonEditor" name="initiate_indices.py" partName="initiate_indices" path="C:/Users/wei/Documents/GitHub/Embers_VT/FinanceModel/auto_correlation_model/initiate_indices.py" title="initiate_indices" tooltip="FinanceModel/auto_correlation_model/initiate_indices.py" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/FinanceModel/auto_correlation_model/initiate_indices.py"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="4165" selectionTopPixel="1170"/>
 </editor>
-<editor id="org.python.pydev.editor.PythonEditor" name="ParameterTest.py" partName="ParameterTest" path="C:/Users/wei/Documents/GitHub/Embers_VT/FinanceModel/Test/ParameterTest.py" title="ParameterTest" tooltip="FinanceModel/Test/ParameterTest.py" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/FinanceModel/Test/ParameterTest.py"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
+<editor id="org.python.pydev.editor.PythonEditor" name="bloomberg_news_ingest.py" partName="bloomberg_news_ingest" path="C:/Users/wei/Documents/GitHub/Embers_VT/FinanceModel/bayesian_model/bloomberg_news_ingest.py" title="bloomberg_news_ingest" tooltip="FinanceModel/bayesian_model/bloomberg_news_ingest.py" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/FinanceModel/bayesian_model/bloomberg_news_ingest.py"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="1680"/>
 </editor>
-<editor id="org.python.pydev.editor.PythonEditor" name="test.py" partName="test (Test)" path="C:/Users/wei/Documents/GitHub/Embers_VT/FinanceModel/Test/test.py" title="test (Test)" tooltip="FinanceModel/Test/test.py" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/FinanceModel/Test/test.py"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
+<editor id="org.python.pydev.editor.PythonEditor" name="auto_correlation.py" partName="auto_correlation" path="C:/Users/wei/Documents/GitHub/Embers_VT/FinanceModel/auto_correlation_model/auto_correlation.py" title="auto_correlation" tooltip="FinanceModel/auto_correlation_model/auto_correlation.py" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/FinanceModel/auto_correlation_model/auto_correlation.py"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="116" selectionTopPixel="0"/>
 </editor>
-<editor id="org.python.pydev.editor.PythonEditor" name="TestReg.py" partName="TestReg" path="C:/Users/wei/Documents/GitHub/Embers_VT/FinanceModel/Test/TestReg.py" title="TestReg" tooltip="FinanceModel/Test/TestReg.py" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/FinanceModel/Test/TestReg.py"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
-</editor>
-<editor id="org.python.pydev.editor.PythonEditor" name="__init__.py" partName="DataCollecting" path="C:/Users/wei/Documents/GitHub/Embers_VT/FinanceModel/DataCollecting/__init__.py" title="DataCollecting" tooltip="FinanceModel/DataCollecting/__init__.py" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/FinanceModel/DataCollecting/__init__.py"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="21" selectionTopPixel="0"/>
-</editor>
-<editor id="org.python.pydev.editor.PythonEditor" name="__init__.py" partName="Estimation" path="C:/Users/wei/Documents/GitHub/Embers_VT/FinanceModel/Estimation/__init__.py" title="Estimation" tooltip="FinanceModel/Estimation/__init__.py" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/FinanceModel/Estimation/__init__.py"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="20" selectionTopPixel="0"/>
-</editor>
-<editor id="org.python.pydev.editor.PythonEditor" name="test.py" partName="test (Estimation)" path="C:/Users/wei/Documents/GitHub/Embers_VT/FinanceModel/Estimation/test.py" title="test (Estimation)" tooltip="FinanceModel/Estimation/test.py" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/FinanceModel/Estimation/test.py"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="164" selectionTopPixel="0"/>
-</editor>
-<editor id="org.python.pydev.editor.PythonEditor" name="ClusteringTraingSet.py" partName="ClusteringTraingSet" path="C:/Users/wei/Documents/GitHub/Embers_VT/FinanceModel/Training/ClusteringTraingSet.py" title="ClusteringTraingSet" tooltip="FinanceModel/Training/ClusteringTraingSet.py" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/FinanceModel/Training/ClusteringTraingSet.py"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="43" selectionTopPixel="957"/>
-</editor>
-<editor id="org.python.pydev.editor.PythonEditor" name="common.py" partName="common" path="C:/Users/wei/Documents/GitHub/Embers_VT/FinanceModel/Util/common.py" title="common" tooltip="FinanceModel/Util/common.py" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/FinanceModel/Util/common.py"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="90" selectionTopPixel="0"/>
-</editor>
-<editor id="org.python.pydev.editor.PythonEditor" name="__init__.py" partName="Util" path="C:/Users/wei/Documents/GitHub/Embers_VT/FinanceModel/Util/__init__.py" title="Util" tooltip="FinanceModel/Util/__init__.py" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/FinanceModel/Util/__init__.py"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="21" selectionTopPixel="0"/>
-</editor>
-<editor id="org.python.pydev.editor.PythonEditor" name="calculator.py" partName="calculator" path="C:/Users/wei/Documents/GitHub/Embers_VT/FinanceModel/Util/calculator.py" title="calculator" tooltip="FinanceModel/Util/calculator.py" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/FinanceModel/Util/calculator.py"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="13" selectionTopPixel="0"/>
-</editor>
-<editor id="org.python.pydev.editor.PythonEditor" name="__init__.py" partName="Training" path="C:/Users/wei/Documents/GitHub/Embers_VT/FinanceModel/Training/__init__.py" title="Training" tooltip="FinanceModel/Training/__init__.py" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/FinanceModel/Training/__init__.py"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="21" selectionTopPixel="0"/>
-</editor>
-<editor id="org.python.pydev.editor.PythonEditor" name="__init__.py" partName="Model" path="C:/Users/wei/Documents/GitHub/Embers_VT/FinanceModel/Model/__init__.py" title="Model" tooltip="FinanceModel/Model/__init__.py" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/FinanceModel/Model/__init__.py"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="21" selectionTopPixel="0"/>
-</editor>
-<editor id="org.python.pydev.editor.PythonEditor" name="__init__.py" partName="DataPreprocess" path="C:/Users/wei/Documents/GitHub/Embers_VT/FinanceModel/DataPreprocess/__init__.py" title="DataPreprocess" tooltip="FinanceModel/DataPreprocess/__init__.py" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/FinanceModel/DataPreprocess/__init__.py"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="21" selectionTopPixel="0"/>
-</editor>
-<editor id="org.python.pydev.editor.PythonEditor" name="ZMQTest.py" partName="ZMQTest" path="C:/Users/wei/Documents/GitHub/Embers_VT/FinanceModel/Test/ZMQTest.py" title="ZMQTest" tooltip="FinanceModel/Test/ZMQTest.py" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/FinanceModel/Test/ZMQTest.py"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="746" selectionTopPixel="0"/>
-</editor>
-<editor id="org.python.pydev.editor.PythonEditor" name="TrainingStart.py" partName="TrainingStart" path="C:/Users/wei/Documents/GitHub/Embers_VT/FinanceModel/Training/TrainingStart.py" title="TrainingStart" tooltip="FinanceModel/Training/TrainingStart.py" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/FinanceModel/Training/TrainingStart.py"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
-</editor>
-<editor id="org.python.pydev.editor.PythonEditor" name="WarningCreate.py" partName="WarningCreate" path="C:/Users/wei/Documents/GitHub/Embers_VT/FinanceModel/Model/WarningCreate.py" title="WarningCreate" tooltip="FinanceModel/Model/WarningCreate.py" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/FinanceModel/Model/WarningCreate.py"/>
-<editorState selectionHorizontalPixel="49" selectionLength="0" selectionOffset="2558" selectionTopPixel="1667"/>
-</editor>
-<editor id="org.python.pydev.editor.PythonEditor" name="queue.py" partName="queue" path="C:/Users/wei/Documents/GitHub/Embers_VT/FinanceModel/etool/queue.py" title="queue" tooltip="FinanceModel/etool/queue.py" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/FinanceModel/etool/queue.py"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="7522" selectionTopPixel="180"/>
-</editor>
-<editor id="org.python.pydev.editor.PythonEditor" name="args.py" partName="args" path="C:/Users/wei/Documents/GitHub/Embers_VT/FinanceModel/etool/args.py" title="args" tooltip="FinanceModel/etool/args.py" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/FinanceModel/etool/args.py"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
-</editor>
-<editor id="org.python.pydev.editor.PythonEditor" name="ImportAlreadyDownloadNews.py" partName="ImportAlreadyDownloadNews" path="C:/Users/wei/Documents/GitHub/Embers_VT/FinanceModel/DataPreprocess/ImportAlreadyDownloadNews.py" title="ImportAlreadyDownloadNews" tooltip="FinanceModel/DataPreprocess/ImportAlreadyDownloadNews.py" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/FinanceModel/DataPreprocess/ImportAlreadyDownloadNews.py"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
-</editor>
-<editor id="org.python.pydev.editor.PythonEditor" name="ImportHistorialStock.py" partName="ImportHistorialStock" path="C:/Users/wei/Documents/GitHub/Embers_VT/FinanceModel/DataPreprocess/ImportHistorialStock.py" title="ImportHistorialStock" tooltip="FinanceModel/DataPreprocess/ImportHistorialStock.py" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/FinanceModel/DataPreprocess/ImportHistorialStock.py"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
-</editor>
-<editor id="org.python.pydev.editor.PythonEditor" name="ImportNewsProcess.py" partName="ImportNewsProcess" path="C:/Users/wei/Documents/GitHub/Embers_VT/FinanceModel/DataPreprocess/ImportNewsProcess.py" title="ImportNewsProcess" tooltip="FinanceModel/DataPreprocess/ImportNewsProcess.py" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/FinanceModel/DataPreprocess/ImportNewsProcess.py"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="135"/>
-</editor>
-<editor id="org.python.pydev.editor.PythonEditor" name="RawNewsProcess.py" partName="RawNewsProcess" path="C:/Users/wei/Documents/GitHub/Embers_VT/FinanceModel/DataPreprocess/RawNewsProcess.py" title="RawNewsProcess" tooltip="FinanceModel/DataPreprocess/RawNewsProcess.py" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/FinanceModel/DataPreprocess/RawNewsProcess.py"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
-</editor>
-<editor activePart="true" focus="true" id="org.python.pydev.editor.PythonEditor" name="RawStockProcess.py" partName="RawStockProcess" path="C:/Users/wei/Documents/GitHub/Embers_VT/FinanceModel/DataPreprocess/RawStockProcess.py" title="RawStockProcess" tooltip="FinanceModel/DataPreprocess/RawStockProcess.py" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/FinanceModel/DataPreprocess/RawStockProcess.py"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="5988" selectionTopPixel="1980"/>
+<editor id="org.python.pydev.editor.PythonEditor" name="AutoRegression.py" partName="AutoRegression (auto_correlation_model)" path="C:/Users/wei/Documents/GitHub/Embers_VT/FinanceModel/auto_correlation_model/AutoRegression.py" title="AutoRegression (auto_correlation_model)" tooltip="FinanceModel/auto_correlation_model/AutoRegression.py" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/FinanceModel/auto_correlation_model/AutoRegression.py"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="4283" selectionTopPixel="1486"/>
 </editor>
 <editor id="org.eclipse.ui.DefaultTextEditor" name="config.cfg" partName="config.cfg" path="C:/Users/wei/Documents/GitHub/Embers_VT/FinanceModel/Config/config.cfg" title="config.cfg" tooltip="FinanceModel/Config/config.cfg" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/FinanceModel/Config/config.cfg"/>
-<editorState selectionHorizontalPixel="0" selectionLength="252" selectionOffset="199" selectionTopPixel="0"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="168" selectionTopPixel="0"/>
 </editor>
-<editor id="org.python.pydev.editor.PythonEditor" name="EnrichDataProcess.py" partName="EnrichDataProcess" path="C:/Users/wei/Documents/GitHub/Embers_VT/FinanceModel/Model/EnrichDataProcess.py" title="EnrichDataProcess" tooltip="FinanceModel/Model/EnrichDataProcess.py" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/FinanceModel/Model/EnrichDataProcess.py"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="6245" selectionTopPixel="1575"/>
+<editor activePart="true" focus="true" id="org.python.pydev.editor.PythonEditor" name="m1.py" partName="m1" path="C:/Users/wei/Documents/GitHub/Embers_VT/FinanceModel/Test/m1.py" title="m1" tooltip="FinanceModel/Test/m1.py" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/FinanceModel/Test/m1.py"/>
+<editorState selectionHorizontalPixel="0" selectionLength="1721" selectionOffset="0" selectionTopPixel="0"/>
 </editor>
 </editors>
 <views>
 <view id="org.eclipse.ui.navigator.ProjectExplorer" partName="Project Explorer">
 <viewState CommonNavigator.LINKING_ENABLED="0" org.eclipse.ui.navigator.resources.workingSets.showTopLevelWorkingSets="0"/>
 </view>
-<view id="com.aptana.snippets.ui.views.SnippetsView" partName="Snippets"/>
-<view id="com.aptana.terminal.views.terminal" partName="Terminal"/>
-<view id="com.aptana.samples.ui.SamplesView" partName="Samples"/>
-<view id="org.eclipse.ui.views.ProblemView" partName="Problems">
-<viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.severityAndDescriptionField" categoryGroup="org.eclipse.ui.ide.severity" markerContentGenerator="org.eclipse.ui.ide.problemsGenerator" partName="Problems">
-<expanded>
-<category IMemento.internal.id="Warnings (1 item)"/>
-</expanded>
-<columnWidths org.eclipse.ui.ide.locationField="90" org.eclipse.ui.ide.markerType="90" org.eclipse.ui.ide.pathField="120" org.eclipse.ui.ide.resourceField="90" org.eclipse.ui.ide.severityAndDescriptionField="300"/>
-<visible IMemento.internal.id="org.eclipse.ui.ide.severityAndDescriptionField"/>
-<visible IMemento.internal.id="org.eclipse.ui.ide.resourceField"/>
-<visible IMemento.internal.id="org.eclipse.ui.ide.pathField"/>
-<visible IMemento.internal.id="org.eclipse.ui.ide.locationField"/>
-<visible IMemento.internal.id="org.eclipse.ui.ide.markerType"/>
+<view id="com.aptana.terminal.views.terminal:pythonLearning" partName="pythonLearning">
+<viewState>
+<title>pythonLearning</title>
+<workingDirectory>D:\pythonLearning</workingDirectory>
 </viewState>
 </view>
+<view id="com.aptana.snippets.ui.views.SnippetsView" partName="Snippets"/>
+<view id="com.aptana.terminal.views.terminal" partName="Terminal">
+<viewState>
+<title>Terminal</title>
+<workingDirectory>C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel</workingDirectory>
+</viewState>
+</view>
+<view id="com.aptana.samples.ui.SamplesView" partName="Samples"/>
 <view id="org.eclipse.ui.console.ConsoleView" partName="Console">
 <viewState/>
 </view>
@@ -193,7 +94,7 @@
 <viewState/>
 </view>
 </views>
-<perspectives activePart="org.eclipse.ui.navigator.ProjectExplorer" activePerspective="com.aptana.ui.WebPerspective">
+<perspectives activePart="org.python.pydev.editor.PythonEditor" activePerspective="com.aptana.ui.WebPerspective">
 <perspective editorAreaTrimState="2" editorAreaVisible="1" fixed="0" version="0.016">
 <descriptor class="com.aptana.ui.internal.WebPerspectiveFactory" id="com.aptana.ui.WebPerspective" label="Web"/>
 <alwaysOnActionSet id="com.aptana.browser.actionSet"/>
@@ -235,12 +136,12 @@
 <hide_toolbar_item_id id="org.eclipse.ui.edit.text.toggleShowSelectedElementOnly"/>
 <view id="com.aptana.explorer.view"/>
 <view id="org.eclipse.ui.navigator.ProjectExplorer"/>
-<view id="org.eclipse.ui.console.ConsoleView"/>
-<view id="com.aptana.terminal.views.terminal"/>
-<view id="org.eclipse.ui.views.ProblemView"/>
 <view id="org.eclipse.ui.views.ContentOutline"/>
 <view id="com.aptana.samples.ui.SamplesView"/>
 <view id="com.aptana.snippets.ui.views.SnippetsView"/>
+<view id="org.eclipse.ui.console.ConsoleView"/>
+<view id="com.aptana.terminal.views.terminal"/>
+<view id="com.aptana.terminal.views.terminal:pythonLearning"/>
 <fastViewBars/>
 <layout>
 <mainWindow>
@@ -262,14 +163,20 @@
 <page content="org.eclipse.ui.cheatsheets.views.CheatSheetView" label="LabelNotFound"/>
 </folder>
 </info>
-<info part="org.eclipse.ui.editorss" ratio="0.26598465" ratioLeft="312" ratioRight="861" relationship="2" relative="left"/>
-<info folder="true" part="terminalArea" ratio="0.6629902" ratioLeft="541" ratioRight="275" relationship="4" relative="org.eclipse.ui.editorss">
+<info part="org.eclipse.ui.editorss" ratio="0.33560476" ratioLeft="394" ratioRight="780" relationship="2" relative="left"/>
+<info folder="true" part="terminalArea" ratio="0.68272424" ratioLeft="411" ratioRight="191" relationship="4" relative="org.eclipse.ui.editorss">
+<folder appearance="2" expanded="2">
+<page content="org.eclipse.pde.runtime.LogView" label="LabelNotFound"/>
+<page content="org.eclipse.ui.views.TaskList" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
+</folder>
+</info>
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@b1b697" ratio="0.6319742" ratioLeft="589" ratioRight="343" relationship="4" relative="org.eclipse.ui.editorss">
 <folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">
 <page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
 <page content="com.aptana.terminal.views.terminal" label="Terminal"/>
-<page content="org.eclipse.ui.views.ProblemView" label="Problems"/>
-<page content="org.eclipse.pde.runtime.LogView" label="LabelNotFound"/>
-<page content="org.eclipse.ui.views.TaskList" label="LabelNotFound"/>
+<page content="com.aptana.terminal.views.terminal:pythonLearning" label="pythonLearning"/>
+<page content="org.eclipse.ui.views.ProblemView" label="LabelNotFound"/>
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
 <part id="0"/>
 <part id="1"/>
@@ -296,187 +203,171 @@
 <workingSets/>
 <navigationHistory>
 <editors>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" path="/FinanceModel/Test/ZMQTest.py"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" path="/FinanceModel/etool/__init__.py"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" path="/FinanceModel/Training/TrainingStart.py"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" path="/FinanceModel/Model/WarningCreate.py"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" path="/FinanceModel/etool/queue.py"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" path="/FinanceModel/DataCollecting/__init__.py"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" path="/FinanceModel/Estimation/__init__.py"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" path="/FinanceModel/Util/__init__.py"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" path="/FinanceModel/Training/__init__.py"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" path="/FinanceModel/Model/__init__.py"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" path="/FinanceModel/DataPreprocess/__init__.py"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" path="/FinanceModel/Test/change.py"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" path="/FinanceModel/etool/queue.py"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" path="/FinanceModel/Test/ZMQTest.py"/>
-<editor factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" id="org.python.pydev.editor.PythonEditor" uri="file:/C:/Users/wei/Desktop/electionWrapper.py"/>
-<editor factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" id="org.python.pydev.editor.PythonEditor" uri="file:/C:/Users/wei/Desktop/Elections.py"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" path="/FinanceModel/etool/args.py"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" path="/FinanceModel/DataPreprocess/ImportAlreadyDownloadNews.py"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" path="/FinanceModel/DataPreprocess/ImportHistorialStock.py"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" path="/FinanceModel/DataPreprocess/ImportNewsProcess.py"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" path="/FinanceModel/DataPreprocess/RawNewsProcess.py"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" path="/FinanceModel/DataPreprocess/RawStockProcess.py"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" path="/FinanceModel/auto_correlation_model/initiate_indices.py"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" path="/FinanceModel/bayesian_model/bloomberg_news_ingest.py"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.aptana.editor.text" path="/FinanceModel/auto_correlation_model/initiate_indices.log"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" path="/FinanceModel/bayesian_model/stock_process.py"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" path="/FinanceModel/Test/TestParser.py"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" path="/FinanceModel/auto_correlation_model/auto_correlation.py"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" path="/FinanceModel/Test/AutoRegression.py"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" path="/FinanceModel/Test/AutoRegression.py"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" path="/FinanceModel/auto_correlation_model/auto_correlation.py"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" path="/FinanceModel/auto_correlation_model/AutoRegression.py"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" path="/FinanceModel/Test/TestParser.py"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" path="/FinanceModel/auto_correlation_model/initiate_indices.py"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" path="/FinanceModel/Config/config.cfg"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" path="/FinanceModel/Model/WarningCreate.py"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" path="/FinanceModel/Model/EnrichDataProcess.py"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" path="/FinanceModel/DataCollecting/__init__.py"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" path="/FinanceModel/Estimation/__init__.py"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" path="/FinanceModel/Util/__init__.py"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" path="/FinanceModel/Training/__init__.py"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" path="/FinanceModel/Model/__init__.py"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" path="/FinanceModel/DataPreprocess/__init__.py"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" path="/FinanceModel/bayesian_model/bloomberg_news_ingest.py"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" path="/FinanceModel/Test/m1.py"/>
 </editors>
-<item historyLabel="etool" index="1">
+<item historyLabel="stock_process" index="3">
+<position info="not_deleted" x="1425" y="5283"/>
+</item>
+<item historyLabel="initiate_indices" index="0">
+<position info="not_deleted" x="2935" y="16"/>
+</item>
+<item historyLabel="stock_process" index="3">
+<position info="not_deleted" x="1425" y="5283"/>
+</item>
+<item historyLabel="stock_process" index="3">
+<position info="not_deleted" x="6710" y="508"/>
+</item>
+<item historyLabel="initiate_indices" index="0">
+<position info="not_deleted" x="5203" y="0"/>
+</item>
+<item historyLabel="stock_process" index="3">
+<position info="not_deleted" x="6710" y="508"/>
+</item>
+<item historyLabel="initiate_indices" index="0">
+<position info="not_deleted" x="5203" y="0"/>
+</item>
+<item historyLabel="initiate_indices" index="0">
+<position/>
+</item>
+<item historyLabel="initiate_indices" index="0">
+<position info="not_deleted" x="7179" y="0"/>
+</item>
+<item historyLabel="bloomberg_news_ingest" index="1">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="ZMQTest" index="0">
-<position info="not_deleted" x="645" y="0"/>
+<item historyLabel="initiate_indices" index="0">
+<position info="not_deleted" x="7215" y="0"/>
 </item>
-<item historyLabel="TrainingStart" index="2">
+<item historyLabel="TestParser" index="4">
+<position info="not_deleted" x="426" y="0"/>
+</item>
+<item historyLabel="bloomberg_news_ingest" index="1">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="WarningCreate" index="3">
-<position info="not_deleted" x="1947" y="488"/>
+<item historyLabel="TestParser" index="4">
+<position info="not_deleted" x="426" y="0"/>
 </item>
-<item historyLabel="ZMQTest" index="0">
-<position info="not_deleted" x="733" y="0"/>
+<item historyLabel="TestParser" index="4">
+<position info="not_deleted" x="376" y="32"/>
 </item>
-<item historyLabel="queue" index="4">
-<position info="not_deleted" x="9656" y="19"/>
+<item historyLabel="TestParser" index="4">
+<position info="not_deleted" x="434" y="6"/>
 </item>
-<item historyLabel="ZMQTest" index="0">
-<position info="not_deleted" x="137" y="0"/>
+<item historyLabel="TestParser" index="4">
+<position info="not_deleted" x="376" y="32"/>
 </item>
-<item historyLabel="queue" index="4">
-<position info="not_deleted" x="5647" y="5"/>
+<item historyLabel="initiate_indices" index="0">
+<position info="not_deleted" x="7453" y="0"/>
 </item>
-<item historyLabel="DataCollecting" index="5">
-<position info="not_deleted" x="21" y="0"/>
+<item historyLabel="initiate_indices.log" index="2">
+<position info="not_deleted" x="7199809" y="0"/>
 </item>
-<item historyLabel="Estimation" index="6">
-<position info="not_deleted" x="20" y="0"/>
+<item historyLabel="initiate_indices" index="0">
+<position info="not_deleted" x="3365" y="0"/>
 </item>
-<item historyLabel="Util" index="7">
-<position info="not_deleted" x="21" y="0"/>
-</item>
-<item historyLabel="Training" index="8">
-<position info="not_deleted" x="21" y="0"/>
-</item>
-<item historyLabel="Model" index="9">
-<position info="not_deleted" x="21" y="0"/>
-</item>
-<item historyLabel="DataPreprocess" index="10">
-<position info="not_deleted" x="21" y="0"/>
-</item>
-<item historyLabel="change" index="11">
+<item historyLabel="auto_correlation" index="5">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="queue" index="12">
+<item historyLabel="AutoRegression" index="6">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="ZMQTest" index="13">
-<position info="not_deleted" x="144" y="0"/>
+<item historyLabel="initiate_indices.log" index="2">
+<position info="not_deleted" x="7199809" y="0"/>
 </item>
-<item historyLabel="queue" index="12">
-<position info="not_deleted" x="5740" y="40"/>
+<item historyLabel="AutoRegression" index="7">
+<position info="not_deleted" x="2326" y="0"/>
 </item>
-<item historyLabel="queue" index="12">
-<position info="not_deleted" x="10356" y="17"/>
+<item historyLabel="auto_correlation" index="8">
+<position info="not_deleted" x="118" y="0"/>
 </item>
-<item historyLabel="electionWrapper" index="14">
+<item historyLabel="AutoRegression (auto_correlation_model)" index="9">
+<position info="not_deleted" x="186" y="0"/>
+</item>
+<item historyLabel="AutoRegression (Test)" index="7">
+<position info="not_deleted" x="2326" y="0"/>
+</item>
+<item historyLabel="AutoRegression (auto_correlation_model)" index="9">
+<position info="not_deleted" x="186" y="0"/>
+</item>
+<item historyLabel="AutoRegression (Test)" index="7">
+<position info="not_deleted" x="2326" y="0"/>
+</item>
+<item historyLabel="AutoRegression (auto_correlation_model)" index="9">
+<position info="not_deleted" x="186" y="0"/>
+</item>
+<item historyLabel="initiate_indices.log" index="2">
+<position info="not_deleted" x="7199809" y="0"/>
+</item>
+<item historyLabel="AutoRegression (auto_correlation_model)" index="9">
+<position info="not_deleted" x="186" y="0"/>
+</item>
+<item historyLabel="auto_correlation" index="8">
+<position info="not_deleted" x="118" y="0"/>
+</item>
+<item historyLabel="TestParser" index="10">
+<position info="not_deleted" x="376" y="32"/>
+</item>
+<item historyLabel="auto_correlation" index="8">
+<position info="not_deleted" x="118" y="0"/>
+</item>
+<item historyLabel="initiate_indices" index="11">
+<position info="not_deleted" x="3365" y="0"/>
+</item>
+<item historyLabel="auto_correlation" index="8">
+<position info="not_deleted" x="118" y="0"/>
+</item>
+<item historyLabel="AutoRegression (auto_correlation_model)" index="9">
+<position info="not_deleted" x="89" y="38"/>
+</item>
+<item historyLabel="initiate_indices" index="11">
+<position info="not_deleted" x="3365" y="0"/>
+</item>
+<item historyLabel="auto_correlation" index="8">
+<position info="not_deleted" x="118" y="0"/>
+</item>
+<item historyLabel="AutoRegression (auto_correlation_model)" index="9">
+<position info="not_deleted" x="33" y="18"/>
+</item>
+<item historyLabel="auto_correlation" index="8">
+<position info="not_deleted" x="118" y="0"/>
+</item>
+<item historyLabel="AutoRegression (auto_correlation_model)" index="9">
+<position info="not_deleted" x="0" y="31"/>
+</item>
+<item historyLabel="auto_correlation" index="8">
+<position info="not_deleted" x="116" y="0"/>
+</item>
+<item historyLabel="AutoRegression (auto_correlation_model)" index="9">
+<position info="not_deleted" x="3533" y="29"/>
+</item>
+<item historyLabel="config.cfg" index="12">
+<position info="not_deleted" x="168" y="0"/>
+</item>
+<item historyLabel="AutoRegression (auto_correlation_model)" index="9">
+<position info="not_deleted" x="3533" y="29"/>
+</item>
+<item historyLabel="bloomberg_news_ingest" index="13">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="queue" index="12">
-<position info="not_deleted" x="9528" y="0"/>
+<item historyLabel="initiate_indices" index="11">
+<position info="not_deleted" x="4165" y="0"/>
 </item>
-<item historyLabel="ZMQTest" index="13">
-<position info="not_deleted" x="118" y="4"/>
-</item>
-<item historyLabel="queue" index="12">
-<position info="not_deleted" x="8575" y="0"/>
-</item>
-<item historyLabel="queue" index="12">
-<position info="not_deleted" x="9771" y="4"/>
-</item>
-<item historyLabel="queue" index="12">
-<position info="not_deleted" x="518" y="0"/>
-</item>
-<item historyLabel="electionWrapper" index="14">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="queue" index="12">
-<position info="not_deleted" x="518" y="0"/>
-</item>
-<item historyLabel="Elections" index="15">
-<position info="not_deleted" x="264" y="0"/>
-</item>
-<item historyLabel="queue" index="12">
-<position info="not_deleted" x="7522" y="0"/>
-</item>
-<item historyLabel="args" index="16">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="queue" index="12">
-<position info="not_deleted" x="7522" y="0"/>
-</item>
-<item historyLabel="ZMQTest" index="13">
-<position info="not_deleted" x="709" y="0"/>
-</item>
-<item historyLabel="ImportAlreadyDownloadNews" index="17">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="ImportHistorialStock" index="18">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="ImportNewsProcess" index="19">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="RawNewsProcess" index="20">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="RawStockProcess" index="21">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="config.cfg" index="22">
-<position info="not_deleted" x="199" y="252"/>
-</item>
-<item historyLabel="ZMQTest" index="13">
-<position info="not_deleted" x="709" y="0"/>
-</item>
-<item historyLabel="WarningCreate" index="23">
-<position info="not_deleted" x="7455" y="19"/>
-</item>
-<item historyLabel="config.cfg" index="22">
-<position info="not_deleted" x="199" y="252"/>
-</item>
-<item historyLabel="WarningCreate" index="23">
-<position info="not_deleted" x="2558" y="0"/>
-</item>
-<item historyLabel="EnrichDataProcess" index="24">
-<position info="not_deleted" x="6245" y="0"/>
-</item>
-<item historyLabel="RawStockProcess" index="21">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="DataCollecting" index="25">
-<position info="not_deleted" x="21" y="0"/>
-</item>
-<item historyLabel="Estimation" index="26">
-<position info="not_deleted" x="20" y="0"/>
-</item>
-<item historyLabel="Util" index="27">
-<position info="not_deleted" x="21" y="0"/>
-</item>
-<item historyLabel="Training" index="28">
-<position info="not_deleted" x="21" y="0"/>
-</item>
-<item historyLabel="Model" index="29">
-<position info="not_deleted" x="21" y="0"/>
-</item>
-<item active="true" historyLabel="DataPreprocess" index="30">
-<position info="not_deleted" x="21" y="0"/>
+<item active="true" historyLabel="m1" index="14">
+<position info="not_deleted" x="1752" y="0"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -495,50 +386,50 @@
 </trimLayout>
 </window>
 <mruList>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" name="EnrichDataProcess.py" tooltip="FinanceModel/Model/EnrichDataProcess.py">
-<persistable path="/FinanceModel/Model/EnrichDataProcess.py"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" name="m1.py" tooltip="FinanceModel/Test/m1.py">
+<persistable path="/FinanceModel/Test/m1.py"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" name="config.cfg" tooltip="FinanceModel/Config/config.cfg">
 <persistable path="/FinanceModel/Config/config.cfg"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" name="RawStockProcess.py" tooltip="FinanceModel/DataPreprocess/RawStockProcess.py">
-<persistable path="/FinanceModel/DataPreprocess/RawStockProcess.py"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" name="AutoRegression.py" tooltip="FinanceModel/auto_correlation_model/AutoRegression.py">
+<persistable path="/FinanceModel/auto_correlation_model/AutoRegression.py"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" name="RawNewsProcess.py" tooltip="FinanceModel/DataPreprocess/RawNewsProcess.py">
-<persistable path="/FinanceModel/DataPreprocess/RawNewsProcess.py"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" name="AutoRegression.py" tooltip="FinanceModel/Test/AutoRegression.py">
+<persistable path="/FinanceModel/Test/AutoRegression.py"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" name="ImportNewsProcess.py" tooltip="FinanceModel/DataPreprocess/ImportNewsProcess.py">
-<persistable path="/FinanceModel/DataPreprocess/ImportNewsProcess.py"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" name="auto_correlation.py" tooltip="FinanceModel/auto_correlation_model/auto_correlation.py">
+<persistable path="/FinanceModel/auto_correlation_model/auto_correlation.py"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" name="ImportHistorialStock.py" tooltip="FinanceModel/DataPreprocess/ImportHistorialStock.py">
-<persistable path="/FinanceModel/DataPreprocess/ImportHistorialStock.py"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.aptana.editor.text" name="initiate_indices.log" tooltip="FinanceModel/auto_correlation_model/initiate_indices.log">
+<persistable path="/FinanceModel/auto_correlation_model/initiate_indices.log"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" name="ImportAlreadyDownloadNews.py" tooltip="FinanceModel/DataPreprocess/ImportAlreadyDownloadNews.py">
-<persistable path="/FinanceModel/DataPreprocess/ImportAlreadyDownloadNews.py"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" name="TestParser.py" tooltip="FinanceModel/Test/TestParser.py">
+<persistable path="/FinanceModel/Test/TestParser.py"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" name="args.py" tooltip="FinanceModel/etool/args.py">
-<persistable path="/FinanceModel/etool/args.py"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" name="bloomberg_news_ingest.py" tooltip="FinanceModel/bayesian_model/bloomberg_news_ingest.py">
+<persistable path="/FinanceModel/bayesian_model/bloomberg_news_ingest.py"/>
 </file>
-<file factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" id="org.python.pydev.editor.PythonEditor" name="Elections.py" tooltip="C:\Users\wei\Desktop\Elections.py">
-<persistable uri="file:/C:/Users/wei/Desktop/Elections.py"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" name="stock_process.py" tooltip="FinanceModel/bayesian_model/stock_process.py">
+<persistable path="/FinanceModel/bayesian_model/stock_process.py"/>
 </file>
-<file factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" id="org.python.pydev.editor.PythonEditor" name="electionWrapper.py" tooltip="C:\Users\wei\Desktop\electionWrapper.py">
-<persistable uri="file:/C:/Users/wei/Desktop/electionWrapper.py"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" name="logs.py" tooltip="FinanceModel/etool/logs.py">
+<persistable path="/FinanceModel/etool/logs.py"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" name="queue.py" tooltip="FinanceModel/etool/queue.py">
-<persistable path="/FinanceModel/etool/queue.py"/>
+<file factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" id="org.python.pydev.editor.PythonEditor" name="__init__.py" tooltip="D:\Python27\Lib\site-packages\xlrd\__init__.py">
+<persistable uri="file:/D:/Python27/Lib/site-packages/xlrd/__init__.py"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" name="WarningCreate.py" tooltip="FinanceModel/Model/WarningCreate.py">
-<persistable path="/FinanceModel/Model/WarningCreate.py"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" name="bloomberg_news_process.py" tooltip="FinanceModel/bayesian_model/bloomberg_news_process.py">
+<persistable path="/FinanceModel/bayesian_model/bloomberg_news_process.py"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" name="TrainingStart.py" tooltip="FinanceModel/Training/TrainingStart.py">
-<persistable path="/FinanceModel/Training/TrainingStart.py"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" name="TestReg.py" tooltip="FinanceModel/Test/TestReg.py">
+<persistable path="/FinanceModel/Test/TestReg.py"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" name="__init__.py" tooltip="FinanceModel/etool/__init__.py">
-<persistable path="/FinanceModel/etool/__init__.py"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" name="create_historical_stock.py" tooltip="FinanceModel/DataPreprocess/create_historical_stock.py">
+<persistable path="/FinanceModel/DataPreprocess/create_historical_stock.py"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" name="ZMQTest.py" tooltip="FinanceModel/Test/ZMQTest.py">
-<persistable path="/FinanceModel/Test/ZMQTest.py"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" name="import_holiday_info.py" tooltip="FinanceModel/DataPreprocess/import_holiday_info.py">
+<persistable path="/FinanceModel/DataPreprocess/import_holiday_info.py"/>
 </file>
 </mruList>
 </workbench>

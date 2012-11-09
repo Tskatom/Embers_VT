@@ -1,2 +1,0 @@
-import argparse as ap
-parse = ap.ArgumentParser

@@ -1,6 +1,0 @@
-import m1
-
-m1.p1 = "good"
-
-m1.f1()
-m1.f2()

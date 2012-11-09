@@ -8,5 +8,8 @@ def parse_args():
 def main():
     args = parse_args()
     print args.conf
+    good = None
+    assert good,"--we need good"
+    print "hhhh"
     
 main()

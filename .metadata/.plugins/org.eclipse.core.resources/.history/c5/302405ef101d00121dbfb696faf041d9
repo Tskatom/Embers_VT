@@ -1,9 +1,0 @@
-class Foo:
-    str = "I'm a str"
-    
-    def bar(cls):
-        print cls.str
-    
-    bar = staticmethod(bar)
-
-Foo.bar()    

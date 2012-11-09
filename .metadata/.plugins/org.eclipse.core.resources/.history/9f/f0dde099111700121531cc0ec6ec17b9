@@ -1,9 +1,0 @@
-#-*-coding:utf8-*-
-from etool import args,logs,queue,message
-
-__processor__ = 'finance_model_test'
-log = logs.getLogger(__processor__)
-def test():
-    port = 30115
-    with queue.open(port,'w',capture=True) as outq:
-        log.debug('Writing to %d' %(port))

@@ -1,6 +1,4 @@
 MODULES_MANAGER_V2
-DataCollecting.__init__|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\DataCollecting\__init__.py
-DataCollecting.bloomberg_news_ingest|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\DataCollecting\bloomberg_news_ingest.py
 DataPreprocess.ImportAlreadyDownloadNews|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\DataPreprocess\ImportAlreadyDownloadNews.py
 DataPreprocess.ImportHistorialStock|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\DataPreprocess\ImportHistorialStock.py
 DataPreprocess.ImportHistoricalStock2DB|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\DataPreprocess\ImportHistoricalStock2DB.py
@@ -8,6 +6,7 @@ DataPreprocess.ImportNewsProcess|C:\Users\wei\Documents\GitHub\Embers_VT\Finance
 DataPreprocess.__init__|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\DataPreprocess\__init__.py
 DataPreprocess.create_historical_stock|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\DataPreprocess\create_historical_stock.py
 DataPreprocess.import_historical_stock_v2|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\DataPreprocess\import_historical_stock_v2.py
+DataPreprocess.import_holiday_info|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\DataPreprocess\import_holiday_info.py
 Estimation.Evaluation|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\Estimation\Evaluation.py
 Estimation.FileObject|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\Estimation\FileObject.py
 Estimation.__init__|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\Estimation\__init__.py
@@ -31,12 +30,14 @@ Test.TestReg|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\Test\TestReg.p
 Test.ZMQTest|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\Test\ZMQTest.py
 Test.bloomberg|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\Test\bloomberg.py
 Test.change|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\Test\change.py
+Test.combine_his_news|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\Test\combine_his_news.py
 Test.createTermJson|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\Test\createTermJson.py
+Test.create_downloaded_news|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\Test\create_downloaded_news.py
+Test.create_voca|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\Test\create_voca.py
 Test.kmeanTest|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\Test\kmeanTest.py
 Test.m1|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\Test\m1.py
 Test.m2|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\Test\m2.py
 Test.m3|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\Test\m3.py
-Test.test|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\Test\test.py
 Training.ClusteringTraingSet|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\Training\ClusteringTraingSet.py
 Training.CreateCompanyList|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\Training\CreateCompanyList.py
 Training.CreatingDict|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\Training\CreatingDict.py
@@ -52,10 +53,15 @@ Util.__init__|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\Util\__init__
 Util.calculator|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\Util\calculator.py
 Util.common|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\Util\common.py
 __init__|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\DataPreprocess\__init__.py
+auto_correlation_model.AutoRegression|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\auto_correlation_model\AutoRegression.py
+auto_correlation_model.__init__|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\auto_correlation_model\__init__.py
+auto_correlation_model.auto_correlation|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\auto_correlation_model\auto_correlation.py
+auto_correlation_model.initiate_indices|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\auto_correlation_model\initiate_indices.py
 bayesian_model.__init__|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\bayesian_model\__init__.py
 bayesian_model.bayesian_model|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\bayesian_model\bayesian_model.py
 bayesian_model.bloomberg_news_ingest|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\bayesian_model\bloomberg_news_ingest.py
 bayesian_model.bloomberg_news_process|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\bayesian_model\bloomberg_news_process.py
+bayesian_model.boil_bloomberg_news_ingest|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\bayesian_model\boil_bloomberg_news_ingest.py
 bayesian_model.calculator|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\bayesian_model\calculator.py
 bayesian_model.stock_process|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\bayesian_model\stock_process.py
 etool.__init__|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\etool\__init__.py

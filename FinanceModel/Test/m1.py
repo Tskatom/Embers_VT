@@ -1,15 +1,24 @@
-globalVal = "hello"
-print __name__,"in M1"
-class cm:
-    
-    p1 = ""
-    
-    def __init__(self,str):
-        self.p1 = str
-        
-    def f1(self):
-        print self.p1, " In f1"
-        
-    def f2(self):
-        print self.p1, " In f2"
-        
+m = {
+    "keywords": ["gain", "declin", "drop", "cost", "profit", "cut", "concern", 
+         "advanc", "close", "boost", "contract", "crisi", "highest", 
+         "posit", "loss", "lost", "slow", "lead", "good", "refin", "default", 
+         "fail", "construct", "strengthen", "improv", "weaken", "limit", "delay", 
+         "forc", "deficit", "inform", "claim", "eas", "confid", "strong", "press", "win", 
+         "benefit", "lose", "attract", "rebound", "late", "better", "effect", "liquid", 
+         "abl", "opportun", "problem", "bailout", "worst", "hurt", "investig", "recess", 
+         "damag", "miss", "depend", "downgrad", "favor", "unemploy", "volatil", "sever", 
+         "bad", "prevent", "halt", "bankruptci", "bolster", "su", "ban", "tighten", 
+         "deni", "disclos", "protest", "great", "drought", "greater", "reject", 
+         "challeng", "question", "negat", "advantag", "restructur", "stop", "know", 
+         "outstand", "antitrust", "threaten", "slowdown", "postpon", "defens", "alleg", 
+         "stress", "stabil", "opposit", "unexpect", "shut", "cancel", "lack", "precipit",
+         "suspend", "disput", "fine", "fire", "stronger", "integr", "critic", "weak", 
+         "success", "slower", "termin", "complaint", "quit", "difficult", "allianc", 
+         "correct", "strongest", "collaps", "stabl", "warn", "alert", "accus", "break", 
+         "weaker", "progress", "except", "bar", "strength", "deterior", "threat", "defend", 
+         "suffer", "surpass", "fraud", "resolv", "boom", "resign", "disrupt", "premier", 
+         "shortag", "seiz", "popular", "doubt", "violat", "worri", "effici", "fear", 
+         "encourag", "failur", "worsen", "subject", "slowest"]
+}
+
+print len(m["keywords"])

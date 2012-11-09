@@ -1,3 +1,0 @@
-from Util import common
-
-con = common.getDBConnection()

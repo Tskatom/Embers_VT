@@ -1,5 +1,0 @@
-import argparse as ap
-parse = ap.ArgumentParser()
-
-parse.add_argument('-foo',nargs="+")
-print parse.parse_args()

@@ -1,0 +1,70 @@
+2012-11-06 17:40:03,778 - bloomberg_news_ingest - ERROR - 1348 - get_news_by_url - Could not ingest http://www.bloomberg.com/news/2012-07-12/colombia-stocks-aviancataca-ecopetrol-canacol-are-active.html
+Traceback (most recent call last):
+  File "C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\bayesian_model\bloomberg_news_ingest.py", line 89, in get_news_by_url
+    exit(0)
+  File "D:\Python27\lib\site.py", line 358, in __call__
+    raise SystemExit(code)
+SystemExit: 0
+2012-11-06 17:40:03,927 - bloomberg_news_ingest - ERROR - 1348 - get_news_by_url - Could not ingest http://www.bloomberg.com/news/2012-07-11/colombia-stocks-bvc-petrominerales-pacific-rubiales.html
+Traceback (most recent call last):
+  File "C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\bayesian_model\bloomberg_news_ingest.py", line 89, in get_news_by_url
+    exit(0)
+  File "D:\Python27\lib\site.py", line 358, in __call__
+    raise SystemExit(code)
+SystemExit: 0
+2012-11-06 17:40:04,075 - bloomberg_news_ingest - ERROR - 1348 - get_news_by_url - Could not ingest http://www.bloomberg.com/news/2012-06-15/colombian-stocks-bolsa-de-valores-cementos-argos-ecopetrol.html
+Traceback (most recent call last):
+  File "C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\bayesian_model\bloomberg_news_ingest.py", line 89, in get_news_by_url
+    exit(0)
+  File "D:\Python27\lib\site.py", line 358, in __call__
+    raise SystemExit(code)
+SystemExit: 0
+2012-11-06 17:40:04,220 - bloomberg_news_ingest - ERROR - 1348 - get_news_by_url - Could not ingest http://www.bloomberg.com/news/2012-06-01/cordoba-cites-panama-costa-rica-mila-interest-portafolio-says.html
+Traceback (most recent call last):
+  File "C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\bayesian_model\bloomberg_news_ingest.py", line 89, in get_news_by_url
+    exit(0)
+  File "D:\Python27\lib\site.py", line 358, in __call__
+    raise SystemExit(code)
+SystemExit: 0
+2012-11-06 17:40:04,365 - bloomberg_news_ingest - ERROR - 1348 - get_news_by_url - Could not ingest http://www.bloomberg.com/news/2012-04-19/colombian-stock-movers-bolsa-de-valores-pacific-rubiales.html
+Traceback (most recent call last):
+  File "C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\bayesian_model\bloomberg_news_ingest.py", line 89, in get_news_by_url
+    exit(0)
+  File "D:\Python27\lib\site.py", line 358, in __call__
+    raise SystemExit(code)
+SystemExit: 0
+2012-11-06 17:40:04,528 - bloomberg_news_ingest - ERROR - 1348 - get_news_by_url - Could not ingest http://www.bloomberg.com/news/2012-04-17/colombian-stock-movers-tableros-maderas-bolsa-de-valores.html
+Traceback (most recent call last):
+  File "C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\bayesian_model\bloomberg_news_ingest.py", line 89, in get_news_by_url
+    exit(0)
+  File "D:\Python27\lib\site.py", line 358, in __call__
+    raise SystemExit(code)
+SystemExit: 0
+2012-11-06 17:40:05,905 - bloomberg_news_ingest - ERROR - 1348 - get_news_by_url - Could not ingest http://www.bloomberg.com/news/2012-04-17/colombia-s-bolsa-de-valores-first-quarter-profit-increases-40-.html
+Traceback (most recent call last):
+  File "C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\bayesian_model\bloomberg_news_ingest.py", line 89, in get_news_by_url
+    exit(0)
+  File "D:\Python27\lib\site.py", line 358, in __call__
+    raise SystemExit(code)
+SystemExit: 0
+2012-11-06 17:40:07,565 - bloomberg_news_ingest - ERROR - 1348 - get_news_by_url - Could not ingest http://www.bloomberg.com/news/2012-04-16/colombian-stock-movers-canacol-energy-fabricato-helm-bank.html
+Traceback (most recent call last):
+  File "C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\bayesian_model\bloomberg_news_ingest.py", line 89, in get_news_by_url
+    exit(0)
+  File "D:\Python27\lib\site.py", line 358, in __call__
+    raise SystemExit(code)
+SystemExit: 0
+2012-11-06 17:40:08,904 - bloomberg_news_ingest - ERROR - 1348 - get_news_by_url - Could not ingest http://www.bloomberg.com/news/2012-04-10/colombian-stocks-helm-bank-sa-el-condor-bolsa-de-valores.html
+Traceback (most recent call last):
+  File "C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\bayesian_model\bloomberg_news_ingest.py", line 89, in get_news_by_url
+    exit(0)
+  File "D:\Python27\lib\site.py", line 358, in __call__
+    raise SystemExit(code)
+SystemExit: 0
+2012-11-06 17:53:20,056 - bloomberg_news_ingest - ERROR - 7432 - get_news_by_url - Could not ingest http://www.bloomberg.com/news/2012-07-12/colombia-stocks-aviancataca-ecopetrol-canacol-are-active.html
+Traceback (most recent call last):
+  File "C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\bayesian_model\bloomberg_news_ingest.py", line 93, in get_news_by_url
+    exit(0)
+  File "D:\Python27\lib\site.py", line 358, in __call__
+    raise SystemExit(code)
+SystemExit: 0

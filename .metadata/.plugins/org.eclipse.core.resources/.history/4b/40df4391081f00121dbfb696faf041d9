@@ -1,8 +1,0 @@
-from Util import common
-import os
-
-def init(cfgPath):
-    common.init(cfgPath)
-    
-def import_historical_stock():
-    #get the historical stock dir

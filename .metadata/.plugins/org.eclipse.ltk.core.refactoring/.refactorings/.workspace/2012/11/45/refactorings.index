@@ -1,0 +1,7 @@
+1352128590892	Delete resource 'FinanceModel/Config/Data/DailyNews/Bloomberg-News-2012-10-18'
+1352128974846	Delete resource 'FinanceModel/Config/Data/DailyNews/Bloomberg-News-2012-10-20'
+1352130714997	Delete resource 'FinanceModel/bayesian_model/bloomberg_news_process.log'
+1352152780060	Delete resource 'FinanceModel/bayesian_model/data/embers_v2.db'
+1352152784049	Delete resource 'FinanceModel/bayesian_model/data/embers.db'
+1352172268192	Delete resource 'FinanceModel/DataCollecting'
+1352173121655	Delete resource 'FinanceModel/auto_correlation/py'
