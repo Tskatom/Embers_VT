@@ -1,24 +1,21 @@
-m = {
-    "keywords": ["gain", "declin", "drop", "cost", "profit", "cut", "concern", 
-         "advanc", "close", "boost", "contract", "crisi", "highest", 
-         "posit", "loss", "lost", "slow", "lead", "good", "refin", "default", 
-         "fail", "construct", "strengthen", "improv", "weaken", "limit", "delay", 
-         "forc", "deficit", "inform", "claim", "eas", "confid", "strong", "press", "win", 
-         "benefit", "lose", "attract", "rebound", "late", "better", "effect", "liquid", 
-         "abl", "opportun", "problem", "bailout", "worst", "hurt", "investig", "recess", 
-         "damag", "miss", "depend", "downgrad", "favor", "unemploy", "volatil", "sever", 
-         "bad", "prevent", "halt", "bankruptci", "bolster", "su", "ban", "tighten", 
-         "deni", "disclos", "protest", "great", "drought", "greater", "reject", 
-         "challeng", "question", "negat", "advantag", "restructur", "stop", "know", 
-         "outstand", "antitrust", "threaten", "slowdown", "postpon", "defens", "alleg", 
-         "stress", "stabil", "opposit", "unexpect", "shut", "cancel", "lack", "precipit",
-         "suspend", "disput", "fine", "fire", "stronger", "integr", "critic", "weak", 
-         "success", "slower", "termin", "complaint", "quit", "difficult", "allianc", 
-         "correct", "strongest", "collaps", "stabl", "warn", "alert", "accus", "break", 
-         "weaker", "progress", "except", "bar", "strength", "deterior", "threat", "defend", 
-         "suffer", "surpass", "fraud", "resolv", "boom", "resign", "disrupt", "premier", 
-         "shortag", "seiz", "popular", "doubt", "violat", "worri", "effici", "fear", 
-         "encourag", "failur", "worsen", "subject", "slowest"]
-}
+#!/usr/bin/env python
+# Working with multiple figure windows and subplots
+from pylab import *
 
-print len(m["keywords"])
+t = arange(0.0, 2.0, 0.01)
+s1 = sin(2*pi*t)
+s2 = sin(4*pi*t)
+
+figure(1)
+subplot(211)
+plot(t,s1)
+
+
+# now switch back to figure 1 and make some changes
+figure(1)
+subplot(211)
+plot(t,s2, 'gs')
+setp(gca(), 'xticklabels', [])
+
+
+show()
