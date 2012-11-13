@@ -7,6 +7,7 @@ from Util import calculator
 def arg_parser():
     ap = argparse.ArgumentParser("The auto_correlation model")
     ap.add_argument('-db',dest='db_file',metavar='DATA BASE',type=str,help='The Database path')
+    ap.add_argument('-o',dest='order',metavar='ORDER',type=int,help='The order of VAR')
     return ap.parse_args()
 
 def initiate_data(conn,start,end,target_indices):
@@ -24,6 +25,7 @@ def initiate_data(conn,start,end,target_indices):
 
 def get_cor_data(datas,t_index,p_index):
     t_datas = datas[t_index]
+    v_indices = []
     p_datas = datas[p_index]
     
     c_t_datas = []
@@ -34,6 +36,36 @@ def get_cor_data(datas,t_index,p_index):
         if t_k in p_datas:
             c_t_datas.append(t_datas[t_k])
             c_p_datas.append(p_datas[t_k])
+    
+    common_days = []
+    "Get the common dayList"
+    for t_k in t_keys:
+        flag = True
+        for v_i in v_indices:
+            d = datas[v_i]
+            if t_k not in d:
+                flag = False
+                break
+        if flag:
+            common_days.append(t_k)
+    
+    "get the data array"
+    for day in common_days:
+        c_t_datas.append(t_datas[day])
+        
+    c_t_datas.sort(key = lambda x:x['post_date'])
+    
+    for v_i in v_indices:
+        d = datas[v_i]
+        d_v = []
+        for day in common_days:
+            d_v.append(d[day])
+        
+        d_v.sort(key = lambda x:x['post_date'])
+        c_p_datas.append(d_v)
+            
+        
+                
     
     "Sort the data"
     c_t_datas.sort(key = lambda x:x['post_date'])
@@ -57,7 +89,7 @@ def fit_model(data,order):
     var_model_fit = var_model.fit(maxlags=order)
     return var_model_fit
 
-def test_phase(start,end,t_index,v_inices,conn):
+def test_phase(start,end,t_index,v_inices,conn,order,var_model_fit):
     "Get the list of day to predict"
     cur = conn.cursor()
     date_list = []
@@ -67,49 +99,104 @@ def test_phase(start,end,t_index,v_inices,conn):
     for r in rs:
         date_list.append(r[0])
     
-def forcast(var_model_fit,p_values,p_date):
-    prediction = var_model_fit.forecast(p_values,1)
-    return prediction
+    "forcast the stock index day by day"
+    for p_date in date_list:
+        "initiate the data matrix"
+        data_matrix = []
+        "get the past target value"
+        sql = "select change_percent from t_enriched_bloomberg_prices where name=? and post_date<? order by post_date desc limit ?"
+        
+        cur.execute(sql,(t_index,p_date,order,))
+        rs = cur.fetchall()
+        t_value = [r[0] for r in rs]
+        t_value.reverse()
+        data_matrix.append(t_value)
+        
+        "get the indicator values"
+        for v_index in v_inices:
+            cur.execute(sql,(v_index,p_date,order,))
+            rs = cur.fetchall()
+            v_value = [r[0] for r in rs]
+            v_value.reverse()
+            data_matrix.append(v_value)
+            
+        "construct the matrix"
+        data_matrix = np.array(data_matrix).T
+        prediction = forcast(var_model_fit,data_matrix,1)
+        
+        p_1 = prediction[0]
+        "compute the one_day_change"
+        sql = "select current_value from t_enriched_bloomberg_prices where name=? and post_date<? order by post_date desc limit 1"
+        cur.execute(sql,(t_index,p_date,))
+        r = cur.fetchone()
+        last_price = r[0]
+        p_1_change = last_price * p_1
+        p_price = last_price * (1 + p_1)
+        
+        "compute the predicting zscore"
+        zscore30 = getZscore(conn,p_date,t_index,p_1_change,30)
+        zscore90 = getZscore(conn,p_date,t_index,p_1_change,90)
+        event_type = "0000"
+        
+        if zscore30 >= 4 or zscore90 >= 3:
+            event_type = "0411"
+        elif zscore30 <= -4 or zscore90 <= -3:
+            event_type = "0412"
+        
+        
+        "Insert into the prediction model"
+        sql = "insert into t_ar_prediction (post_date,stock_index,zscore30,zscore90,change_percent,price,event_type) values (?,?,?,?,?,?,?)"
+        cur.execute(sql,(p_date,t_index,zscore30,zscore90,p_1,p_price,event_type,))
+        print p_date
+    conn.commit()
+        
+    
+def forcast(var_model_fit,p_values,day):
+    prediction = var_model_fit.forecast(p_values,day)
+    return prediction[:][0]
 
+def clear(conn):
+    sql = "delete from t_ar_prediction"
+    conn.cursor().execute(sql)
+    conn.commit()
+    
 def main():
     args = arg_parser()
     db_file = args.db_file
+    order = args.order
     conn = lite.connect(db_file)
+    
+    "clear the prediction"
+    clear(conn)
     
     target_list = ['MERVAL','MEXBOL','IBOV','CHILE65','COLCAP','CRSMBCT','BVPSBVPS','IGBVL','IBVC','AEX','AS51','CAC','CCMP','DAX','FTSMIB','HSI','IBEX','INDU','NKY','OMX','SMI','SPTSX','SX5E','UKX']
     start = '2003-01-01'
-    end = '2012-10-31'
+    end = '2010-12-31'
     datas = initiate_data(conn,start,end,target_list)
-    c_t_datas,c_p_datas = get_cor_data(datas,"MEXBOL","INDU")
-    print c_t_datas[0:10],"\n",c_p_datas[-10:]
+    t_index = "MEXBOL"
+    v_inices = ["INDU"]
+    c_t_datas,c_p_datas = get_cor_data(datas,t_index,v_inices)
+    
+    w_d = []
+    w_d.append(c_t_datas)
+    for da in c_p_datas:
+        w_d.append.append(da)
+    
+    
+    "start to fit the model"
+    data_matrix = np.array([[i['change_percent'] for i in c_t_datas],[i['change_percent'] for i in c_p_datas]]).T
+    var_model_fit = fit_model(data_matrix,order)
+    
+    "Move to Test stage"
+    
+    t_start = "2011-01-01"
+    t_end = "2012-10-31"
+    test_phase(t_start,t_end,t_index,v_inices,conn,order,var_model_fit)
+    
+    if conn:
+        conn.close()
+    
 
 if __name__ == "__main__":
     main()
-
-
-#data=<time* variables>
-data=np.array([[1,2,3,20,30],[1,3,4,20,30],[1,4,5,100,200],[5,8,10,10,10]]).T
-data = np.array([[1,2,3,4,5,6],[1,2,3,4,5,6]]).T
-order = 1
-#np.
-
-#Training
-var_model = tsa.VAR(data)
-var_model_fit = var_model.fit(maxlags=order)
-#var_model = var_model_fit.model
-
-
-#Training results
-intercept =var_model_fit.intercept
-params=var_model_fit.params
-
-#print intercept
-#print params
-
-#Prediction
-#print var_model.y[-2:]
-print var_model.y
-out_of_sample_prediction=var_model_fit.forecast([[7,7]],3)
-#out_of_sample_prediction = var_model.predict(params, 5,8)
-print out_of_sample_prediction
 
