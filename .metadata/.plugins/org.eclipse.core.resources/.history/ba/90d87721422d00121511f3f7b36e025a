@@ -1,0 +1,20 @@
+import statsmodels.tsa.api as tsa
+import numpy as np
+
+#data=<time* variables>
+
+np.
+
+#Training
+var_model=tsa.VAR(data)
+var_model_fit=var_model.fit(maxlags=order)
+var_model=var_model_fit.model
+
+
+#Training results
+intercept =var_model_fit.intercept
+params=var_model_fit.params
+
+#Prediction
+out_of_sample_prediction=var_model_fit.forecast(var_mode.y[-order:],num_steps_from_end)
+

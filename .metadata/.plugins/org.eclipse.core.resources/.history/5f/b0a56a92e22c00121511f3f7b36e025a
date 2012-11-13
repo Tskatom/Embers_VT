@@ -1,0 +1,34 @@
+import json
+import datetime
+"""
+postTime, postDate,author,url,company,title,updateTime,content,embersId,stockIndex,date,updateDate,source:Bloomberg News
+2012-11-08T19:05:30.451366
+"""
+def q_time_format(queryTime):
+    ft = "%Y-%m-%d %H:%M:%S"
+    n_q_t = datetime.datetime.strptime(queryTime,ft)
+    return n_q_t.isoformat()
+
+def u_date_format(updateTime):
+    ft = "%Y-%m-%d %H:%M:%S"
+    n_q_t = datetime.datetime.strptime(queryTime,ft)
+    return n_q_t.isoformat()
+
+bl_news = json.load(open('d:/bloomberg_news_sample.json','r'))
+print bl_news
+for (k,v) in bl_news.items():
+    print k
+    for (d_k,d_v) in v.items():
+        print d_k, d_v.keys()
+        autor = d_v["author"]
+        postTime = d_v["postTime"]
+        relatedCompany = ""
+        queryTime = d_v["queryTime"]
+        content = d_v["content"]
+        source = "Bloomberg News"
+        url = d_v["newsUrl"]
+        stockIndex = k
+        print queryTime,postTime
+        print q_time_format(queryTime)
+        new_format = {}
+        

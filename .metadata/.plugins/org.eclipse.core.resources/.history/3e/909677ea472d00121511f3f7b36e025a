@@ -1,0 +1,26 @@
+import statsmodels.tsa.api as tsa
+import numpy as np
+import sqlite3 as lite
+
+conn = lite.connect('D:\embers\FinanceModel\auto-regression model\embers_ar.db')
+#data=<time* variables>
+data = np.array([[1,2,3,4,5],[1,2,3,4,10],[1,2,3,4,5],[1,2,3,4,10]])
+order = 1
+#np.
+
+#Training
+var_model = tsa.VAR(data)
+var_model_fit = var_model.fit(maxlags=order)
+var_model = var_model_fit.model
+
+
+#Training results
+intercept =var_model_fit.intercept
+params=var_model_fit.params
+
+print intercept
+print params
+
+#Prediction
+#out_of_sample_prediction=var_model_fit.forecast(var_model.y[-order:],num_steps_from_end)
+

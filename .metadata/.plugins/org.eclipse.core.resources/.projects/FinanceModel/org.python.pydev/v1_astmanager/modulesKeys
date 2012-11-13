@@ -38,6 +38,7 @@ Test.kmeanTest|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\Test\kmeanTe
 Test.m1|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\Test\m1.py
 Test.m2|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\Test\m2.py
 Test.m3|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\Test\m3.py
+Test.trans2daily|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\Test\trans2daily.py
 Training.ClusteringTraingSet|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\Training\ClusteringTraingSet.py
 Training.CreateCompanyList|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\Training\CreateCompanyList.py
 Training.CreatingDict|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\Training\CreatingDict.py
@@ -55,8 +56,11 @@ Util.common|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\Util\common.py
 __init__|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\DataPreprocess\__init__.py
 auto_correlation_model.AutoRegression|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\auto_correlation_model\AutoRegression.py
 auto_correlation_model.__init__|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\auto_correlation_model\__init__.py
+auto_correlation_model.analysis_relation|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\auto_correlation_model\analysis_relation.py
 auto_correlation_model.auto_correlation|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\auto_correlation_model\auto_correlation.py
 auto_correlation_model.initiate_indices|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\auto_correlation_model\initiate_indices.py
+auto_correlation_model.relation_plot|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\auto_correlation_model\relation_plot.py
+auto_correlation_model.sigma_evnets|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\auto_correlation_model\sigma_evnets.py
 bayesian_model.__init__|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\bayesian_model\__init__.py
 bayesian_model.bayesian_model|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\bayesian_model\bayesian_model.py
 bayesian_model.bloomberg_news_ingest|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\bayesian_model\bloomberg_news_ingest.py

@@ -1,0 +1,16 @@
+import json
+
+bl_news = json.load(open('d:/bloomberg_news_sample.json','r'))
+print bl_news
+for (k,v) in bl_news.items():
+    print k
+    for (d_k,d_v) in v.items():
+        print d_k, d_v.keys()
+        autor = d_v["author"]
+        postTime = d_v["postTime"]
+        
+        
+"""
+postTime, postDate,author,url,company,title,updateTime,content,embersId,stockIndex,date,updateDate,source:Bloomberg News
+2012-11-08T19:05:30.451366
+"""

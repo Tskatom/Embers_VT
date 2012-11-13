@@ -1,0 +1,4 @@
+import json
+
+bl_news = json.load(open('d:/bloomberg_news_sample.json','r'))
+print bl_news

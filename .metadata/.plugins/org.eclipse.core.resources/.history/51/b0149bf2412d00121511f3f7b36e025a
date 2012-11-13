@@ -1,0 +1,4 @@
+import statsmodels.tsa.vector_ar as var
+
+def main():
+    v_model = var.var_model()

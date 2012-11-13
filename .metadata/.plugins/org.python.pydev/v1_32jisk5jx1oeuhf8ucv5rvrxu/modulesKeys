@@ -1560,6 +1560,7 @@ numpy.compat._inspect|D:\Python27\lib\site-packages\numpy-1.6.2-py2.7-win32.egg\
 numpy.compat.py3k|D:\Python27\lib\site-packages\numpy-1.6.2-py2.7-win32.egg\numpy\compat\py3k.py
 numpy.compat.setup|D:\Python27\lib\site-packages\numpy-1.6.2-py2.7-win32.egg\numpy\compat\setup.py
 numpy.compat.setupscons|D:\Python27\lib\site-packages\numpy-1.6.2-py2.7-win32.egg\numpy\compat\setupscons.py
+numpy.core
 numpy.core.__init__|D:\Python27\lib\site-packages\numpy-1.6.2-py2.7-win32.egg\numpy\core\__init__.py
 numpy.core._internal|D:\Python27\lib\site-packages\numpy-1.6.2-py2.7-win32.egg\numpy\core\_internal.py
 numpy.core._mx_datetime_parser|D:\Python27\lib\site-packages\numpy-1.6.2-py2.7-win32.egg\numpy\core\_mx_datetime_parser.py
@@ -1686,6 +1687,7 @@ numpy.f2py.rules|D:\Python27\lib\site-packages\numpy-1.6.2-py2.7-win32.egg\numpy
 numpy.f2py.setup|D:\Python27\lib\site-packages\numpy-1.6.2-py2.7-win32.egg\numpy\f2py\setup.py
 numpy.f2py.setupscons|D:\Python27\lib\site-packages\numpy-1.6.2-py2.7-win32.egg\numpy\f2py\setupscons.py
 numpy.f2py.use_rules|D:\Python27\lib\site-packages\numpy-1.6.2-py2.7-win32.egg\numpy\f2py\use_rules.py
+numpy.fft
 numpy.fft.__init__|D:\Python27\lib\site-packages\numpy-1.6.2-py2.7-win32.egg\numpy\fft\__init__.py
 numpy.fft.fftpack|D:\Python27\lib\site-packages\numpy-1.6.2-py2.7-win32.egg\numpy\fft\fftpack.py
 numpy.fft.fftpack_lite|D:\Python27\lib\site-packages\numpy-1.6.2-py2.7-win32.egg\numpy\fft\fftpack_lite.py
@@ -1693,6 +1695,7 @@ numpy.fft.helper|D:\Python27\lib\site-packages\numpy-1.6.2-py2.7-win32.egg\numpy
 numpy.fft.info|D:\Python27\lib\site-packages\numpy-1.6.2-py2.7-win32.egg\numpy\fft\info.py
 numpy.fft.setup|D:\Python27\lib\site-packages\numpy-1.6.2-py2.7-win32.egg\numpy\fft\setup.py
 numpy.fft.setupscons|D:\Python27\lib\site-packages\numpy-1.6.2-py2.7-win32.egg\numpy\fft\setupscons.py
+numpy.lib
 numpy.lib.__init__|D:\Python27\lib\site-packages\numpy-1.6.2-py2.7-win32.egg\numpy\lib\__init__.py
 numpy.lib._compiled_base|D:\Python27\lib\site-packages\numpy-1.6.2-py2.7-win32.egg\numpy\lib\_compiled_base.pyd
 numpy.lib._datasource|D:\Python27\lib\site-packages\numpy-1.6.2-py2.7-win32.egg\numpy\lib\_datasource.py
@@ -1717,6 +1720,7 @@ numpy.lib.type_check|D:\Python27\lib\site-packages\numpy-1.6.2-py2.7-win32.egg\n
 numpy.lib.ufunclike|D:\Python27\lib\site-packages\numpy-1.6.2-py2.7-win32.egg\numpy\lib\ufunclike.py
 numpy.lib.user_array|D:\Python27\lib\site-packages\numpy-1.6.2-py2.7-win32.egg\numpy\lib\user_array.py
 numpy.lib.utils|D:\Python27\lib\site-packages\numpy-1.6.2-py2.7-win32.egg\numpy\lib\utils.py
+numpy.linalg
 numpy.linalg.__init__|D:\Python27\lib\site-packages\numpy-1.6.2-py2.7-win32.egg\numpy\linalg\__init__.py
 numpy.linalg.info|D:\Python27\lib\site-packages\numpy-1.6.2-py2.7-win32.egg\numpy\linalg\info.py
 numpy.linalg.lapack_lite|D:\Python27\lib\site-packages\numpy-1.6.2-py2.7-win32.egg\numpy\linalg\lapack_lite.pyd
@@ -1734,6 +1738,7 @@ numpy.ma.testutils|D:\Python27\lib\site-packages\numpy-1.6.2-py2.7-win32.egg\num
 numpy.ma.timer_comparison|D:\Python27\lib\site-packages\numpy-1.6.2-py2.7-win32.egg\numpy\ma\timer_comparison.py
 numpy.ma.version|D:\Python27\lib\site-packages\numpy-1.6.2-py2.7-win32.egg\numpy\ma\version.py
 numpy.matlib|D:\Python27\lib\site-packages\numpy-1.6.2-py2.7-win32.egg\numpy\matlib.py
+numpy.matrixlib
 numpy.matrixlib.__init__|D:\Python27\lib\site-packages\numpy-1.6.2-py2.7-win32.egg\numpy\matrixlib\__init__.py
 numpy.matrixlib.defmatrix|D:\Python27\lib\site-packages\numpy-1.6.2-py2.7-win32.egg\numpy\matrixlib\defmatrix.py
 numpy.matrixlib.setup|D:\Python27\lib\site-packages\numpy-1.6.2-py2.7-win32.egg\numpy\matrixlib\setup.py
@@ -1792,6 +1797,7 @@ numpy.polynomial.polynomial|D:\Python27\lib\site-packages\numpy-1.6.2-py2.7-win3
 numpy.polynomial.polytemplate|D:\Python27\lib\site-packages\numpy-1.6.2-py2.7-win32.egg\numpy\polynomial\polytemplate.py
 numpy.polynomial.polyutils|D:\Python27\lib\site-packages\numpy-1.6.2-py2.7-win32.egg\numpy\polynomial\polyutils.py
 numpy.polynomial.setup|D:\Python27\lib\site-packages\numpy-1.6.2-py2.7-win32.egg\numpy\polynomial\setup.py
+numpy.random
 numpy.random.__init__|D:\Python27\lib\site-packages\numpy-1.6.2-py2.7-win32.egg\numpy\random\__init__.py
 numpy.random.info|D:\Python27\lib\site-packages\numpy-1.6.2-py2.7-win32.egg\numpy\random\info.py
 numpy.random.mtrand|D:\Python27\lib\site-packages\numpy-1.6.2-py2.7-win32.egg\numpy\random\mtrand.pyd
