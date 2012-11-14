@@ -23,20 +23,13 @@ def initiate_data(conn,start,end,target_indices):
             datas[stock_index][result[1]] = d_value
     return  datas   
 
-def get_cor_data(datas,t_index,p_index):
+def get_cor_data(datas,t_index,v_indices):
     t_datas = datas[t_index]
-    v_indices = []
-    p_datas = datas[p_index]
     
     c_t_datas = []
     c_p_datas = []
     
     t_keys = t_datas.keys()
-    for t_k in t_keys:
-        if t_k in p_datas:
-            c_t_datas.append(t_datas[t_k])
-            c_p_datas.append(p_datas[t_k])
-    
     common_days = []
     "Get the common dayList"
     for t_k in t_keys:
@@ -63,13 +56,6 @@ def get_cor_data(datas,t_index,p_index):
         
         d_v.sort(key = lambda x:x['post_date'])
         c_p_datas.append(d_v)
-            
-        
-                
-    
-    "Sort the data"
-    c_t_datas.sort(key = lambda x:x['post_date'])
-    c_p_datas.sort(key = lambda x:x['post_date'])        
     
     return c_t_datas,c_p_datas
 
@@ -145,9 +131,8 @@ def test_phase(start,end,t_index,v_inices,conn,order,var_model_fit):
         
         
         "Insert into the prediction model"
-        sql = "insert into t_ar_prediction (post_date,stock_index,zscore30,zscore90,change_percent,price,event_type) values (?,?,?,?,?,?,?)"
-        cur.execute(sql,(p_date,t_index,zscore30,zscore90,p_1,p_price,event_type,))
-        print p_date
+        sql = "insert into t_ar_prediction (post_date,stock_index,zscore30,zscore90,change_percent,price,event_type,ord) values (?,?,?,?,?,?,?,?)"
+        cur.execute(sql,(p_date,t_index,zscore30,zscore90,p_1,p_price,event_type,order))
     conn.commit()
         
     
@@ -159,39 +144,47 @@ def clear(conn):
     sql = "delete from t_ar_prediction"
     conn.cursor().execute(sql)
     conn.commit()
+
+#def all_test_stage(start,end,conn,order,var_model_fit):
+#    cur = conn.cursor()
+#    ""
     
 def main():
     args = arg_parser()
     db_file = args.db_file
-    order = args.order
+    m_order = args.order
     conn = lite.connect(db_file)
     
     "clear the prediction"
     clear(conn)
     
-    target_list = ['MERVAL','MEXBOL','IBOV','CHILE65','COLCAP','CRSMBCT','BVPSBVPS','IGBVL','IBVC','AEX','AS51','CAC','CCMP','DAX','FTSMIB','HSI','IBEX','INDU','NKY','OMX','SMI','SPTSX','SX5E','UKX']
+    target_list = ['MERVAL','MEXBOL','IBOV','CHILE65','COLCAP','CRSMBCT','BVPSBVPS','IGBVL','IBVC','AEX','AS51','CAC','CCMP','DAX','FTSEMIB','HSI','IBEX','INDU','NKY','OMX','SMI','SPTSX','SX5E','UKX']
     start = '2003-01-01'
     end = '2010-12-31'
     datas = initiate_data(conn,start,end,target_list)
-    t_index = "MEXBOL"
-    v_inices = ["INDU"]
-    c_t_datas,c_p_datas = get_cor_data(datas,t_index,v_inices)
+#    v_inices = ['AEX','AS51','CAC','CCMP','DAX','FTSEMIB','HSI','IBEX','INDU','NKY','OMX','SMI','SPTSX','SX5E','UKX']
     
-    w_d = []
-    w_d.append(c_t_datas)
-    for da in c_p_datas:
-        w_d.append.append(da)
-    
-    
-    "start to fit the model"
-    data_matrix = np.array([[i['change_percent'] for i in c_t_datas],[i['change_percent'] for i in c_p_datas]]).T
-    var_model_fit = fit_model(data_matrix,order)
-    
-    "Move to Test stage"
-    
-    t_start = "2011-01-01"
-    t_end = "2012-10-31"
-    test_phase(t_start,t_end,t_index,v_inices,conn,order,var_model_fit)
+    for order in range(1,m_order):
+        for t_index in ['MERVAL','MEXBOL','IBOV','CHILE65','COLCAP','CRSMBCT','BVPSBVPS','IGBVL','IBVC']:   
+            print t_index
+            v_inices = [index for index in target_list if index != t_index]
+            c_t_datas,c_p_datas = get_cor_data(datas,t_index,v_inices)
+            
+            w_d = []
+            w_d.append([i['change_percent'] for i in c_t_datas])
+            for da in c_p_datas:
+                w_d.append([i['change_percent'] for i in da])
+            
+            
+            "start to fit the model"
+            data_matrix = np.array(w_d).T
+            var_model_fit = fit_model(data_matrix,order)
+            
+            "Move to Test stage"
+            
+            t_start = "2011-01-01"
+            t_end = "2012-10-31"
+            test_phase(t_start,t_end,t_index,v_inices,conn,order,var_model_fit)
     
     if conn:
         conn.close()
