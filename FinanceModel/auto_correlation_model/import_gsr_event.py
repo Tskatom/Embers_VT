@@ -61,8 +61,8 @@ def compare_gsr_pd():
         post_date = r[1]
         event_type = r[2]
         
-        start, end = get_day_range(post_date,2)
-        cur.execute(sql,(stock_index,start,end,event_type))
+        start, end = get_day_range(post_date,1)
+        cur.execute(sql,(stock_index,start,post_date,event_type))
         r_c = cur.fetchone()
         count = int(r_c[0])
         if count > 0:
