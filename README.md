@@ -1,4 +1,4 @@
-# Finance Model: Bayesian - Time serial model description
+# Finance Model: Bayesian - Time serial model description -t
 # 1. Data Structure(sqlite database table used in the model)
 	## t_bloomberg_prices: 
 		Used to store the daily raw stock prices
