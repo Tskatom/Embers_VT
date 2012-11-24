@@ -8,7 +8,7 @@
 </listAttribute>
 <stringAttribute key="org.eclipse.ui.externaltools.ATTR_LOCATION" value="${workspace_loc:FinanceModel/auto_correlation_model/initiate_indices.py}"/>
 <stringAttribute key="org.eclipse.ui.externaltools.ATTR_OTHER_WORKING_DIRECTORY" value="${workspace_loc:FinanceModel/auto_correlation_model}"/>
-<stringAttribute key="org.eclipse.ui.externaltools.ATTR_TOOL_ARGUMENTS" value="-dir &quot;D:\2012-11-07&quot; -od &quot;D:\2012-11-07\json&quot; -db &quot;D:\embers\FinanceModel\auto-regression model\embers_ar.db&quot;"/>
+<stringAttribute key="org.eclipse.ui.externaltools.ATTR_TOOL_ARGUMENTS" value="-dir &quot;D:\raw-currency&quot; -od &quot;D:\raw-currency\json&quot; -db &quot;D:\embers\FinanceModel\auto-regression model\embers_ar.db&quot;"/>
 <stringAttribute key="org.eclipse.ui.externaltools.ATTR_WORKING_DIRECTORY" value="${workspace_loc:FinanceModel/auto_correlation_model}"/>
 <stringAttribute key="org.python.pydev.debug.ATTR_INTERPRETER" value="__default"/>
 <stringAttribute key="org.python.pydev.debug.ATTR_PROJECT" value="FinanceModel"/>

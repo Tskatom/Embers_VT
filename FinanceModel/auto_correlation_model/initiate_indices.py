@@ -27,15 +27,15 @@ def transcsv2json(xlsFile):
             time_tuple = xlrd.xldate_as_tuple(sh.row_values(rownum,0)[0],0)
             post_date = datetime.datetime.strftime(datetime.date(time_tuple[0],time_tuple[1],time_tuple[2]),"%Y-%m-%d")
             lastPrice = float(sh.row_values(rownum,0)[1])
-            previousCloseValue = float(sh.row_values(rownum,0)[3])
+            previousCloseValue = float(sh.row_values(rownum,0)[2])
            
             dayValue = {}
             dayValue["previousCloseValue"] = previousCloseValue
             updateTime = datetime.datetime.strftime(datetime.datetime.strptime(post_date,"%Y-%m-%d"),"%m/%d/%Y") + " 16:00:00"
             dayValue["updateTime"] = updateTime
             dayValue["name"] = stockIndex
-            dayValue["type"] = "stock"
-            dayValue["feed"] = "Bloomberg - Stock Index"
+            dayValue["type"] = "currency"
+            dayValue["feed"] = "Bloomberg - Currency"
             dayValue["date"] = post_date
             dayValue["queryTime"] = "10/01/2012 04:00:03"
             dayValue["currentValue"] = lastPrice
