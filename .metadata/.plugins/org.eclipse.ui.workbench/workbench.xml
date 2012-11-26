@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workbench progressCount="42" version="2.0">
+<workbench progressCount="40" version="2.0">
 <workbenchAdvisor/>
-<window height="964" width="1201" x="66" y="399">
+<window height="964" maximized="true" width="1201" x="186" y="244">
 <fastViewData fastViewLocation="1024"/>
 <perspectiveBar>
 <itemSize x="160"/>
@@ -35,35 +35,25 @@
 <part id="1"/>
 <part id="2"/>
 <part id="3"/>
-<part id="4"/>
-<part id="5"/>
 </presentation>
 </folder>
 </info>
 </editorArea>
-<editor id="org.python.pydev.editor.PythonEditor" name="initiate_indices.py" partName="initiate_indices" path="C:/Users/wei/Documents/GitHub/Embers_VT/FinanceModel/auto_correlation_model/initiate_indices.py" title="initiate_indices" tooltip="FinanceModel/auto_correlation_model/initiate_indices.py" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/FinanceModel/auto_correlation_model/initiate_indices.py"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="4165" selectionTopPixel="1170"/>
+<editor activePart="true" focus="true" id="org.python.pydev.editor.PythonEditor" name="bayesian_model.py" partName="bayesian_model" path="C:/Users/wei/Documents/GitHub/scratch/bloomberg/FinanceModel/bayesian_model/bayesian_model.py" title="bayesian_model" tooltip="Scratch_FinanceModel/bayesian_model/bayesian_model.py" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Scratch_FinanceModel/bayesian_model/bayesian_model.py"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="24524" selectionTopPixel="6959"/>
 </editor>
-<editor id="org.python.pydev.editor.PythonEditor" name="bloomberg_news_ingest.py" partName="bloomberg_news_ingest" path="C:/Users/wei/Documents/GitHub/Embers_VT/FinanceModel/bayesian_model/bloomberg_news_ingest.py" title="bloomberg_news_ingest" tooltip="FinanceModel/bayesian_model/bloomberg_news_ingest.py" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/FinanceModel/bayesian_model/bloomberg_news_ingest.py"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="1680"/>
+<editor id="org.python.pydev.editor.PythonEditor" name="get_keywords.py" partName="get_keywords" path="C:/Users/wei/Documents/GitHub/scratch/bloomberg/FinanceModel/bayesian_model/get_keywords.py" title="get_keywords" tooltip="Scratch_FinanceModel/bayesian_model/get_keywords.py" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Scratch_FinanceModel/bayesian_model/get_keywords.py"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1150" selectionTopPixel="194"/>
 </editor>
-<editor id="org.python.pydev.editor.PythonEditor" name="auto_correlation.py" partName="auto_correlation" path="C:/Users/wei/Documents/GitHub/Embers_VT/FinanceModel/auto_correlation_model/auto_correlation.py" title="auto_correlation" tooltip="FinanceModel/auto_correlation_model/auto_correlation.py" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/FinanceModel/auto_correlation_model/auto_correlation.py"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="116" selectionTopPixel="0"/>
+<editor id="org.python.pydev.editor.PythonEditor" name="sim_bayesian_model.py" partName="sim_bayesian_model" path="C:/Users/wei/Documents/GitHub/Embers_VT/FinanceModel/simpleDB_version/sim_bayesian_model.py" title="sim_bayesian_model" tooltip="FinanceModel/simpleDB_version/sim_bayesian_model.py" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/FinanceModel/simpleDB_version/sim_bayesian_model.py"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
 </editor>
-<editor id="org.python.pydev.editor.PythonEditor" name="AutoRegression.py" partName="AutoRegression (auto_correlation_model)" path="C:/Users/wei/Documents/GitHub/Embers_VT/FinanceModel/auto_correlation_model/AutoRegression.py" title="AutoRegression (auto_correlation_model)" tooltip="FinanceModel/auto_correlation_model/AutoRegression.py" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/FinanceModel/auto_correlation_model/AutoRegression.py"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="4283" selectionTopPixel="1486"/>
-</editor>
-<editor id="org.eclipse.ui.DefaultTextEditor" name="config.cfg" partName="config.cfg" path="C:/Users/wei/Documents/GitHub/Embers_VT/FinanceModel/Config/config.cfg" title="config.cfg" tooltip="FinanceModel/Config/config.cfg" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/FinanceModel/Config/config.cfg"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="168" selectionTopPixel="0"/>
-</editor>
-<editor activePart="true" focus="true" id="org.python.pydev.editor.PythonEditor" name="m1.py" partName="m1" path="C:/Users/wei/Documents/GitHub/Embers_VT/FinanceModel/Test/m1.py" title="m1" tooltip="FinanceModel/Test/m1.py" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/FinanceModel/Test/m1.py"/>
-<editorState selectionHorizontalPixel="0" selectionLength="1721" selectionOffset="0" selectionTopPixel="0"/>
+<editor id="org.python.pydev.editor.PythonEditor" name="sim_bloomberg_news_process.py" partName="sim_bloomberg_news_process" path="C:/Users/wei/Documents/GitHub/Embers_VT/FinanceModel/simpleDB_version/sim_bloomberg_news_process.py" title="sim_bloomberg_news_process" tooltip="FinanceModel/simpleDB_version/sim_bloomberg_news_process.py" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/FinanceModel/simpleDB_version/sim_bloomberg_news_process.py"/>
+<editorState selectionHorizontalPixel="0" selectionLength="69" selectionOffset="993" selectionTopPixel="239"/>
 </editor>
 </editors>
 <views>
@@ -94,7 +84,7 @@
 <viewState/>
 </view>
 </views>
-<perspectives activePart="org.python.pydev.editor.PythonEditor" activePerspective="com.aptana.ui.WebPerspective">
+<perspectives activePart="org.eclipse.ui.navigator.ProjectExplorer" activePerspective="com.aptana.ui.WebPerspective">
 <perspective editorAreaTrimState="2" editorAreaVisible="1" fixed="0" version="0.016">
 <descriptor class="com.aptana.ui.internal.WebPerspectiveFactory" id="com.aptana.ui.WebPerspective" label="Web"/>
 <alwaysOnActionSet id="com.aptana.browser.actionSet"/>
@@ -203,171 +193,159 @@
 <workingSets/>
 <navigationHistory>
 <editors>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" path="/FinanceModel/auto_correlation_model/initiate_indices.py"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" path="/FinanceModel/bayesian_model/bloomberg_news_ingest.py"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.aptana.editor.text" path="/FinanceModel/auto_correlation_model/initiate_indices.log"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" path="/FinanceModel/bayesian_model/stock_process.py"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" path="/FinanceModel/Test/TestParser.py"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" path="/FinanceModel/auto_correlation_model/auto_correlation.py"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" path="/FinanceModel/Test/AutoRegression.py"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" path="/FinanceModel/Test/AutoRegression.py"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" path="/FinanceModel/auto_correlation_model/auto_correlation.py"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" path="/FinanceModel/auto_correlation_model/AutoRegression.py"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" path="/FinanceModel/Test/TestParser.py"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" path="/FinanceModel/auto_correlation_model/initiate_indices.py"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" path="/FinanceModel/Config/config.cfg"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" path="/FinanceModel/bayesian_model/bloomberg_news_ingest.py"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" path="/FinanceModel/Test/m1.py"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" path="/Scratch_FinanceModel/bayesian_model/bayesian_model.py"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" path="/Scratch_FinanceModel/bayesian_model/get_keywords.py"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" path="/FinanceModel/simpleDB_version/sim_bloomberg_news_process.py"/>
 </editors>
-<item historyLabel="stock_process" index="3">
-<position info="not_deleted" x="1425" y="5283"/>
+<item historyLabel="bayesian_model" index="0">
+<position info="not_deleted" x="5862" y="0"/>
 </item>
-<item historyLabel="initiate_indices" index="0">
-<position info="not_deleted" x="2935" y="16"/>
+<item historyLabel="get_keywords" index="1">
+<position info="not_deleted" x="1322" y="14"/>
 </item>
-<item historyLabel="stock_process" index="3">
-<position info="not_deleted" x="1425" y="5283"/>
+<item historyLabel="bayesian_model" index="0">
+<position info="not_deleted" x="1725" y="0"/>
 </item>
-<item historyLabel="stock_process" index="3">
-<position info="not_deleted" x="6710" y="508"/>
+<item historyLabel="get_keywords" index="1">
+<position info="not_deleted" x="1322" y="14"/>
 </item>
-<item historyLabel="initiate_indices" index="0">
-<position info="not_deleted" x="5203" y="0"/>
+<item historyLabel="bayesian_model" index="0">
+<position info="not_deleted" x="1725" y="0"/>
 </item>
-<item historyLabel="stock_process" index="3">
-<position info="not_deleted" x="6710" y="508"/>
+<item historyLabel="bayesian_model" index="0">
+<position info="not_deleted" x="22796" y="0"/>
 </item>
-<item historyLabel="initiate_indices" index="0">
-<position info="not_deleted" x="5203" y="0"/>
+<item historyLabel="sim_bloomberg_news_process" index="2">
+<position info="not_deleted" x="2704" y="223"/>
 </item>
-<item historyLabel="initiate_indices" index="0">
-<position/>
+<item historyLabel="bayesian_model" index="0">
+<position info="not_deleted" x="22796" y="0"/>
 </item>
-<item historyLabel="initiate_indices" index="0">
-<position info="not_deleted" x="7179" y="0"/>
+<item historyLabel="bayesian_model" index="0">
+<position info="not_deleted" x="228" y="0"/>
 </item>
-<item historyLabel="bloomberg_news_ingest" index="1">
-<position info="not_deleted" x="0" y="0"/>
+<item historyLabel="get_keywords" index="1">
+<position info="not_deleted" x="52" y="967"/>
 </item>
-<item historyLabel="initiate_indices" index="0">
-<position info="not_deleted" x="7215" y="0"/>
+<item historyLabel="bayesian_model" index="0">
+<position info="not_deleted" x="228" y="0"/>
 </item>
-<item historyLabel="TestParser" index="4">
-<position info="not_deleted" x="426" y="0"/>
+<item historyLabel="get_keywords" index="1">
+<position info="not_deleted" x="52" y="967"/>
 </item>
-<item historyLabel="bloomberg_news_ingest" index="1">
-<position info="not_deleted" x="0" y="0"/>
+<item historyLabel="bayesian_model" index="0">
+<position info="not_deleted" x="6338" y="0"/>
 </item>
-<item historyLabel="TestParser" index="4">
-<position info="not_deleted" x="426" y="0"/>
+<item historyLabel="get_keywords" index="1">
+<position info="not_deleted" x="552" y="51"/>
 </item>
-<item historyLabel="TestParser" index="4">
-<position info="not_deleted" x="376" y="32"/>
+<item historyLabel="bayesian_model" index="0">
+<position info="not_deleted" x="3596" y="0"/>
 </item>
-<item historyLabel="TestParser" index="4">
-<position info="not_deleted" x="434" y="6"/>
+<item historyLabel="get_keywords" index="1">
+<position info="not_deleted" x="183" y="136"/>
 </item>
-<item historyLabel="TestParser" index="4">
-<position info="not_deleted" x="376" y="32"/>
+<item historyLabel="bayesian_model" index="0">
+<position info="not_deleted" x="3404" y="0"/>
 </item>
-<item historyLabel="initiate_indices" index="0">
-<position info="not_deleted" x="7453" y="0"/>
+<item historyLabel="get_keywords" index="1">
+<position info="not_deleted" x="183" y="136"/>
 </item>
-<item historyLabel="initiate_indices.log" index="2">
-<position info="not_deleted" x="7199809" y="0"/>
+<item historyLabel="bayesian_model" index="0">
+<position info="not_deleted" x="3404" y="0"/>
 </item>
-<item historyLabel="initiate_indices" index="0">
-<position info="not_deleted" x="3365" y="0"/>
+<item historyLabel="bayesian_model" index="0">
+<position info="not_deleted" x="24074" y="0"/>
 </item>
-<item historyLabel="auto_correlation" index="5">
-<position info="not_deleted" x="0" y="0"/>
+<item historyLabel="get_keywords" index="1">
+<position info="not_deleted" x="186" y="37"/>
 </item>
-<item historyLabel="AutoRegression" index="6">
-<position info="not_deleted" x="0" y="0"/>
+<item historyLabel="bayesian_model" index="0">
+<position info="not_deleted" x="24074" y="0"/>
 </item>
-<item historyLabel="initiate_indices.log" index="2">
-<position info="not_deleted" x="7199809" y="0"/>
+<item historyLabel="bayesian_model" index="0">
+<position info="not_deleted" x="3404" y="0"/>
 </item>
-<item historyLabel="AutoRegression" index="7">
-<position info="not_deleted" x="2326" y="0"/>
+<item historyLabel="get_keywords" index="1">
+<position info="not_deleted" x="301" y="10"/>
 </item>
-<item historyLabel="auto_correlation" index="8">
-<position info="not_deleted" x="118" y="0"/>
+<item historyLabel="bayesian_model" index="0">
+<position info="not_deleted" x="3445" y="0"/>
 </item>
-<item historyLabel="AutoRegression (auto_correlation_model)" index="9">
-<position info="not_deleted" x="186" y="0"/>
+<item historyLabel="get_keywords" index="1">
+<position info="not_deleted" x="645" y="143"/>
 </item>
-<item historyLabel="AutoRegression (Test)" index="7">
-<position info="not_deleted" x="2326" y="0"/>
+<item historyLabel="bayesian_model" index="0">
+<position info="not_deleted" x="3445" y="0"/>
 </item>
-<item historyLabel="AutoRegression (auto_correlation_model)" index="9">
-<position info="not_deleted" x="186" y="0"/>
+<item historyLabel="bayesian_model" index="0">
+<position info="not_deleted" x="3596" y="0"/>
 </item>
-<item historyLabel="AutoRegression (Test)" index="7">
-<position info="not_deleted" x="2326" y="0"/>
+<item historyLabel="get_keywords" index="1">
+<position info="not_deleted" x="645" y="143"/>
 </item>
-<item historyLabel="AutoRegression (auto_correlation_model)" index="9">
-<position info="not_deleted" x="186" y="0"/>
+<item historyLabel="bayesian_model" index="0">
+<position info="not_deleted" x="3593" y="0"/>
 </item>
-<item historyLabel="initiate_indices.log" index="2">
-<position info="not_deleted" x="7199809" y="0"/>
+<item historyLabel="get_keywords" index="1">
+<position info="not_deleted" x="1150" y="0"/>
 </item>
-<item historyLabel="AutoRegression (auto_correlation_model)" index="9">
-<position info="not_deleted" x="186" y="0"/>
+<item historyLabel="bayesian_model" index="0">
+<position info="not_deleted" x="3593" y="0"/>
 </item>
-<item historyLabel="auto_correlation" index="8">
-<position info="not_deleted" x="118" y="0"/>
+<item historyLabel="bayesian_model" index="0">
+<position info="not_deleted" x="7627" y="128"/>
 </item>
-<item historyLabel="TestParser" index="10">
-<position info="not_deleted" x="376" y="32"/>
+<item historyLabel="bayesian_model" index="0">
+<position info="not_deleted" x="7847" y="0"/>
 </item>
-<item historyLabel="auto_correlation" index="8">
-<position info="not_deleted" x="118" y="0"/>
+<item historyLabel="get_keywords" index="1">
+<position info="not_deleted" x="1150" y="0"/>
 </item>
-<item historyLabel="initiate_indices" index="11">
-<position info="not_deleted" x="3365" y="0"/>
+<item historyLabel="bayesian_model" index="0">
+<position info="not_deleted" x="7847" y="0"/>
 </item>
-<item historyLabel="auto_correlation" index="8">
-<position info="not_deleted" x="118" y="0"/>
+<item historyLabel="bayesian_model" index="0">
+<position info="not_deleted" x="9477" y="0"/>
 </item>
-<item historyLabel="AutoRegression (auto_correlation_model)" index="9">
-<position info="not_deleted" x="89" y="38"/>
+<item historyLabel="sim_bloomberg_news_process" index="2">
+<position info="not_deleted" x="993" y="69"/>
 </item>
-<item historyLabel="initiate_indices" index="11">
-<position info="not_deleted" x="3365" y="0"/>
+<item historyLabel="bayesian_model" index="0">
+<position info="not_deleted" x="9477" y="0"/>
 </item>
-<item historyLabel="auto_correlation" index="8">
-<position info="not_deleted" x="118" y="0"/>
+<item historyLabel="bayesian_model" index="0">
+<position info="not_deleted" x="8274" y="838"/>
 </item>
-<item historyLabel="AutoRegression (auto_correlation_model)" index="9">
-<position info="not_deleted" x="33" y="18"/>
+<item historyLabel="bayesian_model" index="0">
+<position info="not_deleted" x="13401" y="20"/>
 </item>
-<item historyLabel="auto_correlation" index="8">
-<position info="not_deleted" x="118" y="0"/>
+<item historyLabel="bayesian_model" index="0">
+<position info="not_deleted" x="7339" y="0"/>
 </item>
-<item historyLabel="AutoRegression (auto_correlation_model)" index="9">
-<position info="not_deleted" x="0" y="31"/>
+<item historyLabel="bayesian_model" index="0">
+<position info="not_deleted" x="15478" y="127"/>
 </item>
-<item historyLabel="auto_correlation" index="8">
-<position info="not_deleted" x="116" y="0"/>
+<item historyLabel="bayesian_model" index="0">
+<position info="not_deleted" x="15248" y="28"/>
 </item>
-<item historyLabel="AutoRegression (auto_correlation_model)" index="9">
-<position info="not_deleted" x="3533" y="29"/>
+<item historyLabel="bayesian_model" index="0">
+<position info="not_deleted" x="17108" y="0"/>
 </item>
-<item historyLabel="config.cfg" index="12">
-<position info="not_deleted" x="168" y="0"/>
+<item historyLabel="sim_bloomberg_news_process" index="2">
+<position info="not_deleted" x="993" y="69"/>
 </item>
-<item historyLabel="AutoRegression (auto_correlation_model)" index="9">
-<position info="not_deleted" x="3533" y="29"/>
+<item historyLabel="bayesian_model" index="0">
+<position info="not_deleted" x="17108" y="0"/>
 </item>
-<item historyLabel="bloomberg_news_ingest" index="13">
-<position info="not_deleted" x="0" y="0"/>
+<item historyLabel="bayesian_model" index="0">
+<position info="not_deleted" x="18296" y="100"/>
 </item>
-<item historyLabel="initiate_indices" index="11">
-<position info="not_deleted" x="4165" y="0"/>
+<item historyLabel="bayesian_model" index="0">
+<position info="not_deleted" x="18696" y="151"/>
 </item>
-<item active="true" historyLabel="m1" index="14">
-<position info="not_deleted" x="1752" y="0"/>
+<item active="true" historyLabel="bayesian_model" index="0">
+<position info="not_deleted" x="19156" y="151"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -386,6 +364,21 @@
 </trimLayout>
 </window>
 <mruList>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" name="sim_bloomberg_news_process.py" tooltip="FinanceModel/simpleDB_version/sim_bloomberg_news_process.py">
+<persistable path="/FinanceModel/simpleDB_version/sim_bloomberg_news_process.py"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" name="sim_bayesian_model.py" tooltip="FinanceModel/simpleDB_version/sim_bayesian_model.py">
+<persistable path="/FinanceModel/simpleDB_version/sim_bayesian_model.py"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" name="get_keywords.py" tooltip="Scratch_FinanceModel/bayesian_model/get_keywords.py">
+<persistable path="/Scratch_FinanceModel/bayesian_model/get_keywords.py"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" name="bayesian_model.py" tooltip="Scratch_FinanceModel/bayesian_model/bayesian_model.py">
+<persistable path="/Scratch_FinanceModel/bayesian_model/bayesian_model.py"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" name="calculator.py" tooltip="Scratch_FinanceModel/bayesian_model/calculator.py">
+<persistable path="/Scratch_FinanceModel/bayesian_model/calculator.py"/>
+</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" name="m1.py" tooltip="FinanceModel/Test/m1.py">
 <persistable path="/FinanceModel/Test/m1.py"/>
 </file>
@@ -415,21 +408,6 @@
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" name="logs.py" tooltip="FinanceModel/etool/logs.py">
 <persistable path="/FinanceModel/etool/logs.py"/>
-</file>
-<file factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" id="org.python.pydev.editor.PythonEditor" name="__init__.py" tooltip="D:\Python27\Lib\site-packages\xlrd\__init__.py">
-<persistable uri="file:/D:/Python27/Lib/site-packages/xlrd/__init__.py"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" name="bloomberg_news_process.py" tooltip="FinanceModel/bayesian_model/bloomberg_news_process.py">
-<persistable path="/FinanceModel/bayesian_model/bloomberg_news_process.py"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" name="TestReg.py" tooltip="FinanceModel/Test/TestReg.py">
-<persistable path="/FinanceModel/Test/TestReg.py"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" name="create_historical_stock.py" tooltip="FinanceModel/DataPreprocess/create_historical_stock.py">
-<persistable path="/FinanceModel/DataPreprocess/create_historical_stock.py"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.python.pydev.editor.PythonEditor" name="import_holiday_info.py" tooltip="FinanceModel/DataPreprocess/import_holiday_info.py">
-<persistable path="/FinanceModel/DataPreprocess/import_holiday_info.py"/>
 </file>
 </mruList>
 </workbench>

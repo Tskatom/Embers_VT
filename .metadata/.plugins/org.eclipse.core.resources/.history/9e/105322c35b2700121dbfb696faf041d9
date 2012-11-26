@@ -1,5 +1,0 @@
-import os
-
-files = os.listdir('../Config/DailyNews')
-for file in files:
-    print file

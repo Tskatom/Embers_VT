@@ -1,7 +1,0 @@
-wordLines = None
-with open(VOCABULARY_FILE,"r") as f_read:
-    wordLines = f_read.readlines()
-termList = {}
-for line in wordLines:
-    line = line.replace("\n","").replace("\r","")
-    termList[line] = 0

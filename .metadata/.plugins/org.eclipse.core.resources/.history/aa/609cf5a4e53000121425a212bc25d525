@@ -1,9 +1,0 @@
-import sqlite3 as lite
-
-conn = lite.connect('d:/embers/financemodel/auto-regression model/embers_ar.db')
-cur = conn.cursor()
-sql = "select country,date,holiday_name from s_holiday"
-cur.execute(sql)
-rs = cur.fetchall()
-for r in rs:
-    print r

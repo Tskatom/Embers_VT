@@ -1,5 +1,0 @@
-import sqlite3 as lite 
-import argparse
-
-def arg_parser():
-    

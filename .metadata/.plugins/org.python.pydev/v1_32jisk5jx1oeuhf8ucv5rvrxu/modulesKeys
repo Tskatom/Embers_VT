@@ -2562,6 +2562,7 @@ numpy.f2py.rules|D:\Python27\lib\site-packages\numpy-1.6.2-py2.7-win32.egg\numpy
 numpy.f2py.setup|D:\Python27\lib\site-packages\numpy-1.6.2-py2.7-win32.egg\numpy\f2py\setup.py
 numpy.f2py.setupscons|D:\Python27\lib\site-packages\numpy-1.6.2-py2.7-win32.egg\numpy\f2py\setupscons.py
 numpy.f2py.use_rules|D:\Python27\lib\site-packages\numpy\f2py\use_rules.py
+numpy.fft
 numpy.fft.__init__|D:\Python27\lib\site-packages\numpy-1.6.2-py2.7-win32.egg\numpy\fft\__init__.py
 numpy.fft.fftpack|D:\Python27\lib\site-packages\numpy\fft\fftpack.py
 numpy.fft.fftpack_lite|D:\Python27\lib\site-packages\numpy-1.6.2-py2.7-win32.egg\numpy\fft\fftpack_lite.py
@@ -2593,6 +2594,7 @@ numpy.lib.type_check|D:\Python27\lib\site-packages\numpy\lib\type_check.py
 numpy.lib.ufunclike|D:\Python27\lib\site-packages\numpy\lib\ufunclike.py
 numpy.lib.user_array|D:\Python27\lib\site-packages\numpy-1.6.2-py2.7-win32.egg\numpy\lib\user_array.py
 numpy.lib.utils|D:\Python27\lib\site-packages\numpy\lib\utils.py
+numpy.linalg
 numpy.linalg.__init__|D:\Python27\lib\site-packages\numpy-1.6.2-py2.7-win32.egg\numpy\linalg\__init__.py
 numpy.linalg.info|D:\Python27\lib\site-packages\numpy\linalg\info.py
 numpy.linalg.lapack_lite|D:\Python27\lib\site-packages\numpy-1.6.2-py2.7-win32.egg\numpy\linalg\lapack_lite.pyd
@@ -2668,6 +2670,7 @@ numpy.polynomial.polynomial|D:\Python27\lib\site-packages\numpy-1.6.2-py2.7-win3
 numpy.polynomial.polytemplate|D:\Python27\lib\site-packages\numpy-1.6.2-py2.7-win32.egg\numpy\polynomial\polytemplate.py
 numpy.polynomial.polyutils|D:\Python27\lib\site-packages\numpy\polynomial\polyutils.py
 numpy.polynomial.setup|D:\Python27\lib\site-packages\numpy-1.6.2-py2.7-win32.egg\numpy\polynomial\setup.py
+numpy.random
 numpy.random.__init__|D:\Python27\lib\site-packages\numpy-1.6.2-py2.7-win32.egg\numpy\random\__init__.py
 numpy.random.info|D:\Python27\lib\site-packages\numpy\random\info.py
 numpy.random.mtrand|D:\Python27\lib\site-packages\numpy-1.6.2-py2.7-win32.egg\numpy\random\mtrand.pyd
