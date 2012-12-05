@@ -27,15 +27,15 @@ for index in articles:
     trendJson = json.load(trendFile)
     for trend in trendJson:
         if index == trend[6]:
-             cluster = trend[7]
-             structDate = time.strptime(trend[2],"%Y-%m-%d")
-             dtDay = datetime.datetime(structDate[0],structDate[1],structDate[2])
-             for i in range(1,4):
-                 day = dtDay - datetime.timedelta(days=i)
-                 dayStr = day.strftime("%Y%m%d")
-                 if cluster not in clusterDays:
+            cluster = trend[7]
+            structDate = time.strptime(trend[2],"%Y-%m-%d")
+            dtDay = datetime.datetime(structDate[0],structDate[1],structDate[2])
+            for i in range(1,4):
+                day = dtDay - datetime.timedelta(days=i)
+                dayStr = day.strftime("%Y%m%d")
+                if cluster not in clusterDays:
                     clusterDays[cluster] = []
-                 if dayStr not in clusterDays[cluster]:
+                if dayStr not in clusterDays[cluster]:
                     clusterDays[cluster].append(dayStr)
 
     print clusterDays
