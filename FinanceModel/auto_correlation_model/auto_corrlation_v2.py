@@ -4,7 +4,10 @@ import sqlite3 as lite
 import argparse
 from Util import calculator
 import math
-
+"""
+One idea is that may be the current relation should have more reasonal correlation between two different data
+So the training data may be better if we choose the better
+"""
 def arg_parser():
     ap = argparse.ArgumentParser("The auto_correlation model")
     ap.add_argument('-db',dest='db_file',metavar='DATA BASE',type=str,help='The Database path')
@@ -15,7 +18,7 @@ def initiate_data(conn,start,end,target_indices):
     cur = conn.cursor()
     datas = {}
     for stock_index in target_indices:
-        sql = "select name,post_date,current_value/previous_close_value from t_enriched_bloomberg_prices where post_date>='{}' and post_date<='{}' and name='{}' order by post_date asc".format(start,end,stock_index)
+        sql = "select name,post_date,current_value/previous_close_value from t_enriched_bloomberg_prices where post_date>='{}' and post_date<'{}' and name='{}' order by post_date asc".format(start,end,stock_index)
         cur.execute(sql)
         datas[stock_index] = {}
         results = cur.fetchall()
@@ -76,11 +79,11 @@ def fit_model(data,order):
     var_model_fit = var_model.fit(maxlags=order)
     return var_model_fit
 
-def test_phase(start,end,t_index,v_inices,conn,order,var_model_fit):
+def test_phase(training_start,test_start,test_end,t_index,v_indices,conn,order,target_indices):
     "Get the list of day to predict"
     cur = conn.cursor()
     date_list = []
-    sql = "select post_date from t_enriched_bloomberg_prices where name='{}' and post_date>='{}' and post_date<='{}' order by post_date asc".format(t_index,start,end)
+    sql = "select post_date from t_enriched_bloomberg_prices where name='{}' and post_date>='{}' and post_date<='{}' order by post_date asc".format(t_index,test_start,test_end)
     cur.execute(sql)
     rs = cur.fetchall()
     for r in rs:
@@ -88,29 +91,26 @@ def test_phase(start,end,t_index,v_inices,conn,order,var_model_fit):
     
     "forcast the stock index day by day"
     for p_date in date_list:
-        "initiate the data matrix"
-        data_matrix = []
-        "get the past target value"
-        sql = "select current_value/previous_close_value from t_enriched_bloomberg_prices where name=? and post_date<? order by post_date desc limit ?"
+        "For each day, we update the data set to contain the latest data"
+        datas = initiate_data(conn,training_start,p_date,target_indices)
+        c_t_datas,c_p_datas = get_cor_data(datas,t_index,v_indices)
+        print "real_value: ",c_t_datas[-1]['change_percent']    
+        w_d = []
+        w_d.append([i['change_percent'] for i in c_t_datas])
+        for da in c_p_datas:
+            w_d.append([i['change_percent'] for i in da])
         
-        cur.execute(sql,(t_index,p_date,order,))
-        rs = cur.fetchall()
-        t_value = [math.log(r[0]) for r in rs]
-        print "real value: ",t_value[0]
-        t_value.reverse()
-        data_matrix.append(t_value)
+        "start to fit the model"
+        data_matrix = np.array(w_d).T
+        print data_matrix[-1]
         
-        "get the indicator values"
-        for v_index in v_inices:
-            cur.execute(sql,(v_index,p_date,order,))
-            rs = cur.fetchall()
-            v_value = [math.log(r[0]) for r in rs]
-            v_value.reverse()
-            data_matrix.append(v_value)
+        with open('/home/qianzou/data/mexbol_merval.txt',"w") as out_q:
+            for d in data_matrix:
+                out_q.write(str(d[0])+"\t"+str(d[1])+"\n")
         
-        print data_matrix,"--------------"   
-        "construct the matrix"
-        data_matrix = np.array(data_matrix).T
+        var_model_fit = fit_model(data_matrix[:],order)
+        
+        "Make predicton"
         prediction = forcast(var_model_fit,data_matrix,1)
         
         print "predict value: ",prediction[0]
@@ -157,7 +157,7 @@ def clear(conn):
 def main():
     args = arg_parser()
     db_file = args.db_file
-    m_order = args.order
+#    m_order = args.order
     conn = lite.connect(db_file)
     
     "clear the prediction"
@@ -166,35 +166,18 @@ def main():
 #    target_list = ['MERVAL','MEXBOL','IBOV','CHILE65','COLCAP','CRSMBCT','BVPSBVPS','IGBVL','IBVC','AEX','AS51','CAC','CCMP','DAX','FTSEMIB','HSI','IBEX','INDU','NKY','OMX','SMI','SPTSX','SX5E','UKX']
 #    target_list = ['MERVAL','MEXBOL','CHILE65','AEX','INDU','NKY','OMX','SPTSX','SX5E','UKX']
     target_list = ['MEXBOL','MERVAL']
-    start = '2003-01-01'
-    end = '2011-01-12'
-    datas = initiate_data(conn,start,end,target_list)
-#    v_inices = ['AEX','AS51','CAC','CCMP','DAX','FTSEMIB','HSI','IBEX','INDU','NKY','OMX','SMI','SPTSX','SX5E','UKX']
+    training_start = '2003-01-01'
+#    v_indices = ['AEX','AS51','CAC','CCMP','DAX','FTSEMIB','HSI','IBEX','INDU','NKY','OMX','SMI','SPTSX','SX5E','UKX']
     
     for order in range(1,2):
 #        for t_index in ['MERVAL','MEXBOL','IBOV','CHILE65','COLCAP','CRSMBCT','BVPSBVPS','IGBVL','IBVC']:
         for t_index in ['MEXBOL']:   
-            print t_index
-            v_inices = [index for index in target_list if index != t_index]
-            c_t_datas,c_p_datas = get_cor_data(datas,t_index,v_inices)
+            v_indices = [index for index in target_list if index != t_index]
             
-            w_d = []
-            w_d.append([i['change_percent'] for i in c_t_datas])
-            for da in c_p_datas:
-                w_d.append([i['change_percent'] for i in da])
-            
-            
-            "start to fit the model"
-            data_matrix = np.array(w_d).T
-            
-            var_model_fit = fit_model(data_matrix,order)
-            
-            print var_model_fit.summary()
             "Move to Test stage"
-            
-            t_start = "2011-01-13"
-            t_end = "2011-01-14"
-            test_phase(t_start,t_end,t_index,v_inices,conn,order,var_model_fit)
+            t_start = "2011-01-02"
+            t_end = "2012-10-31"
+            test_phase(training_start,t_start,t_end,t_index,v_indices,conn,order,target_list)
         
     if conn:
         conn.close()
