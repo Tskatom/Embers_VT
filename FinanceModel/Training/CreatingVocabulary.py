@@ -55,12 +55,13 @@ def create_vocabulary():
         flatCount = flatCount + 1
         doc = newsWarehouse[news]
         #print doc
-        tokens = nltk.word_tokenize(doc["content"])
-        stemmer = nltk.stem.snowball.SnowballStemmer('english')
-        words = [w.lower() for w in tokens if w not in [",",".",")","]","(","[","*",";","...",":","&",'"'] and not w.isdigit()]
-        words = [w for w in words if w.encode("utf8") not in nltk.corpus.stopwords.words('english')]
-        stemmedWords = [stemmer.stem(w) for w in words]
-        fdist=nltk.FreqDist(stemmedWords)
+#        tokens = nltk.word_tokenize(doc["content"])
+#        stemmer = nltk.stem.snowball.SnowballStemmer('english')
+#        words = [w.lower() for w in tokens if w not in [",",".",")","]","(","[","*",";","...",":","&",'"'] and not w.isdigit()]
+#        words = [w for w in words if w.encode("utf8") not in nltk.corpus.stopwords.words('english')]
+#        stemmedWords = [stemmer.stem(w) for w in words]
+#        fdist=nltk.FreqDist(stemmedWords)
+        fdist = doc["words"]
         for word in keyWords:
             if word in fdist:
                 if word in wordFreq:

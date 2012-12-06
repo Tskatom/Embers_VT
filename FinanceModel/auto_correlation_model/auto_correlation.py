@@ -164,12 +164,13 @@ def main():
     datas = initiate_data(conn,start,end,target_list)
 #    v_inices = ['AEX','AS51','CAC','CCMP','DAX','FTSEMIB','HSI','IBEX','INDU','NKY','OMX','SMI','SPTSX','SX5E','UKX']
     
-    for order in range(1,m_order):
+    for order in range(1,m_order+1):
         for t_index in ['MERVAL','MEXBOL','IBOV','CHILE65','COLCAP','CRSMBCT','BVPSBVPS','IGBVL','IBVC']:   
-            print t_index
             v_inices = [index for index in target_list if index != t_index]
             c_t_datas,c_p_datas = get_cor_data(datas,t_index,v_inices)
             
+            print c_t_datas
+            print c_p_datas
             w_d = []
             w_d.append([i['change_percent'] for i in c_t_datas])
             for da in c_p_datas:
@@ -179,12 +180,14 @@ def main():
             "start to fit the model"
             data_matrix = np.array(w_d).T
             var_model_fit = fit_model(data_matrix,order)
-            
+            print var_model_fit
+            break
             "Move to Test stage"
             
             t_start = "2011-01-01"
             t_end = "2012-10-31"
             test_phase(t_start,t_end,t_index,v_inices,conn,order,var_model_fit)
+        break
     
     if conn:
         conn.close()

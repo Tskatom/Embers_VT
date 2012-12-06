@@ -121,9 +121,9 @@ def check_enrichedata_existed(embersId):
         else:
             flag = True
     except lite.ProgrammingError as e:
-        log.info( e )
+        log.info(e)
     except:
-        log.info( "Error: %s" %sys.exc_info()[0])
+        log.info( "Error: %s" %(sys.exc_info()[0]))
     finally:
         return flag
 
@@ -190,15 +190,14 @@ def get_uncompleted_mission():
                     if i%100 == 0:
                         con.commit()
                 except lite.ProgrammingError as e:
-                    log.info( "Error:",e   )            
+                    log.info(e)            
                 except:
-                    log.info( "Error-----:[",currentWord ,']++',sys.exc_info())
                     continue
         con.commit()        
     except lite.OperationalError as e:
-        log.info( e )
+        log.info(e)
     except:
-        log.info( "Error****: ", sys.exc_info()[0] )
+        log.info("Error:%s" %(sys.exc_info()[0]))
     
 def execute(traingStart,traingEnd,estimationStart,estimationEnd):
     "Clear the database data"

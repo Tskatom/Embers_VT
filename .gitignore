@@ -1,0 +1,9 @@
+.project
+.pydevproject
+.setting
+*.prefs
+*.db
+.metadata\
+.metadata
+build
+*.log

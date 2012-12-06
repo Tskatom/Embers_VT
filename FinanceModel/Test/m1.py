@@ -1,21 +1,13 @@
-#!/usr/bin/env python
-# Working with multiple figure windows and subplots
-from pylab import *
+import time
 
-t = arange(0.0, 2.0, 0.01)
-s1 = sin(2*pi*t)
-s2 = sin(4*pi*t)
+def f(x,y):
+    x+y
+    time.sleep(1)
+    pass
 
-figure(1)
-subplot(211)
-plot(t,s1)
+def main():
+    for i in range(1,10):
+        f(1,2)
 
-
-# now switch back to figure 1 and make some changes
-figure(1)
-subplot(211)
-plot(t,s2, 'gs')
-setp(gca(), 'xticklabels', [])
-
-
-show()
+if __name__ == "__main__":
+    main()

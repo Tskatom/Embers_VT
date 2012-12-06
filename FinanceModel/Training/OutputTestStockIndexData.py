@@ -2,43 +2,88 @@
 from Util import common
 import json
 import hashlib
+from Util import calculator
+from datetime import datetime
 
+
+def insert_enriched_data(conn,enrichedData):
+    cur = conn.cursor()
+    sql = "insert into t_enriched_bloomberg_prices (embers_id,derived_from,type,name,post_date,operate_time,current_value,previous_close_value,one_day_change,change_percent,zscore30,zscore90,trend_type) values (?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    enrichedDataEmID = enrichedData["embersId"]
+    derivedFrom = enrichedData["derivedFrom"]
+    ty = enrichedData["type"]
+    name = enrichedData["name"] 
+    postDate = enrichedData["postDate"] 
+    operateTime = enrichedData["operateTime"] 
+    currentValue = enrichedData["currentValue"] 
+    previousCloseValue = enrichedData["previousCloseValue"]
+    oneDayChange = enrichedData["oneDayChange"]
+    changePercent = enrichedData["changePercent"]
+    zscore30 = enrichedData["zscore30"]
+    zscore90 = enrichedData["zscore90"]
+    trendType = enrichedData["trendType"]
+    
+    cur.execute(sql,(enrichedDataEmID,derivedFrom,ty,name,postDate,operateTime,currentValue,previousCloseValue,oneDayChange,changePercent,zscore30,zscore90,trendType))
+    
+def getZscore(conn,cur_date,stock_index,cur_diff,duration):
+    cur = conn.cursor()
+    scores = []
+    sql = "select one_day_change from t_enriched_bloomberg_prices where post_date<? and name = ? order by post_date desc limit ?"
+    cur.execute(sql,(cur_date,stock_index,duration))
+    rows = cur.fetchall()
+    for row in rows:
+        scores.append(row[0])
+    zscore = calculator.calZscore(scores, cur_diff)
+    return zscore
+    
 def export_test_stock_data(estimationStart,estimationEnd):
     
     con = common.getDBConnection()
     cur = con.cursor()
-    sql = "select embers_id,sub_sequence,stock_index,date,last_price,one_day_change from t_daily_stockindex where date>=? and date<=?"
+    sql = "select embers_id,type,name,current_value,previous_close_value,update_time,query_time,post_date,source from t_bloomberg_prices where post_date>=? and post_date<=?"
     cur.execute(sql,(estimationStart,estimationEnd,))
     results = cur.fetchall()
     
     for row in results:
-        derEmbersId = row[0]
-        subSequence = row[1]
-        stockIndex = row[2]
-        date = row[3]
-        lastPrice = row[4]
-        oneDayChange = row[5]
+        embers_id = row[0]
+        ty = row[1]
+        name = row[2]
+        update_time = row[5]
+        last_price = float(row[3])
+        pre_last_price = float(row[4])
+        one_day_change = round(last_price - pre_last_price,4)
+        query_time = row[6]
+        source = row[8]
+        post_date = row[7]
         
-        derivedFrom = "[" + derEmbersId + "]"
-        changePercent = round(oneDayChange/(lastPrice-oneDayChange),4)
-        trendType = get_trend_type(stockIndex,changePercent)
-        
+        "Initiate the enriched Data"
         enrichedData = {}
-        enrichedData["derivedFrom"] = derivedFrom
-        enrichedData["stockIndex"] = stockIndex
-        enrichedData["date"] = date
-        enrichedData["lastPrice"] = lastPrice
-        enrichedData["oneDayChange"] = oneDayChange
-        enrichedData["changePercent"] = changePercent
-        enrichedData["trendType"] = trendType
-        enrichedData["subsequenceId"] = subSequence
+        
+        "calculate zscore 30 and zscore 90"
+        zscore30 = getZscore(con,post_date,name,one_day_change,30)
+        zscore90 = getZscore(con,post_date,name,one_day_change,90)
+        
+        changePercent = round((last_price - pre_last_price)/pre_last_price,4)
+        
+        trend_type = get_trend_type(name,changePercent)
+        derived_from = "[" + embers_id + "]"
+        enrichedData["derivedFrom"] = derived_from
+        enrichedData["type"] = ty
+        enrichedData["name"] = name
+        enrichedData["postDate"] = post_date
+        enrichedData["currentValue"] = last_price
+        enrichedData["previousCloseValue"] = pre_last_price
+        enrichedData["oneDayChange"] = one_day_change
+        enrichedData["changePercent"] = round((last_price - pre_last_price)/pre_last_price,4)
+        enrichedData["trendType"] = trend_type
+        enrichedData["zscore30"] = zscore30
+        enrichedData["zscore90"] = zscore90
+        enrichedData["operateTime"] = datetime.now().isoformat()
         enrichedDataEmID = hashlib.sha1(json.dumps(enrichedData)).hexdigest()
         enrichedData["embersId"] = enrichedDataEmID
         
-        insertSql = "insert into t_daily_enrichedindex (embers_id,derived_from,sub_sequence,stock_index,date,last_price,one_day_change,change_percent,trend_type) values (?,?,?,?,?,?,?,?,?)"
-    
-        cur.execute(insertSql,(enrichedDataEmID,derivedFrom,subSequence,stockIndex,date,lastPrice,oneDayChange,changePercent,trendType))
-
+        insert_enriched_data(con,enrichedData)
+        
     con.commit() 
         
       
@@ -81,4 +126,4 @@ def get_trend_type(stockIndex,changePercent):
     return trendType 
 
 if __name__=="__main__":
-    export_test_stock_data("2012-01-01","2012-09-30") 
+    export_test_stock_data("2012-10-17","2012-11-30") 

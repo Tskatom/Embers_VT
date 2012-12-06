@@ -3,6 +3,7 @@ from datetime import datetime
 from Util import common
 import os
 import re
+import cProfile
 
 def create_match_rule(rule_name):
     comListFile = common.get_configuration("training", rule_name)
@@ -90,6 +91,6 @@ def test():
     group_daily_articles(rule_name)
 
 if __name__ == "__main__":
-    test()        
+    cProfile.run("test()")        
 
 

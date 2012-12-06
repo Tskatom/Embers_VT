@@ -1,0 +1,240 @@
+comit for test
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch 12-5-Finance
+# Changes to be committed:
+#   (use "git reset HEAD <file>..." to unstage)
+#
+#	modified:   .metadata/.plugins/com.aptana.git.ui/dialog_settings.xml
+#	new file:   .metadata/.plugins/org.eclipse.core.resources/.history/15/10ef554b3a3700121fc7af5fe25fbf91
+#	renamed:    .metadata/.plugins/org.eclipse.core.resources/.history/57/40ffbab9d33400121e94e067717ef146 -> .metadata/.plugins/org.eclipse.core.resources/.history/1f/20c2a8004f3700121fc7af5fe25fbf91
+#	new file:   .metadata/.plugins/org.eclipse.core.resources/.history/54/3033cdf14e3700121fc7af5fe25fbf91
+#	new file:   .metadata/.plugins/org.eclipse.core.resources/.history/54/a08863fa4e3700121fc7af5fe25fbf91
+#	new file:   .metadata/.plugins/org.eclipse.core.resources/.history/58/100894fd4e3700121fc7af5fe25fbf91
+#	new file:   .metadata/.plugins/org.eclipse.core.resources/.history/5b/404ba7174f3700121fc7af5fe25fbf91
+#	new file:   .metadata/.plugins/org.eclipse.core.resources/.history/67/30b724493a3700121fc7af5fe25fbf91
+#	renamed:    .metadata/.plugins/org.eclipse.core.resources/.history/6a/a0d8f814d43400121e94e067717ef146 -> .metadata/.plugins/org.eclipse.core.resources/.history/6d/20b9110f4f3700121fc7af5fe25fbf91
+#	new file:   .metadata/.plugins/org.eclipse.core.resources/.history/72/705fe23e3a3700121fc7af5fe25fbf91
+#	new file:   .metadata/.plugins/org.eclipse.core.resources/.history/74/8057009f4f3700121fc7af5fe25fbf91
+#	new file:   .metadata/.plugins/org.eclipse.core.resources/.history/7c/a0f2e5124f3700121fc7af5fe25fbf91
+#	new file:   .metadata/.plugins/org.eclipse.core.resources/.history/87/2070b9374f3700121fc7af5fe25fbf91
+#	new file:   .metadata/.plugins/org.eclipse.core.resources/.history/93/f05834904f3700121fc7af5fe25fbf91
+#	new file:   .metadata/.plugins/org.eclipse.core.resources/.history/99/c02d92244f3700121fc7af5fe25fbf91
+#	new file:   .metadata/.plugins/org.eclipse.core.resources/.history/a3/90be49984f3700121fc7af5fe25fbf91
+#	renamed:    .metadata/.plugins/org.eclipse.core.resources/.history/e1/307b7ed0d33400121e94e067717ef146 -> .metadata/.plugins/org.eclipse.core.resources/.history/ac/30f55e0c4f3700121fc7af5fe25fbf91
+#	new file:   .metadata/.plugins/org.eclipse.core.resources/.history/b/105c87654f3700121fc7af5fe25fbf91
+#	new file:   .metadata/.plugins/org.eclipse.core.resources/.history/c1/007a8e964f3700121fc7af5fe25fbf91
+#	new file:   .metadata/.plugins/org.eclipse.core.resources/.history/c7/c0653c154f3700121fc7af5fe25fbf91
+#	new file:   .metadata/.plugins/org.eclipse.core.resources/.history/df/1083e69d4f3700121fc7af5fe25fbf91
+#	modified:   .metadata/.plugins/org.eclipse.core.resources/.projects/FinanceModel/.markers.snap
+#	modified:   .metadata/.plugins/org.eclipse.core.resources/.projects/FinanceModel/.syncinfo.snap
+#	modified:   .metadata/.plugins/org.eclipse.core.resources/.projects/Scratch_FinanceModel/.indexes/48/history.index
+#	modified:   .metadata/.plugins/org.eclipse.core.resources/.root/.markers.snap
+#	renamed:    .metadata/.plugins/org.eclipse.core.resources/.root/6.tree -> .metadata/.plugins/org.eclipse.core.resources/.root/7.tree
+#	modified:   .metadata/.plugins/org.eclipse.core.resources/.safetable/org.eclipse.core.resources
+#	modified:   .metadata/.plugins/org.eclipse.core.resources/.snap
+#	modified:   .metadata/.plugins/org.eclipse.core.runtime/.settings/com.aptana.editor.findbar.prefs
+#	modified:   .metadata/.plugins/org.eclipse.core.runtime/.settings/com.aptana.theme.prefs
+#	modified:   .metadata/.plugins/org.eclipse.debug.ui/launchConfigurationHistory.xml
+#	modified:   .metadata/.plugins/org.eclipse.ui.workbench.texteditor/dialog_settings.xml
+#	modified:   .metadata/.plugins/org.eclipse.ui.workbench/workbench.xml
+#	modified:   .metadata/.plugins/org.python.pydev/v1_32jisk5jx1oeuhf8ucv5rvrxu/1.v1_sys_astdelta
+#	modified:   .metadata/.plugins/org.python.pydev/v1_32jisk5jx1oeuhf8ucv5rvrxu/10.v1_sys_astdelta
+#	modified:   .metadata/.plugins/org.python.pydev/v1_32jisk5jx1oeuhf8ucv5rvrxu/2.v1_sys_astdelta
+#	modified:   .metadata/.plugins/org.python.pydev/v1_32jisk5jx1oeuhf8ucv5rvrxu/3.v1_sys_astdelta
+#	modified:   .metadata/.plugins/org.python.pydev/v1_32jisk5jx1oeuhf8ucv5rvrxu/4.v1_sys_astdelta
+#	modified:   .metadata/.plugins/org.python.pydev/v1_32jisk5jx1oeuhf8ucv5rvrxu/5.v1_sys_astdelta
+#	modified:   .metadata/.plugins/org.python.pydev/v1_32jisk5jx1oeuhf8ucv5rvrxu/6.v1_sys_astdelta
+#	modified:   .metadata/.plugins/org.python.pydev/v1_32jisk5jx1oeuhf8ucv5rvrxu/7.v1_sys_astdelta
+#	modified:   .metadata/.plugins/org.python.pydev/v1_32jisk5jx1oeuhf8ucv5rvrxu/8.v1_sys_astdelta
+#	modified:   .metadata/.plugins/org.python.pydev/v1_32jisk5jx1oeuhf8ucv5rvrxu/9.v1_sys_astdelta
+#	new file:   FinanceModel/Config/Data/embers_v2.db
+#	modified:   FinanceModel/Config/config.cfg
+#	modified:   FinanceModel/DataPreprocess/ImportNewsProcess.pyc
+#	modified:   FinanceModel/DataPreprocess/__init__.pyc
+#	modified:   FinanceModel/DataPreprocess/import_historical_stock_v2.pyc
+#	modified:   FinanceModel/Training/ClusteringTraingSet.pyc
+#	modified:   FinanceModel/Training/CreatingTermContribution.pyc
+#	modified:   FinanceModel/Training/CreatingTrendsContribution.pyc
+#	modified:   FinanceModel/Training/CreatingVocabulary.pyc
+#	modified:   FinanceModel/Training/GroupAritclesByStockIndex.py
+#	modified:   FinanceModel/Training/GroupArticlesByCluster.py
+#	modified:   FinanceModel/Training/OutputTestStockIndexData.pyc
+#	modified:   FinanceModel/Training/__init__.pyc
+#	modified:   FinanceModel/Util/__init__.pyc
+#	modified:   FinanceModel/Util/calculator.pyc
+#
+# Changes not staged for commit:
+#   (use "git add/rm <file>..." to update what will be committed)
+#   (use "git checkout -- <file>..." to discard changes in working directory)
+#
+#	modified:   .metadata/.log
+#	modified:   .metadata/.plugins/com.aptana.git.ui/dialog_settings.xml
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/0/a0f5694e653600121e94e067717ef146
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/15/10ef554b3a3700121fc7af5fe25fbf91
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/15/30f2eb0a683600121e94e067717ef146
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/17/903d55e0d43400121e94e067717ef146
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/18/c043bb02653600121e94e067717ef146
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/19/d0807025d33400121e94e067717ef146
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/19/d0e2cb21d33400121e94e067717ef146
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/1c/a089b483653600121e94e067717ef146
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/1e/4008511e653600121e94e067717ef146
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/1f/20c2a8004f3700121fc7af5fe25fbf91
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/2/d0fceaf8663600121e94e067717ef146
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/25/0054823a663600121e94e067717ef146
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/38/f04f853c663600121e94e067717ef146
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/40/a096e312683600121e94e067717ef146
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/52/904b0fef653600121e94e067717ef146
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/54/3033cdf14e3700121fc7af5fe25fbf91
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/54/60fb5ac3663600121e94e067717ef146
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/54/a08863fa4e3700121fc7af5fe25fbf91
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/54/b0d5185a653600121e94e067717ef146
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/56/50e8c151673600121e94e067717ef146
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/58/100894fd4e3700121fc7af5fe25fbf91
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/5b/404ba7174f3700121fc7af5fe25fbf91
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/5d/901011d8653600121e94e067717ef146
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/5f/a0f5f325683600121e94e067717ef146
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/63/b07090e0673600121e94e067717ef146
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/67/30b724493a3700121fc7af5fe25fbf91
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/6d/20b9110f4f3700121fc7af5fe25fbf91
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/6d/308d00f2673600121e94e067717ef146
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/7/204b522e683600121e94e067717ef146
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/72/705fe23e3a3700121fc7af5fe25fbf91
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/74/8057009f4f3700121fc7af5fe25fbf91
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/79/60c9333a673600121e94e067717ef146
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/7c/a0f2e5124f3700121fc7af5fe25fbf91
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/7d/90063d3b683600121e94e067717ef146
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/7d/c09d9cdb643600121e94e067717ef146
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/83/c0f74afb643600121e94e067717ef146
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/87/2070b9374f3700121fc7af5fe25fbf91
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/8c/103327e3653600121e94e067717ef146
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/90/e01e26d7663600121e94e067717ef146
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/93/f05834904f3700121fc7af5fe25fbf91
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/99/c02d92244f3700121fc7af5fe25fbf91
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/a2/b0bccbdb673600121e94e067717ef146
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/a3/90be49984f3700121fc7af5fe25fbf91
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/a5/606373ca663600121e94e067717ef146
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/ac/30f55e0c4f3700121fc7af5fe25fbf91
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/ac/9003cdfb653600121e94e067717ef146
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/ae/5049410d673600121e94e067717ef146
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/b/105c87654f3700121fc7af5fe25fbf91
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/b4/40ca335e673600121e94e067717ef146
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/b7/e04793dc663600121e94e067717ef146
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/c/d0008a9e643600121e94e067717ef146
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/c1/007a8e964f3700121fc7af5fe25fbf91
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/c6/20d6cf2ed43400121e94e067717ef146
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/c7/c0653c154f3700121fc7af5fe25fbf91
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/d0/8076c00ad53400121e94e067717ef146
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/de/20429657683600121e94e067717ef146
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/df/1083e69d4f3700121fc7af5fe25fbf91
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/e1/707b0cf2643600121e94e067717ef146
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/e4/800abc42663600121e94e067717ef146
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/e4/80bb7616d33400121e94e067717ef146
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/e9/e0d8a7e6663600121e94e067717ef146
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/ee/50c2a73bd33400121e94e067717ef146
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/ee/50fe422e673600121e94e067717ef146
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/f/10fafc66683600121e94e067717ef146
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/f9/001f0538663600121e94e067717ef146
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/fd/40715a95673600121e94e067717ef146
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/ff/e0e4c70a673600121e94e067717ef146
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.projects/FinanceModel/.indexes/properties.index
+#	modified:   .metadata/.plugins/org.eclipse.core.resources/.projects/FinanceModel/.markers
+#	modified:   .metadata/.plugins/org.eclipse.core.resources/.projects/FinanceModel/.markers.snap
+#	modified:   .metadata/.plugins/org.eclipse.core.resources/.projects/FinanceModel/.syncinfo.snap
+#	modified:   .metadata/.plugins/org.eclipse.core.resources/.projects/FinanceModel/com.python.pydev.analysis/0.v1_projectinfodelta
+#	modified:   .metadata/.plugins/org.eclipse.core.resources/.projects/FinanceModel/com.python.pydev.analysis/1.v1_projectinfodelta
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.projects/FinanceModel/com.python.pydev.analysis/10.v1_projectinfodelta
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.projects/FinanceModel/com.python.pydev.analysis/11.v1_projectinfodelta
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.projects/FinanceModel/com.python.pydev.analysis/12.v1_projectinfodelta
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.projects/FinanceModel/com.python.pydev.analysis/13.v1_projectinfodelta
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.projects/FinanceModel/com.python.pydev.analysis/14.v1_projectinfodelta
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.projects/FinanceModel/com.python.pydev.analysis/15.v1_projectinfodelta
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.projects/FinanceModel/com.python.pydev.analysis/16.v1_projectinfodelta
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.projects/FinanceModel/com.python.pydev.analysis/17.v1_projectinfodelta
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.projects/FinanceModel/com.python.pydev.analysis/18.v1_projectinfodelta
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.projects/FinanceModel/com.python.pydev.analysis/19.v1_projectinfodelta
+#	modified:   .metadata/.plugins/org.eclipse.core.resources/.projects/FinanceModel/com.python.pydev.analysis/2.v1_projectinfodelta
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.projects/FinanceModel/com.python.pydev.analysis/20.v1_projectinfodelta
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.projects/FinanceModel/com.python.pydev.analysis/21.v1_projectinfodelta
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.projects/FinanceModel/com.python.pydev.analysis/22.v1_projectinfodelta
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.projects/FinanceModel/com.python.pydev.analysis/23.v1_projectinfodelta
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.projects/FinanceModel/com.python.pydev.analysis/24.v1_projectinfodelta
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.projects/FinanceModel/com.python.pydev.analysis/25.v1_projectinfodelta
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.projects/FinanceModel/com.python.pydev.analysis/26.v1_projectinfodelta
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.projects/FinanceModel/com.python.pydev.analysis/27.v1_projectinfodelta
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.projects/FinanceModel/com.python.pydev.analysis/28.v1_projectinfodelta
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.projects/FinanceModel/com.python.pydev.analysis/29.v1_projectinfodelta
+#	modified:   .metadata/.plugins/org.eclipse.core.resources/.projects/FinanceModel/com.python.pydev.analysis/3.v1_projectinfodelta
+#	modified:   .metadata/.plugins/org.eclipse.core.resources/.projects/FinanceModel/com.python.pydev.analysis/4.v1_projectinfodelta
+#	modified:   .metadata/.plugins/org.eclipse.core.resources/.projects/FinanceModel/com.python.pydev.analysis/5.v1_projectinfodelta
+#	modified:   .metadata/.plugins/org.eclipse.core.resources/.projects/FinanceModel/com.python.pydev.analysis/6.v1_projectinfodelta
+#	modified:   .metadata/.plugins/org.eclipse.core.resources/.projects/FinanceModel/com.python.pydev.analysis/7.v1_projectinfodelta
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.projects/FinanceModel/com.python.pydev.analysis/8.v1_projectinfodelta
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.projects/FinanceModel/com.python.pydev.analysis/9.v1_projectinfodelta
+#	modified:   .metadata/.plugins/org.eclipse.core.resources/.projects/FinanceModel/com.python.pydev.analysis/AdditionalProjectInterpreterInfo.pydevinfo
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.projects/FinanceModel/com.python.pydev.analysis/v1_indexcache/Test.bloomberg_1y4q.v1_indexcache
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.projects/FinanceModel/com.python.pydev.analysis/v1_indexcache/Test.change_6cg4.v1_indexcache
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.projects/FinanceModel/com.python.pydev.analysis/v1_indexcache/Test.out_put_ts_df52.v1_indexcache
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.projects/FinanceModel/com.python.pydev.analysis/v1_indexcache/Test.output_holiday_87yz.v1_indexcache
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.projects/FinanceModel/com.python.pydev.analysis/v1_indexcache/bayesian_model.bayesian_model_29m4.v1_indexcache
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.projects/FinanceModel/com.python.pydev.analysis/v1_indexcache/simpleDB_version.sim_bayesian_model_f0t4.v1_indexcache
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.projects/FinanceModel/com.python.pydev.analysis/v1_indexcache/simpleDB_version.sim_bloomberg_news_process_an9e.v1_indexcache
+#	modified:   .metadata/.plugins/org.eclipse.core.resources/.projects/FinanceModel/org.python.pydev/v1_astmanager/modulesKeys
+#	modified:   .metadata/.plugins/org.eclipse.core.resources/.projects/Scratch_FinanceModel/.indexes/48/history.index
+#	modified:   .metadata/.plugins/org.eclipse.core.resources/.root/.markers.snap
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.root/7.tree
+#	modified:   .metadata/.plugins/org.eclipse.core.resources/.safetable/org.eclipse.core.resources
+#	modified:   .metadata/.plugins/org.eclipse.core.resources/.snap
+#	modified:   .metadata/.plugins/org.eclipse.core.runtime/.settings/com.aptana.editor.findbar.prefs
+#	modified:   .metadata/.plugins/org.eclipse.core.runtime/.settings/com.aptana.explorer.prefs
+#	modified:   .metadata/.plugins/org.eclipse.core.runtime/.settings/com.aptana.theme.prefs
+#	modified:   .metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.ui.workbench.prefs
+#	modified:   .metadata/.plugins/org.eclipse.debug.core/.launches/FinanceModel auto_correlation.py.launch
+#	modified:   .metadata/.plugins/org.eclipse.debug.core/.launches/Firefox - Internal Server.launch
+#	modified:   .metadata/.plugins/org.eclipse.debug.ui/dialog_settings.xml
+#	modified:   .metadata/.plugins/org.eclipse.debug.ui/launchConfigurationHistory.xml
+#	modified:   .metadata/.plugins/org.eclipse.ui.ide/dialog_settings.xml
+#	modified:   .metadata/.plugins/org.eclipse.ui.workbench.texteditor/dialog_settings.xml
+#	modified:   .metadata/.plugins/org.eclipse.ui.workbench/workbench.xml
+#	modified:   .metadata/.plugins/org.python.pydev/v1_32jisk5jx1oeuhf8ucv5rvrxu/1.v1_sys_astdelta
+#	modified:   .metadata/.plugins/org.python.pydev/v1_32jisk5jx1oeuhf8ucv5rvrxu/10.v1_sys_astdelta
+#	modified:   .metadata/.plugins/org.python.pydev/v1_32jisk5jx1oeuhf8ucv5rvrxu/2.v1_sys_astdelta
+#	modified:   .metadata/.plugins/org.python.pydev/v1_32jisk5jx1oeuhf8ucv5rvrxu/3.v1_sys_astdelta
+#	modified:   .metadata/.plugins/org.python.pydev/v1_32jisk5jx1oeuhf8ucv5rvrxu/4.v1_sys_astdelta
+#	modified:   .metadata/.plugins/org.python.pydev/v1_32jisk5jx1oeuhf8ucv5rvrxu/5.v1_sys_astdelta
+#	modified:   .metadata/.plugins/org.python.pydev/v1_32jisk5jx1oeuhf8ucv5rvrxu/6.v1_sys_astdelta
+#	modified:   .metadata/.plugins/org.python.pydev/v1_32jisk5jx1oeuhf8ucv5rvrxu/8.v1_sys_astdelta
+#	modified:   .metadata/.plugins/org.python.pydev/v1_32jisk5jx1oeuhf8ucv5rvrxu/9.v1_sys_astdelta
+#	modified:   FinanceModel/Config/Data/embers_v2.db
+#	modified:   FinanceModel/Config/Data/termContribution.json
+#	modified:   FinanceModel/Config/Data/trendRange.json
+#	modified:   FinanceModel/Config/config.cfg
+#	modified:   FinanceModel/DataPreprocess/create_historical_stock.py
+#	modified:   FinanceModel/Test/change.py
+#	modified:   FinanceModel/Test/m1.py
+#	modified:   FinanceModel/Training/ClusteringTraingSet.py
+#	modified:   FinanceModel/Training/CreatingTermContribution.py
+#	modified:   FinanceModel/Training/CreatingVocabulary.py
+#	modified:   FinanceModel/Training/GroupAritclesByStockIndex.py
+#	modified:   FinanceModel/Training/OutputTestStockIndexData.py
+#	modified:   FinanceModel/Training/TrainingStart.py
+#	modified:   FinanceModel/auto_correlation_model/auto_correlation.py
+#	deleted:    FinanceModel/bayesian_model/bloomberg_news_ingest.log
+#	deleted:    FinanceModel/bayesian_model/bloomberg_news_process.log
+#	deleted:    FinanceModel/bayesian_model/stock_process.log
+#
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#
+#	.gitignore
+#	Crime/
+#	FinanceModel/DataPreprocess/import_news2test.py
+#	FinanceModel/Test/ParameterTest.pyc
+#	FinanceModel/Training/create_config.py
+#	FinanceModel/Training/enrich_news.py
+#	FinanceModel/Training/get_key_words_list.py
+#	FinanceModel/Training/model_test.conf
+#	FinanceModel/Training/model_test.py
+#	FinanceModel/Training/trendRange.json
+#	FinanceModel/scratch_bayesian/
+

@@ -88,12 +88,13 @@ def compute_term_contribution():
             for term in vocaList:
                 wordFreq[term] = 0
             for article in articles:
-                content = article["content"]
-                tokens = nltk.word_tokenize(content)
-                words = [w.lower() for w in tokens if w not in [",",".",")","]","(","[","*",";","...",":","&",'"'] and not w.isdigit()]
-                words = [w for w in words if w.encode("utf8") not in nltk.corpus.stopwords.words('english')]
-                stemmedWords = [stemmer.stem(w) for w in words]
-                fdist=nltk.FreqDist(stemmedWords)
+#                content = article["content"]
+#                tokens = nltk.word_tokenize(content)
+#                words = [w.lower() for w in tokens if w not in [",",".",")","]","(","[","*",";","...",":","&",'"'] and not w.isdigit()]
+#                words = [w for w in words if w.encode("utf8") not in nltk.corpus.stopwords.words('english')]
+#                stemmedWords = [stemmer.stem(w) for w in words]
+#                fdist=nltk.FreqDist(stemmedWords)
+                fdist = article["words"]
                 for term in wordFreq:
                     if term in fdist:
                         wordFreq[term] = wordFreq[term] + fdist[term]
