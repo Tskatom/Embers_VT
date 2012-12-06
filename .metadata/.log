@@ -15209,3 +15209,47 @@ java.lang.RuntimeException: Did not expect adapter request: interface com.aptana
 	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:622)
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:577)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1410)
+
+!ENTRY org.python.pydev.core 4 4 2012-12-05 21:27:33.657
+!MESSAGE C:\Users\wei\Documents\GitHub\Embers_VT\Crime\.pydevproject (The system cannot find the path specified)
+!STACK 0
+java.io.FileNotFoundException: C:\Users\wei\Documents\GitHub\Embers_VT\Crime\.pydevproject (The system cannot find the path specified)
+	at java.io.FileOutputStream.open(Native Method)
+	at java.io.FileOutputStream.<init>(Unknown Source)
+	at java.io.FileOutputStream.<init>(Unknown Source)
+	at org.python.pydev.core.REF.writeBytesToFile(REF.java:381)
+	at org.python.pydev.core.REF.writeStrToFile(REF.java:373)
+	at org.python.pydev.plugin.nature.PythonNatureStore.doStore(PythonNatureStore.java:931)
+	at org.python.pydev.plugin.nature.PythonNatureStore.loadFromFile(PythonNatureStore.java:305)
+	at org.python.pydev.plugin.nature.PythonNatureStore.resourceChanged(PythonNatureStore.java:875)
+	at org.eclipse.core.internal.events.NotificationManager$1.run(NotificationManager.java:291)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.NotificationManager.notify(NotificationManager.java:285)
+	at org.eclipse.core.internal.events.NotificationManager.broadcastChanges(NotificationManager.java:149)
+	at org.eclipse.core.internal.resources.Workspace.broadcastPostChange(Workspace.java:395)
+	at org.eclipse.core.internal.resources.Workspace.endOperation(Workspace.java:1530)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:45)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.eclipse.core.resources 4 1 2012-12-05 21:27:33.660
+!MESSAGE Problems occurred while refreshing local changes
+!SUBENTRY 1 org.eclipse.core.resources 4 1 2012-12-05 21:27:33.660
+!MESSAGE Problems occurred while refreshing local changes
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: Errors occurred while refreshing resources with the local file system.
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.refreshResource(FileSystemResourceManager.java:923)
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.refresh(FileSystemResourceManager.java:904)
+	at org.eclipse.core.internal.resources.Resource.refreshLocal(Resource.java:1663)
+	at org.eclipse.core.internal.refresh.RefreshJob.runInWorkspace(RefreshJob.java:167)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:38)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+Contains: The project description file (.project) for 'Crime' is missing.  This file contains important information about the project.  The project will not function properly until this file is restored.
+!SUBENTRY 2 org.eclipse.core.resources 4 271 2012-12-05 21:27:33.661
+!MESSAGE Errors occurred while refreshing resources with the local file system.
+!SUBENTRY 3 org.eclipse.core.resources 4 567 2012-12-05 21:27:33.661
+!MESSAGE The project description file (.project) for 'Crime' is missing.  This file contains important information about the project.  The project will not function properly until this file is restored.
+
+!ENTRY org.eclipse.core.resources 2 2 2012-12-05 21:30:33.390
+!MESSAGE Save operation warnings.
+!SUBENTRY 1 org.eclipse.core.resources 2 234 2012-12-05 21:30:33.390
+!MESSAGE The project description file (.project) for 'Crime' was missing.  This file contains important information about the project.  A new project description file has been created, but some information about the project may have been lost.
