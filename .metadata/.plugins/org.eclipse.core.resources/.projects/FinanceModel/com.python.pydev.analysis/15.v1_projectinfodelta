@@ -1,7 +1,1 @@
-INSTUPauto_correlation_model.import_gsr_event
-C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\auto_correlation_model\import_gsr_event.py
-INFOS:&&2|1|2|0&&2|3|2|0&&2|4|2|0
-import_gsr=1
-compare_gsr_pd=4
-get_day_range=3
-auto_correlation_model.import_gsr_event=2
+DELSTRTraining.ClusteringTraingSet

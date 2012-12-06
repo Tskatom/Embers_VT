@@ -1,10 +1,1 @@
-INSTUPsimpleDB_version.sim_bloomberg_news_process
-C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\simpleDB_version\sim_bloomberg_news_process.py
-INFOS:&&3|1|2|0&&3|3|2|0&&2|4|2|0&&2|5|2|0&&2|6|2|0&&2|7|2|0
-process=4
-process_news=5
-simpleDB_version.sim_bloomberg_news_process=2
-parse_args=6
-log=3
-__processor__=1
-main=7
+DELSTRTraining.ClusteringTraingSet

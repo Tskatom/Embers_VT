@@ -1,14 +1,1 @@
-INSTUPauto_correlation_model.initiate_indices
-C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\auto_correlation_model\initiate_indices.py
-INFOS:&&3|1|2|0&&3|3|2|0&&2|4|2|0&&2|5|2|0&&2|6|2|0&&2|7|2|0&&2|8|2|0&&2|9|2|0&&2|10|2|0&&2|11|2|0
-process=7
-import2db=9
-check_if_existed=6
-parse_args=10
-getZscore=5
-auto_correlation_model.initiate_indices=2
-insert_enriched_data=8
-transcsv2json=4
-log=3
-__processor__=1
-main=11
+DELSTRTraining.ClusteringTraingSet

@@ -1,1 +1,9 @@
-DELSTRTest.m1
+INSTUPDataPreprocess.ImportEnrichedData
+C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\DataPreprocess\ImportEnrichedData.py
+INFOS:&&2|1|2|0&&2|3|2|0&&2|4|2|0&&2|5|2|0&&2|6|2|0
+getZscore=5
+clusterSet=3
+DataPreprocess.ImportEnrichedData=2
+InitiateEnrichedData=1
+insert_enriched_data=4
+main=6

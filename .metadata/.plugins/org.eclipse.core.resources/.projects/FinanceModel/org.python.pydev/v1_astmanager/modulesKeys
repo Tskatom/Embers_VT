@@ -1,5 +1,6 @@
 MODULES_MANAGER_V2
 DataPreprocess.ImportAlreadyDownloadNews|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\DataPreprocess\ImportAlreadyDownloadNews.py
+DataPreprocess.ImportEnrichedData|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\DataPreprocess\ImportEnrichedData.py
 DataPreprocess.ImportHistorialStock|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\DataPreprocess\ImportHistorialStock.py
 DataPreprocess.ImportHistoricalStock2DB|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\DataPreprocess\ImportHistoricalStock2DB.py
 DataPreprocess.ImportNewsProcess|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\DataPreprocess\ImportNewsProcess.py
@@ -7,6 +8,7 @@ DataPreprocess.__init__|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\Dat
 DataPreprocess.create_historical_stock|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\DataPreprocess\create_historical_stock.py
 DataPreprocess.import_historical_stock_v2|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\DataPreprocess\import_historical_stock_v2.py
 DataPreprocess.import_holiday_info|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\DataPreprocess\import_holiday_info.py
+DataPreprocess.import_news2test|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\DataPreprocess\import_news2test.py
 Estimation.Evaluation|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\Estimation\Evaluation.py
 Estimation.FileObject|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\Estimation\FileObject.py
 Estimation.__init__|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\Estimation\__init__.py
@@ -52,6 +54,10 @@ Training.GroupArticlesByCluster|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceM
 Training.OutputTestStockIndexData|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\Training\OutputTestStockIndexData.py
 Training.TrainingStart|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\Training\TrainingStart.py
 Training.__init__|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\Training\__init__.py
+Training.create_config|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\Training\create_config.py
+Training.enrich_news|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\Training\enrich_news.py
+Training.get_key_words_list|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\Training\get_key_words_list.py
+Training.model_test|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\Training\model_test.py
 Util.__init__|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\Util\__init__.py
 Util.calculator|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\Util\calculator.py
 Util.common|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\Util\common.py
@@ -77,6 +83,15 @@ etool.args|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\etool\args.py
 etool.logs|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\etool\logs.py
 etool.message|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\etool\message.py
 etool.queue|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\etool\queue.py
+scratch_bayesian.__init__|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\scratch_bayesian\__init__.py
+scratch_bayesian.bayesian_model|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\scratch_bayesian\bayesian_model.py
+scratch_bayesian.bloomberg_news_ingest|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\scratch_bayesian\bloomberg_news_ingest.py
+scratch_bayesian.bloomberg_news_keywords|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\scratch_bayesian\bloomberg_news_keywords.py
+scratch_bayesian.bloomberg_news_process|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\scratch_bayesian\bloomberg_news_process.py
+scratch_bayesian.calculator|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\scratch_bayesian\calculator.py
+scratch_bayesian.get_keywords|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\scratch_bayesian\get_keywords.py
+scratch_bayesian.initiate_data|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\scratch_bayesian\initiate_data.py
+scratch_bayesian.stock_process|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\scratch_bayesian\stock_process.py
 simpleDB_version.__init__|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\simpleDB_version\__init__.py
 simpleDB_version.sim_bayesian_model|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\simpleDB_version\sim_bayesian_model.py
 simpleDB_version.sim_bloomberg_news_process|C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\simpleDB_version\sim_bloomberg_news_process.py

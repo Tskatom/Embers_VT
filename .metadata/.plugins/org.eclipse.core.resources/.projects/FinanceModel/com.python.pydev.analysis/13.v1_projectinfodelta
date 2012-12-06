@@ -1,13 +1,1 @@
-INSTUPauto_correlation_model.auto_correlation
-C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\auto_correlation_model\auto_correlation.py
-INFOS:&&2|1|2|0&&2|3|2|0&&2|4|2|0&&2|5|2|0&&2|6|2|0&&2|7|2|0&&2|8|2|0&&2|9|2|0&&2|10|2|0
-clear=9
-auto_correlation_model.auto_correlation=2
-get_cor_data=4
-arg_parser=1
-getZscore=5
-fit_model=6
-initiate_data=3
-forcast=8
-test_phase=7
-main=10
+DELSTRTraining.ClusteringTraingSet

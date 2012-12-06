@@ -1,3 +1,5 @@
+//org.eclipse.ui.commands/state/com.aptana.editor.common.commands.toggleOutline/org.eclipse.ui.commands.toggleState=false
+//org.eclipse.ui.commands/state/com.aptana.explorer.commands.toggleAppExplorer/org.eclipse.ui.commands.toggleState=false
 ACTIVE_HYPERLINK_COLOR=13,17,113
 HYPERLINK_COLOR=13,17,113
 com.aptana.explorer.font=1|Consolas|9.0|0|WINDOWS|1|-13|0|0|0|0|0|0|0|1|0|0|0|0|Consolas;

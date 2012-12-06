@@ -1,12 +1,1 @@
-INSTUPTest.output_holiday
-C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\Test\output_holiday.py
-INFOS:&&3|1|2|0&&3|3|2|0&&3|4|2|0&&3|5|2|0&&3|6|2|0&&3|7|2|0&&3|8|2|0&&3|9|2|0
-sql=4
-conn=1
-Test.output_holiday=2
-holidays=6
-rs=5
-cur=3
-holiday_name=9
-post_date=8
-country=7
+DELSTRTraining.ClusteringTraingSet

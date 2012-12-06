@@ -1,9 +1,1 @@
-INSTUPauto_correlation_model.sigma_evnets
-C:\Users\wei\Documents\GitHub\Embers_VT\FinanceModel\auto_correlation_model\sigma_evnets.py
-INFOS:&&2|1|2|0&&2|3|2|0&&2|4|2|0&&2|5|2|0&&2|6|2|0
-get_round_events=4
-arg_parser=1
-find_relation=3
-auto_correlation_model.sigma_evnets=2
-get_day_range=5
-main=6
+DELSTRTraining.ClusteringTraingSet
